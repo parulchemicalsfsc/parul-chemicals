@@ -23,8 +23,11 @@ export default function PageLoader() {
             transition={{ duration: 0.4 }}
             className="text-center"
           >
-            <p className="font-serif text-3xl font-bold text-white mb-1">Parul Chemicals</p>
-            <p className="text-sm text-[#00C9A7] tracking-widest uppercase font-medium">Precision Chemistry</p>
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style={{ background: 'linear-gradient(135deg,#4DA8DA,#0EA5A0)' }}>
+              <span className="text-white font-black text-lg">PC</span>
+            </div>
+            <p className="font-display text-3xl font-bold text-white mb-1">Parul Chemicals</p>
+            <p className="text-sm text-[#4DA8DA] tracking-widest uppercase font-medium">Precision Chemistry</p>
           </motion.div>
           <div className="loader-bar">
             <div className="loader-fill" />
