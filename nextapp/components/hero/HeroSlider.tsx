@@ -2,6 +2,9 @@
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import 'swiper/css'
+import 'swiper/css/effect-fade'
+import 'swiper/css/pagination'
 
 const SLIDES = [
   { bg: '/hero/background1.webp', tag: 'ISO 9001 Certified Manufacturing' },
@@ -19,10 +22,6 @@ export default function HeroSlider() {
     import('swiper').then(({ Swiper }) => {
       return import('swiper/modules').then(({ Autoplay, EffectFade, Pagination }) => {
         if (!swiperRef.current || !isMounted) return
-        import('swiper/css')
-        import('swiper/css/effect-fade')
-        import('swiper/css/pagination')
-
         instanceRef.current = new Swiper(swiperRef.current!, {
           modules: [Autoplay, EffectFade, Pagination],
           effect: 'fade',
