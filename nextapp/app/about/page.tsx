@@ -1,10 +1,25 @@
 'use client'
 import { useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
-import { TIMELINE, STATS } from '@/lib/data'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { TIMELINE, STATS, PHILOSOPHY, CORE_PILLARS } from '@/lib/data'
+import PageHero from '@/components/PageHero'
 
 export default function AboutPage() {
   const lineRef = useRef<HTMLDivElement>(null)
+  
+  // Mouse tracking for 3D tilt
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+
+  // Smooth springs for tilt
+  const springConfig = { damping: 25, stiffness: 150 }
+  const rotateX = useSpring(useTransform(mouseY, [0, 1000], [5, -5]), springConfig)
+  const rotateY = useSpring(useTransform(mouseX, [0, 1500], [-5, 5]), springConfig)
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    mouseX.set(e.clientX)
+    mouseY.set(e.clientY)
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
@@ -14,156 +29,245 @@ export default function AboutPage() {
     return () => observer.disconnect()
   }, [])
 
+  const processedTimeline = []
+  for (let i = 0; i < TIMELINE.length; i += 3) {
+    processedTimeline.push(TIMELINE.slice(i, i + 3))
+  }
+
   return (
-    <>
-      {/* Page Hero */}
-      <div className="relative min-h-[75vh] flex flex-col justify-center pt-32 pb-20 overflow-hidden">
-        {/* 3D Video Background */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          src="/videos/Chemical_Product_Video_Generation.mp4"
-        />
-        {/* Dark Blue Transparent Overlay */}
-        <div className="absolute inset-0 bg-[#060F1E]/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0D2137]/60 via-transparent to-[#0D2137]/30" />
-        <div className="absolute inset-0 hex-bg opacity-10 blur-[1px]" />
+    <div onMouseMove={handleMouseMove} className="perspective-1000">
+      <PageHero 
+        tag="ABOUT PARUL CHEMICALS" 
+        title={<>Our Story of <span className="text-[#4DA8DA]">Chemical Excellence</span></>} 
+        subtitle="Global Innovative Solutions Provider committed to reaching new heights through excellence and cutting-edge technology." 
+      />
+
+      {/* Philosophy Section */}
+      <section className="py-24 bg-gradient-to-br from-white to-[#F0F9FF] relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-full h-full opacity-[0.05] pointer-events-none dot-pattern" />
+        <div className="absolute top-1/4 -right-20 w-[500px] h-[500px] accent-blue-blob opacity-40 pointer-events-none" />
         
+        {/* Abstract Orbital Design - INTERACTIVE 3D TILT */}
+        <motion.div 
+          style={{ rotateX, rotateY, perspective: 1000 }}
+          animate={{ rotate: 360 }}
+          transition={{ rotate: { duration: 40, repeat: Infinity, ease: "linear" } }}
+          className="absolute -right-20 top-20 w-96 h-96 opacity-[0.35] pointer-events-none hidden lg:block drop-shadow-2xl"
+        >
+          <svg viewBox="0 0 200 200" className="w-full h-full">
+            <circle cx="100" cy="100" r="80" fill="none" stroke="#4DA8DA" strokeWidth="1.2" strokeDasharray="4 4" />
+            <circle cx="100" cy="100" r="50" fill="none" stroke="#4DA8DA" strokeWidth="1.2" strokeDasharray="2 2" />
+            <circle cx="100" cy="20" r="4" fill="#4DA8DA" />
+            <circle cx="150" cy="100" r="3" fill="#4DA8DA" />
+            <circle cx="50" cy="100" r="2.5" fill="#4DA8DA" />
+          </svg>
+        </motion.div>
+
+        {/* Interactive Chemical Particles (Mini 3D Elements) */}
+        {[...Array(12)].map((_, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 0.2, scale: 1 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 4, opacity: 0.7, backgroundColor: '#4DA8DA', filter: 'blur(3px)', z: 50 }}
+            className="absolute w-1.5 h-1.5 rounded-full border border-[#4DA8DA] pointer-events-auto cursor-none hidden lg:block"
+            style={{ 
+              top: `${(i * 13) % 80 + 10}%`, 
+              left: `${(i * 17) % 80 + 10}%`,
+              transition: 'background-color 0.3s ease, filter 0.3s ease'
+            }}
+          />
+        ))}
+
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9 }}
-              className="bg-[#0F1C33]/40 backdrop-blur-md border border-white/10 rounded-3xl p-10 shadow-2xl">
-              <p className="text-xs font-bold tracking-widest uppercase text-[#4DA8DA] mb-4">ABOUT PARUL CHEMICALS</p>
-              <h1 className="font-display text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                Our Story of<br />
-                <span className="text-[#4DA8DA]">
-                  Chemical Excellence
-                </span>
-              </h1>
-              <p className="text-white/80 text-lg leading-relaxed">
-                Since 2009, Parul Chemicals has been committed to producing the highest purity specialty chemicals, serving industries that demand nothing less than perfection.
-              </p>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9, delay: 0.2 }}
-              className="grid grid-cols-2 gap-4">
-              {STATS.map(s => (
-                <div key={s.label} className="bg-[#0F1C33]/40 backdrop-blur-md border border-white/10 rounded-3xl p-6 text-center shadow-2xl">
-                  <div className="text-3xl font-black text-white mb-1">{s.val}</div>
-                  <div className="text-xs text-[#4DA8DA] font-semibold">{s.label}</div>
+          <div className="text-center mb-16">
+            <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-[#4DA8DA] font-black tracking-widest text-[10px] uppercase mb-4">Our Foundations</motion.p>
+            <motion.h2 initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-3xl md:text-5xl font-bold text-[#0F1C33] leading-tight">Driven by a Clear <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4DA8DA] to-[#0EA5A0]">Vision & Philosophy</span></motion.h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { title: 'Mission', content: PHILOSOPHY.mission, color: '#4DA8DA' },
+              { title: 'Vision', content: PHILOSOPHY.vision, color: '#0EA5A0' },
+              { title: 'Goal', content: PHILOSOPHY.goal, color: '#1F4E79' },
+            ].map((p, i) => (
+              <motion.div 
+                key={p.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -10, rotateX: 2, rotateY: 2 }}
+                className="group p-10 rounded-[2.5rem] bg-white border border-slate-100 shadow-[0_4px_30px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] transition-all duration-500 relative overflow-hidden"
+              >
+                <div className="w-12 h-1 bg-gradient-to-r mb-8" style={{ backgroundImage: `linear-gradient(to right, ${p.color}, transparent)` }} />
+                <h3 className="text-2xl font-bold text-[#0F1C33] mb-4 uppercase tracking-tighter">{p.title}</h3>
+                <p className="text-[#4A5568] leading-relaxed text-sm font-medium">{p.content}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Core Pillars Section */}
+      <section className="py-24 bg-[#F8FAFC] relative overflow-hidden">
+        {/* Hexagonal chemical grid background */}
+        <div className="absolute inset-0 opacity-[0.04] pointer-events-none chemical-grid" />
+        <div className="absolute -left-20 bottom-10 w-[400px] h-[400px] accent-teal-blob opacity-30 pointer-events-none" />
+
+        {/* Abstract Structural Lattice - INTERACTIVE 3D TILT */}
+        <motion.div 
+          style={{ rotateX: rotateY, rotateY: rotateX, perspective: 1000 }} // Contrasting tilt
+          animate={{ rotate: -360 }}
+          transition={{ rotate: { duration: 50, repeat: Infinity, ease: "linear" } }}
+          className="absolute -left-10 bottom-20 w-80 h-80 opacity-[0.35] pointer-events-none hidden lg:block drop-shadow-2xl"
+        >
+          <svg viewBox="0 0 200 200" className="w-full h-full">
+            <path d="M100 20 L170 60 L170 140 L100 180 L30 140 L30 60 Z" fill="none" stroke="#0EA5A0" strokeWidth="1.2" />
+            <circle cx="100" cy="100" r="40" fill="none" stroke="#0EA5A0" strokeWidth="1.2" strokeDasharray="3 3" />
+            <circle cx="100" cy="20" r="5" fill="none" stroke="#0EA5A0" strokeWidth="1.5" />
+            <circle cx="170" cy="140" r="5" fill="none" stroke="#0EA5A0" strokeWidth="1.5" />
+            <circle cx="30" cy="140" r="5" fill="none" stroke="#0EA5A0" strokeWidth="1.5" />
+          </svg>
+        </motion.div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="flex flex-col lg:flex-row gap-16 items-center mb-16">
+            <div className="lg:w-1/2">
+              <p className="text-[#4DA8DA] font-black tracking-widest text-[10px] uppercase mb-4">Technical Advantage</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#0F1C33] mb-6">Expertise and Innovation<br/>At Every Level</h2>
+              <p className="text-[#4A5568] leading-relaxed">Parul Chemicals is a Global Innovative Solutions Provider. We are inspired by the opportunity to add value through our commitment to excellence and cutting-edge technology, ensuring we remain at the forefront of the industries we serve.</p>
+            </div>
+            <div className="lg:w-1/2 grid grid-cols-2 gap-4 w-full">
+              {STATS.map((stat, i) => (
+                <div key={i} className="p-6 bg-white rounded-3xl border border-slate-100 shadow-sm">
+                  <p className="text-2xl font-black text-[#4DA8DA] mb-1">{stat.val}</p>
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{stat.label}</p>
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
-        </div>
 
-        {/* Premium Wave Shape Divider */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20 pointer-events-none translate-y-[1px]">
-          <svg className="relative block w-full h-[60px] md:h-[100px] lg:h-[140px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V120H0Z" className="fill-white" opacity=".1"></path>
-            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-51.05V120H0Z" className="fill-white" opacity=".25"></path>
-            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V120H0Z" className="fill-white"></path>
-          </svg>
-        </div>
-      </div>
-
-      {/* About Content */}
-      <section className="py-20 bg-white relative overflow-hidden dot-pattern">
-        <div className="absolute top-0 left-0 w-full h-[300px] accent-blue-blob opacity-40 pointer-events-none" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <h2 className="font-display text-3xl font-bold text-[#0F1C33] mb-5">Who We Are</h2>
-              <div className="space-y-4 text-[#4A5568] text-base leading-relaxed">
-                <p>Parul Chemicals is a Vadodara-based specialty chemical manufacturer, focused on producing high-purity Diethyl Phthalate (DEP) and Triethyl Citrate (TEC) for global industrial applications.</p>
-                <p>Our manufacturing facility adheres to strict GMP guidelines, ISO certifications, and HACCP protocols, ensuring every batch meets the precise specifications required by pharmaceutical, food, cosmetics, and agrochemical industries.</p>
-                <p>With 15+ years of experience, 9 international certifications, and clients in 8+ countries, we bring reliability and consistency to chemical manufacturing.</p>
-              </div>
-              <div className="mt-8 grid grid-cols-2 gap-4">
-                {[
-                  { icon: '🏭', title: 'State-of-Art Facility', desc: 'Modern GMP-compliant plant in Vadodara' },
-                  { icon: '🔬', title: 'Quality Labs', desc: 'In-house testing for every batch' },
-                  { icon: '🌱', title: 'Eco-Conscious', desc: 'Environmentally responsible processes' },
-                  { icon: '🌍', title: 'Global Reach', desc: 'Exporting to 8+ countries worldwide' },
-                ].map(item => (
-                  <div key={item.title} className="p-4 rounded-xl bg-[#F4F6FA] border border-[#E2E8F0] hover:border-[#4DA8DA]/35 transition-all">
-                    <span className="text-2xl mb-2 block">{item.icon}</span>
-                    <p className="text-sm font-bold text-[#0F1C33] mb-1">{item.title}</p>
-                    <p className="text-xs text-[#4A5568]">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Why us */}
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-              <h2 className="font-display text-3xl font-bold text-[#0F1C33] mb-5">Why Choose Us</h2>
-              <div className="space-y-4">
-                {[
-                  { title: 'Consistent High Purity', desc: '99%+ purity guaranteed across all batches with in-house quality testing.' },
-                  { title: 'Regulatory Compliance', desc: 'ISO, GMP, HACCP, Kosher certified — meeting global pharmaceutical and food standards.' },
-                  { title: 'Flexible Packaging', desc: 'Available from 1L to bulk 200L drums, shipped pan-India and internationally.' },
-                  { title: 'Technical Support', desc: 'Expert team available for formulation assistance and product specifications.' },
-                  { title: 'Competitive Pricing', desc: 'Direct manufacturer pricing with volume discounts for distributors.' },
-                ].map((item, i) => (
-                  <div key={item.title} className="flex gap-4 p-4 rounded-xl border border-[#E2E8F0] hover:border-[#4DA8DA]/35 hover:bg-[#F4F6FA] transition-all">
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-black shrink-0 mt-0.5"
-                      style={{ background: 'linear-gradient(135deg,#4DA8DA,#0EA5A0)' }}>
-                      {i + 1}
-                    </div>
-                    <div>
-                      <p className="font-bold text-[#0F1C33] text-sm mb-1">{item.title}</p>
-                      <p className="text-xs text-[#4A5568] leading-relaxed">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {CORE_PILLARS.map((pillar, i) => (
+              <motion.div 
+                key={pillar.title}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="p-8 bg-white/60 backdrop-blur-md rounded-[2rem] border border-white hover:border-[#4DA8DA]/30 hover:bg-white transition-all duration-300 group"
+              >
+                <h3 className="text-lg font-bold text-[#0F1C33] mb-3">{pillar.title}</h3>
+                <p className="text-xs text-[#4A5568] leading-relaxed font-medium">{pillar.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="py-24 hex-bg">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-            <p className="section-tag mb-3">OUR JOURNEY</p>
-            <h2 className="font-display text-4xl font-bold text-[#0F1C33]">Milestones &amp; Growth</h2>
+      {/* Timeline - S-Type Snake */}
+      <section className="pt-16 pb-48 bg-white relative overflow-hidden">
+        {/* Topographic chemical connector lines background */}
+        <div className="absolute inset-0 opacity-[0.02] pointer-events-none topo-pattern" />
+        <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#F8FAFC] to-transparent" />
+
+        <div className="max-w-7xl mx-auto px-6 mb-8 relative z-10">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center">
+            <p className="section-tag mb-2">OUR EVOLUTION</p>
+            <h2 className="font-display text-4xl font-bold text-[#0F1C33]">The Journey of 15+ Years</h2>
+            <p className="text-slate-400 text-sm mt-3">Exploring our history from 2009 to the future vision of 2025</p>
           </motion.div>
+        </div>
 
-          <div className="relative max-w-3xl mx-auto" style={{ minHeight: '600px' }}>
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#E2E8F0] -translate-x-1/2" />
-            <div ref={lineRef} className="timeline-line -translate-x-1/2" />
+        <div className="relative w-full max-w-5xl mx-auto overflow-visible" style={{ aspectRatio: '1.2 / 1', minHeight: '800px' }}>
+          {/* SVG Snake Path - 3 Column Zig Zag */}
+          <svg 
+            className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible" 
+            viewBox="0 0 1000 1000"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <linearGradient id="snakeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#4DA8DA" />
+                <stop offset="50%" stopColor="#0EA5A0" />
+                <stop offset="100%" stopColor="#6366f1" />
+              </linearGradient>
+            </defs>
+            <motion.path
+              d={`
+                M 166 150 L 833 150 
+                A 175 175 0 0 1 833 500 L 166 500 
+                A 175 175 0 0 0 166 850 L 833 850
+              `}
+              fill="none"
+              stroke="url(#snakeGradient)"
+              strokeWidth="6"
+              strokeLinecap="round"
+              strokeDasharray="12 12"
+              initial={{ pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 4, ease: "easeInOut" }}
+            />
+          </svg>
 
-            {TIMELINE.map((item, i) => {
-              const isLeft = i % 2 === 0
-              return (
-                <motion.div key={item.year}
-                  initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+          {/* Timeline Milestones - 3 Col Percentage Locked */}
+          {TIMELINE.map((item, i) => {
+            const row = Math.floor(i / 3)
+            const colInRow = i % 3
+            const isReverse = row % 2 !== 0
+            const col = isReverse ? (2 - colInRow) : colInRow
+            
+            const xPercent = 16.66 + (col * 33.33)
+            const yPercent = 15 + (row * 35)
+            
+            const color = ['#4DA8DA', '#0EA5A0', '#6366f1', '#8b5cf6', '#f59e0b'][i % 5]
+
+            return (
+              <div 
+                key={item.year}
+                className="absolute group z-20"
+                style={{ 
+                  left: `${xPercent}%`,
+                  top: `${yPercent}%`,
+                  transform: 'translateX(-50%)' 
+                }}
+              >
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1, duration: 0.7 }}
-                  className={`relative flex items-center mb-12 ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}>
-                  <div className={`w-5/12 ${isLeft ? 'text-right pr-8' : 'text-left pl-8'}`}>
-                    <div className="bg-white border border-[#E2E8F0] rounded-2xl p-5 hover:border-[#4DA8DA]/35 hover:shadow-card transition-all duration-300"
-                      style={{ boxShadow: '0 4px 20px rgba(15,28,51,0.06)' }}>
-                      <div className="text-2xl font-black text-[#4DA8DA] mb-1">{item.year}</div>
-                      <h3 className="text-lg font-bold text-[#0F1C33] mb-2">{item.title}</h3>
-                      <p className="text-sm text-[#4A5568] leading-relaxed">{item.desc}</p>
-                    </div>
+                  transition={{ delay: (i % 3) * 0.1 }}
+                  className="flex flex-col items-center"
+                >
+                  {/* Node on Path */}
+                  <div 
+                    className="w-10 h-10 rounded-full bg-white border-[6px] shadow-lg flex items-center justify-center transition-transform group-hover:scale-125 translate-y-[-50%]"
+                    style={{ borderColor: color }}
+                  >
+                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
                   </div>
-                  {/* Dot */}
-                  <div className="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-4 border-white z-10"
-                    style={{ background: '#4DA8DA', boxShadow: '0 0 0 3px rgba(77,168,218,0.25)' }} />
-                  <div className="w-5/12" />
+
+                  {/* Content Card */}
+                  <div 
+                    className="w-[200px] md:w-[260px] text-center p-6 bg-white rounded-3xl shadow-[0_4px_30px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-2 border-t-4 mt-2"
+                    style={{ borderTopColor: color, borderLeft: '1px solid #f1f5f9', borderRight: '1px solid #f1f5f9', borderBottom: '1px solid #f1f5f9' }}
+                  >
+                    <div className="inline-flex px-3 py-1 rounded-full text-[10px] font-black tracking-widest text-white mb-3" style={{ backgroundColor: color }}>
+                      {item.year}
+                    </div>
+                    <h3 className="text-base font-bold text-[#0F1C33] mb-2 leading-tight">{item.title}</h3>
+                    <p className="text-[11px] text-[#4A5568] leading-relaxed font-medium line-clamp-4">{item.desc}</p>
+                  </div>
                 </motion.div>
-              )
-            })}
-          </div>
+              </div>
+            )
+          })}
         </div>
       </section>
-    </>
+    </div>
   )
 }

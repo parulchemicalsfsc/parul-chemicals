@@ -1,33 +1,103 @@
 'use client'
+import type { JSX } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
 const FEATURES = [
   {
-    icon: '🧪',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
+      </svg>
+    ),
     title: 'Uncompromising Purity',
     desc: 'Our chemicals meet USP, BP and food-grade purity standards with rigorous in-process QC at every batch.',
-    color: '#4DA8DA',
+    color: '#3ABEF9', // Brighter Cyan
   },
   {
-    icon: '🏅',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+      </svg>
+    ),
     title: 'Quality Assurance',
     desc: 'ISO 9001:2015, GMP & HACCP certified operations — compliance with global quality standards is non-negotiable.',
-    color: '#0EA5A0',
+    color: '#4ADE80', // Brighter Green
   },
   {
-    icon: '🌍',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/>
+      </svg>
+    ),
     title: 'Global Supply',
     desc: 'Reliable supply chain serving manufacturers in 8+ countries with consistent lead times and competitive pricing.',
-    color: '#1F4E79',
+    color: '#60A5FA', // Light Blue
   },
   {
-    icon: '📋',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </svg>
+    ),
     title: '9+ Certifications',
     desc: 'Kosher, Halal, ISO 22000, ISO 45001, ISO 9235 — our certifications open doors to regulated industries worldwide.',
-    color: '#F59E0B',
+    color: '#FBBF24', // Brighter Amber
   },
 ]
+
+const CERT_ICONS: Record<string, JSX.Element> = {
+  'ISO 9001:2015': (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+    </svg>
+  ),
+  'ISO 22000:2018': (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path d="M3 2l1.5 1.5M12 2v3M21 2l-1.5 1.5M7 7a5 5 0 0010 0M5 21h14M12 12v9"/>
+    </svg>
+  ),
+  'ISO 45001:2018': (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+    </svg>
+  ),
+  'ISO 9235:2013': (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </svg>
+  ),
+  'GMP': (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-4 0v2M8 7V5a2 2 0 014 0"/>
+    </svg>
+  ),
+  'HACCP': (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+    </svg>
+  ),
+  'Kosher (TEC)': (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+  ),
+  'Kosher (DEP)': (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+  ),
+  'Registration': (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>
+    </svg>
+  ),
+}
 
 export default function CertificationsPreview() {
   return (
@@ -65,9 +135,9 @@ export default function CertificationsPreview() {
                 className="feature-card p-7 rounded-2xl group"
                 style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.10)', backdropFilter: 'blur(12px)' }}
               >
-                {/* Icon block — matches reference site's dark icon squares */}
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-5"
-                  style={{ background: `${f.color}25`, border: `1px solid ${f.color}45` }}>
+                {/* Icon block */}
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 shadow-lg"
+                  style={{ background: f.color, color: 'white' }}>
                   {f.icon}
                 </div>
                 <h3 className="text-white font-bold text-lg mb-3">{f.title}</h3>
@@ -124,19 +194,9 @@ export default function CertificationsPreview() {
 
           {/* Cert grid — white glass cards on light bg */}
           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-4">
-            {[
-              { icon: '🏅', name: 'ISO 9001:2015' },
-              { icon: '🍃', name: 'ISO 22000:2018' },
-              { icon: '⚕️', name: 'ISO 45001:2018' },
-              { icon: '🌿', name: 'ISO 9235:2013' },
-              { icon: '🏭', name: 'GMP' },
-              { icon: '🔬', name: 'HACCP' },
-              { icon: '✡️', name: 'Kosher (TEC)' },
-              { icon: '✡️', name: 'Kosher (DEP)' },
-              { icon: '📋', name: 'Registration' },
-            ].map((cert, i) => (
+            {['ISO 9001:2015','ISO 22000:2018','ISO 45001:2018','ISO 9235:2013','GMP','HACCP','Kosher (TEC)','Kosher (DEP)','Registration'].map((name, i) => (
               <motion.div
-                key={cert.name}
+                key={name}
                 initial={{ opacity: 0, scale: 0.85 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -144,8 +204,8 @@ export default function CertificationsPreview() {
                 className="cert-card bg-white border border-[#E2E8F0] rounded-2xl p-4 flex flex-col items-center gap-2 hover:border-[#4DA8DA]/40"
                 style={{ boxShadow: '0 2px 12px rgba(15,28,51,0.06)' }}
               >
-                <span className="text-2xl">{cert.icon}</span>
-                <span className="text-xs font-bold text-[#1F4E79] text-center leading-tight">{cert.name}</span>
+                <span className="text-[#1F4E79]">{CERT_ICONS[name]}</span>
+                <span className="text-xs font-bold text-[#1F4E79] text-center leading-tight">{name}</span>
               </motion.div>
             ))}
           </div>

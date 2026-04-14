@@ -6,7 +6,7 @@ import Footer from '@/components/Footer'
 export const metadata: Metadata = {
   title: 'Parul Chemicals — Precision Chemistry',
   description: 'Leading manufacturer of Diethyl Phthalate (DEP) and Triethyl Citrate (TEC). ISO certified, GMP compliant, trusted by pharmaceutical, food and cosmetics industries.',
-  keywords: 'Diethyl Phthalate, Triethyl Citrate, DEP, TEC, chemical manufacturer, plasticizer, Vadodara, Gujarat',
+  keywords: 'Diethyl Phthalate, Triethyl Citrate, DEP, TEC, chemical manufacturer, plasticizer',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

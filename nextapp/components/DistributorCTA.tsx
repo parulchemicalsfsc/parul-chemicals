@@ -33,7 +33,7 @@ export default function DistributorCTA() {
           >
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-4"
               style={{ background: 'rgba(14,165,160,0.12)', border: '1px solid rgba(14,165,160,0.30)', color: '#0EA5A0' }}>
-              🤝 Partner With Us
+              Partner With Us
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0F1C33] mb-3">
               Get in Touch for Bulk Orders
@@ -42,8 +42,11 @@ export default function DistributorCTA() {
               Join our growing network of trusted distributors across India and internationally. Get exclusive wholesale pricing, priority support, and an authorized distributor certificate.
             </p>
             <div className="flex flex-wrap gap-3">
-              {['✅ Wholesale Pricing', '✅ Priority Delivery', '✅ Dedicated Manager', '✅ Free TDS & COA'].map(p => (
-                <span key={p} className="text-xs font-semibold text-[#1F4E79] bg-white px-3 py-1.5 rounded-lg border border-[#E2E8F0]">{p}</span>
+              {['Wholesale Pricing', 'Priority Delivery', 'Dedicated Manager', 'Free TDS & COA'].map(p => (
+                <span key={p} className="text-xs font-semibold text-[#1F4E79] bg-white px-3 py-1.5 rounded-lg border border-[#E2E8F0] flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0EA5A0] shrink-0" />
+                  {p}
+                </span>
               ))}
             </div>
           </motion.div>
@@ -54,19 +57,13 @@ export default function DistributorCTA() {
             viewport={{ once: true }}
             className="flex flex-col items-center gap-4 min-w-[260px]"
           >
-            <Link href="/buy?tab=register"
+            <Link href="/contact"
               className="btn-primary w-full px-8 py-4 rounded-full text-base font-bold text-center flex items-center justify-center gap-2">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-                <line x1="19" y1="8" x2="19" y2="14"/>
-                <line x1="22" y1="11" x2="16" y2="11"/>
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
               </svg>
-              Register Now
-            </Link>
-            <Link href="/buy?tab=login"
-              className="text-sm text-[#4A5568] hover:text-[#1F4E79] transition-colors font-medium">
-              Already approved? <strong className="text-[#0EA5A0]">Login →</strong>
+              Get in Touch
             </Link>
           </motion.div>
         </div>

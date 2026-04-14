@@ -96,19 +96,6 @@ export default function HeroSlider() {
             transition={{ duration: 1, delay: 0.3 }}
             className="max-w-4xl"
           >
-            {/* Tag pill */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-5"
-              style={{ background: 'rgba(77,168,218,0.15)', border: '1px solid rgba(77,168,218,0.35)' }}
-            >
-              <span className="w-2 h-2 rounded-full bg-[#4DA8DA] animate-pulse-slow" />
-              <span className="text-xs font-bold tracking-widest uppercase text-[#4DA8DA]">
-                Vadodara, Gujarat, India
-              </span>
-            </motion.div>
 
             {/* Headline */}
             <motion.h1

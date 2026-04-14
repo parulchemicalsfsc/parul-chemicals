@@ -2,23 +2,20 @@
   "name": "parul-chemicals",
   "version": "1.0.0",
   "description": "Parul Chemicals — Precision Chemistry Website",
-  "scripts": {
-    "dev": "npm run dev --prefix nextapp",
-    "build": "npm run build --prefix nextapp",
-    "start": "npm run start --prefix nextapp",
-    "dev:legacy": "nodemon app.js",
-    "start:legacy": "node app.js"
-  },
   "dependencies": {
+    "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "ejs": "^3.1.9"
+    "nodemailer": "^8.0.5"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
   },
   "scripts": {
-  "start": "node app.js",
-  "dev": "nodemon app.js",
-  "build": "echo build completed"
-}
+    "dev": "npm run dev --prefix nextapp",
+    "build": "npm run build --prefix nextapp",
+    "start": "npm run start --prefix nextapp",
+    "dev:legacy": "nodemon app.js",
+    "start:legacy": "node app.js",
+    "migrate:assets": "node copyAssets.js"
+  }
 }
