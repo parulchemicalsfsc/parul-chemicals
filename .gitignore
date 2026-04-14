@@ -1,6 +1,9 @@
 node_modules/
 nextapp/node_modules/
 nextapp/.next/
-.env
+**/.env*
 package-lock.json
 .DS_Store
+dist/
+build/
+.next/

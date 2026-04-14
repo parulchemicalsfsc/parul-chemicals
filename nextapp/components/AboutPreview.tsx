@@ -48,7 +48,7 @@ export default function AboutPreview() {
               {/* Est. badge overlay */}
               <div className="absolute bottom-6 left-6 right-6 flex justify-between pointer-events-none">
                 <div className="bg-[#0D2137] text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow-lg">
-                  Est. 2009 · Vadodara, Gujarat
+                  Est. 2009
                 </div>
               </div>
             </div>
