@@ -4,12 +4,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { PRODUCTS } from '@/lib/data'
-import DistributorCTA from '@/components/DistributorCTA'
 import PageHero from '@/components/PageHero'
 import ProductModal, { Product } from '@/components/products/ProductModal'
-import GlobalPartners from '@/components/GlobalPartners'
-import Testimonials from '@/components/Testimonials'
-import FAQ from '@/components/FAQ'
 
 /* ── Products Page ─────────────────── */
 
@@ -114,12 +110,6 @@ export default function ProductsPage() {
           {PRODUCTS.map((p, i) => <ProductDetailCard key={p.id} product={p as Product} index={i} onOpen={setSelectedProduct} />)}
         </div>
       </section>
-
-      <GlobalPartners />
-      <Testimonials />
-      <FAQ />
-      
-      <DistributorCTA />
 
       <AnimatePresence>
         {selectedProduct && (

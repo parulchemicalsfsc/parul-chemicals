@@ -131,7 +131,7 @@ export default function CertificationsPreview() {
           >
             <p className="section-tag text-[#4DA8DA] mb-3">WHY CHOOSE US</p>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
-              The Parul Chemicals<br />Advantage
+              The Parul Chemicals
             </h2>
             <p className="text-white/60 text-lg max-w-lg mx-auto">
               From precision manufacturing to on-time delivery — here is why leading companies trust us.
