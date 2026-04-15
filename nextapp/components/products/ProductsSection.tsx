@@ -140,7 +140,7 @@ export default function ProductsSection() {
           className="text-center mt-12"
         >
           <Link href="/products" className="btn-navy px-8 py-3.5 rounded-full text-sm font-bold inline-flex items-center gap-2">
-            Explore All Applications
+            Explore All Products
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
