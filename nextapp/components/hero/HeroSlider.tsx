@@ -97,35 +97,25 @@ export default function HeroSlider() {
             className="max-w-4xl"
           >
 
-            {/* Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.9 }}
               className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.08] mb-4 tracking-tight"
             >
-              Innovative<br />
-              <span style={{ color: '#4DA8DA' }}>Plasticizers.</span><br />
-              <span className="text-4xl md:text-5xl lg:text-6xl opacity-90">Global Standards.</span>
+              Welcome to<br />
+              <span style={{ color: '#4DA8DA' }}>Parul Chemicals.</span><br />
+              <span className="text-4xl md:text-5xl lg:text-6xl opacity-90">Innovative Solutions.</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="text-white/70 text-base md:text-lg leading-relaxed mb-6 max-w-2xl"
+              className="text-white/80 text-base md:text-lg leading-relaxed mb-6 max-w-2xl"
             >
-              Your source for high-quality pharmaceutical-grade plasticizers, specialty industrial
-              chemical products, and custom formulations — trusted across 8+ countries.
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.0 }}
-              className="text-[#4DA8DA] font-semibold text-sm mb-8"
-            >
-              Source your next solution with Parul Chemicals.
+              Parul Chemicals is committed to offering high-quality and innovative plasticizers to enrich all forms of life. 
+              We serve Pharmaceutical, Nutrition, Agrochemical, and Industrial customers with customized, cost-effective solutions.
             </motion.p>
 
             <motion.div
@@ -142,10 +132,10 @@ export default function HeroSlider() {
                 </svg>
                 View Products
               </Link>
-              <Link href="/contact"
+              <Link href="/about"
                 className="px-8 py-3.5 rounded-full text-sm lg:text-base font-bold text-white flex items-center gap-2 transition-all duration-300 border-2 border-white/30 bg-white/8 hover:bg-white/16 hover:border-white/55"
               >
-                Contact Us
+                Know More →
               </Link>
             </motion.div>
 

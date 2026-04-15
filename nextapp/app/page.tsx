@@ -11,12 +11,11 @@ export default function HomePage() {
   return (
     <>
       <HeroSlider />
-      <AboutPreview />
       <ProductsSection />
       <CertificationsPreview />
-      <GlobalPartners />
       <Testimonials />
       <FAQ />
+      <GlobalPartners />
       <DistributorCTA />
     </>
   )
