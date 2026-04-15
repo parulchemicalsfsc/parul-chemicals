@@ -242,7 +242,7 @@ export const STATS = [
 
 export const NAV = [
   { label: 'Home',           href: '/' },
+  { label: 'About Us',       href: '/about' },
   { label: 'Products',       href: '/products' },
   { label: 'Certifications', href: '/certifications' },
-  { label: 'About Us',       href: '/about' },
 ]
