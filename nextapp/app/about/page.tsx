@@ -182,90 +182,130 @@ export default function AboutPage() {
           </motion.div>
         </div>
 
-        <div className="relative w-full max-w-5xl mx-auto overflow-visible" style={{ aspectRatio: '1.2 / 1', minHeight: '800px' }}>
-          {/* SVG Snake Path - 3 Column Zig Zag */}
-          <svg 
-            className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible" 
-            viewBox="0 0 1000 1000"
-            preserveAspectRatio="none"
-          >
-            <defs>
-              <linearGradient id="snakeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#4DA8DA" />
-                <stop offset="50%" stopColor="#0EA5A0" />
-                <stop offset="100%" stopColor="#6366f1" />
-              </linearGradient>
-            </defs>
-            <motion.path
-              d={`
-                M 166 150 L 833 150 
-                A 175 175 0 0 1 833 500 L 166 500 
-                A 175 175 0 0 0 166 850 L 833 850
-              `}
-              fill="none"
-              stroke="url(#snakeGradient)"
-              strokeWidth="6"
-              strokeLinecap="round"
-              strokeDasharray="12 12"
-              initial={{ pathLength: 0 }}
-              whileInView={{ pathLength: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 4, ease: "easeInOut" }}
-            />
-          </svg>
-
-          {/* Timeline Milestones - 3 Col Percentage Locked */}
-          {TIMELINE.map((item, i) => {
-            const row = Math.floor(i / 3)
-            const colInRow = i % 3
-            const isReverse = row % 2 !== 0
-            const col = isReverse ? (2 - colInRow) : colInRow
+        <div className="relative w-full max-w-5xl mx-auto overflow-visible px-4 md:px-0" style={{ minHeight: '600px' }}>
+          {/* Mobile View Timeline — Visible only on sm/md screens */}
+          <div className="md:hidden flex flex-col gap-12 relative z-10 pb-12">
+            {/* Vertical Line */}
+            <div className="absolute left-[20px] top-4 bottom-0 w-[3px] bg-slate-100 rounded-full" />
             
-            const xPercent = 16.66 + (col * 33.33)
-            const yPercent = 15 + (row * 35)
-            
-            const color = ['#4DA8DA', '#0EA5A0', '#6366f1', '#8b5cf6', '#f59e0b'][i % 5]
-
-            return (
-              <div 
-                key={item.year}
-                className="absolute group z-20"
-                style={{ 
-                  left: `${xPercent}%`,
-                  top: `${yPercent}%`,
-                  transform: 'translateX(-50%)' 
-                }}
-              >
+            {TIMELINE.map((item, i) => {
+              const color = ['#4DA8DA', '#0EA5A0', '#6366f1', '#8b5cf6', '#f59e0b'][i % 5]
+              return (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  key={item.year}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: (i % 3) * 0.1 }}
-                  className="flex flex-col items-center"
+                  transition={{ delay: i * 0.05 }}
+                  className="flex gap-6 items-start relative"
                 >
-                  {/* Node on Path */}
                   <div 
-                    className="w-10 h-10 rounded-full bg-white border-[6px] shadow-lg flex items-center justify-center transition-transform group-hover:scale-125 translate-y-[-50%]"
+                    className="w-10 h-10 rounded-full bg-white border-[6px] shadow-lg flex items-center justify-center z-20 shrink-0"
                     style={{ borderColor: color }}
                   >
                     <div className="w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
                   </div>
-
-                  {/* Content Card */}
                   <div 
-                    className="w-[200px] md:w-[260px] text-center p-6 bg-white rounded-3xl shadow-[0_4px_30px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-2 border-t-4 mt-2"
+                    className="flex-1 bg-white p-6 rounded-3xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] border-t-[5px]"
                     style={{ borderTopColor: color, borderLeft: '1px solid #f1f5f9', borderRight: '1px solid #f1f5f9', borderBottom: '1px solid #f1f5f9' }}
                   >
                     <div className="inline-flex px-3 py-1 rounded-full text-[10px] font-black tracking-widest text-white mb-3" style={{ backgroundColor: color }}>
                       {item.year}
                     </div>
-                    <h3 className="text-base font-bold text-[#0F1C33] mb-2 leading-tight">{item.title}</h3>
-                    <p className="text-[11px] text-[#4A5568] leading-relaxed font-medium line-clamp-4">{item.desc}</p>
+                    <h3 className="text-lg font-bold text-[#0F1C33] mb-2 leading-tight">{item.title}</h3>
+                    <p className="text-xs text-[#4A5568] leading-relaxed font-medium">{item.desc}</p>
                   </div>
                 </motion.div>
-              </div>
-            )
-          })}
+              )
+            })}
+          </div>
+
+          {/* Desktop View Timeline — Snake Zig-Zag — Hidden on mobile */}
+          <div className="hidden md:block relative w-full h-full" style={{ aspectRatio: '1.2 / 1', minHeight: '800px' }}>
+            {/* SVG Snake Path - 3 Column Zig Zag */}
+            <svg 
+              className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible" 
+              viewBox="0 0 1000 1000"
+              preserveAspectRatio="none"
+            >
+              <defs>
+                <linearGradient id="snakeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#4DA8DA" />
+                  <stop offset="50%" stopColor="#0EA5A0" />
+                  <stop offset="100%" stopColor="#6366f1" />
+                </linearGradient>
+              </defs>
+              <motion.path
+                d={`
+                  M 166 150 L 833 150 
+                  A 175 175 0 0 1 833 500 L 166 500 
+                  A 175 175 0 0 0 166 850 L 833 850
+                `}
+                fill="none"
+                stroke="url(#snakeGradient)"
+                strokeWidth="6"
+                strokeLinecap="round"
+                strokeDasharray="12 12"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 4, ease: "easeInOut" }}
+              />
+            </svg>
+
+            {/* Timeline Milestones - 3 Col Percentage Locked */}
+            {TIMELINE.map((item, i) => {
+              const row = Math.floor(i / 3)
+              const colInRow = i % 3
+              const isReverse = row % 2 !== 0
+              const col = isReverse ? (2 - colInRow) : colInRow
+              
+              const xPercent = 16.66 + (col * 33.33)
+              const yPercent = 15 + (row * 35)
+              
+              const color = ['#4DA8DA', '#0EA5A0', '#6366f1', '#8b5cf6', '#f59e0b'][i % 5]
+
+              return (
+                <div 
+                  key={item.year}
+                  className="absolute group z-20"
+                  style={{ 
+                    left: `${xPercent}%`,
+                    top: `${yPercent}%`,
+                    transform: 'translateX(-50%)' 
+                  }}
+                >
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: (i % 3) * 0.1 }}
+                    className="flex flex-col items-center"
+                  >
+                    {/* Node on Path */}
+                    <div 
+                      className="w-10 h-10 rounded-full bg-white border-[6px] shadow-lg flex items-center justify-center transition-transform group-hover:scale-125 translate-y-[-50%]"
+                      style={{ borderColor: color }}
+                    >
+                      <div className="w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
+                    </div>
+
+                    {/* Content Card */}
+                    <div 
+                      className="w-[200px] md:w-[260px] text-center p-6 bg-white rounded-3xl shadow-[0_4px_30px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-2 border-t-4 mt-2"
+                      style={{ borderTopColor: color, borderLeft: '1px solid #f1f5f9', borderRight: '1px solid #f1f5f9', borderBottom: '1px solid #f1f5f9' }}
+                    >
+                      <div className="inline-flex px-3 py-1 rounded-full text-[10px] font-black tracking-widest text-white mb-3" style={{ backgroundColor: color }}>
+                        {item.year}
+                      </div>
+                      <h3 className="text-base font-bold text-[#0F1C33] mb-2 leading-tight">{item.title}</h3>
+                      <p className="text-[11px] text-[#4A5568] leading-relaxed font-medium line-clamp-4">{item.desc}</p>
+                    </div>
+                  </motion.div>
+                </div>
+              )
+            })}
+          </div>
         </div>
       </section>
     </div>

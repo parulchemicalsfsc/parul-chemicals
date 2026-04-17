@@ -40,7 +40,7 @@ export default function GlobalPartners() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-black text-[#0F1C33] tracking-tight mb-6"
+            className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#0F1C33] tracking-tight mb-6"
           >
             Our Industry Partners
           </motion.h2>
@@ -50,13 +50,13 @@ export default function GlobalPartners() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto font-medium leading-relaxed"
+            className="text-slate-500 text-base sm:text-xl max-w-2xl mx-auto font-medium leading-relaxed"
           >
             Strategic collaborations with leading organizations across the chemical and pharmaceutical landscape.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 lg:gap-8">
           {PARTNERS.map((partner, i) => (
             <motion.div
               key={i}
@@ -65,17 +65,17 @@ export default function GlobalPartners() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
               whileHover={{ y: -15, scale: 1.02 }}
-              className="flex flex-col items-center justify-center p-12 bg-white rounded-[3rem] border border-slate-50 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.03)] hover:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.08)] transition-all duration-500 group relative"
+              className="flex flex-col items-center justify-center p-6 sm:p-12 bg-white rounded-[2rem] sm:rounded-[3rem] border border-slate-50 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.03)] hover:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.08)] transition-all duration-500 group relative"
             >
               <div 
-                className="w-24 h-24 rounded-[1.5rem] flex items-center justify-center mb-8 transition-all duration-500 group-hover:scale-110 shadow-inner border border-white/80"
+                className="w-16 h-16 sm:w-24 sm:h-24 rounded-[1rem] sm:rounded-[1.5rem] flex items-center justify-center mb-6 sm:mb-8 transition-all duration-500 group-hover:scale-110 shadow-inner border border-white/80"
                 style={{ backgroundColor: `${partner.color}08`, color: partner.color }}
               >
-                <span className="text-3xl font-black tracking-tight">
+                <span className="text-xl sm:text-3xl font-black tracking-tight">
                   {partner.logo}
                 </span>
               </div>
-              <span className="text-[10px] font-black text-slate-400 text-center uppercase tracking-widest leading-loose group-hover:text-[#0F1C33] transition-colors max-w-[120px]">
+              <span className="text-[9px] sm:text-[10px] font-black text-slate-400 text-center uppercase tracking-widest leading-normal sm:leading-loose group-hover:text-[#0F1C33] transition-colors max-w-[120px]">
                 {partner.name}
               </span>
             </motion.div>

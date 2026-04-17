@@ -101,18 +101,18 @@ export default function HeroSlider() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.9 }}
-              className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.08] mb-4 tracking-tight"
+              className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-4 tracking-tight"
             >
               Welcome to<br />
               <span style={{ color: '#4DA8DA' }}>Parul Chemicals.</span><br />
-              <span className="text-4xl md:text-5xl lg:text-6xl opacity-90">Innovative Solutions.</span>
+              <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl opacity-90">Innovative Solutions.</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="text-white/80 text-base md:text-lg leading-relaxed mb-6 max-w-2xl"
+              className="text-white/80 text-sm sm:text-base md:text-lg leading-relaxed mb-6 max-w-2xl"
             >
               Parul Chemicals is committed to offering high-quality and innovative plasticizers to enrich all forms of life. 
               We serve Pharmaceutical, Nutrition, Agrochemical, and Industrial customers with customized, cost-effective solutions.
@@ -122,10 +122,10 @@ export default function HeroSlider() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap gap-3 sm:gap-4"
             >
               <Link href="/products"
-                className="btn-primary px-8 py-3.5 rounded-full text-sm lg:text-base font-bold flex items-center gap-2">
+                className="btn-primary px-6 sm:px-8 py-3 sm:py-3.5 rounded-full text-xs sm:text-sm lg:text-base font-bold flex items-center gap-2">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/>
                   <path d="M16 3H8l-2 4h12l-2-4z"/>
@@ -133,7 +133,7 @@ export default function HeroSlider() {
                 View Products
               </Link>
               <Link href="/about"
-                className="px-8 py-3.5 rounded-full text-sm lg:text-base font-bold text-white flex items-center gap-2 transition-all duration-300 border-2 border-white/30 bg-white/8 hover:bg-white/16 hover:border-white/55"
+                className="px-6 sm:px-8 py-3 sm:py-3.5 rounded-full text-xs sm:text-sm lg:text-base font-bold text-white flex items-center gap-2 transition-all duration-300 border-2 border-white/30 bg-white/8 hover:bg-white/16 hover:border-white/55"
               >
                 Know More →
               </Link>
@@ -144,13 +144,13 @@ export default function HeroSlider() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.3 }}
-              className="flex gap-8 mt-10 pt-6"
+              className="grid grid-cols-2 sm:flex sm:gap-8 gap-y-6 mt-10 pt-6"
               style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}
             >
               {[['15+','Years'], ['500+','Clients'], ['9','Certifications'], ['8+','Countries']].map(([v, l]) => (
-                <div key={l} className="text-center">
-                  <div className="text-2xl font-black text-white tracking-tight">{v}</div>
-                  <div className="text-xs text-white/40 font-medium mt-1">{l}</div>
+                <div key={l} className="text-center sm:text-left">
+                  <div className="text-xl sm:text-2xl font-black text-white tracking-tight">{v}</div>
+                  <div className="text-[10px] sm:text-xs text-white/40 font-medium mt-1">{l}</div>
                 </div>
               ))}
             </motion.div>
