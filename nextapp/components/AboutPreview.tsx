@@ -101,25 +101,25 @@ export default function AboutPreview() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-[#0F1C33] mb-6 leading-tight">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-[#0F1C33] mb-6 leading-tight">
               Welcome to<br />Parul Chemicals
             </h2>
-            <p className="text-[#4A5568] text-base leading-relaxed mb-5 font-medium">
+            <p className="text-[#4A5568] text-sm sm:text-base leading-relaxed mb-5 font-medium">
               Parul Chemicals is committed to offering high-quality and innovative plasticizers to enrich all forms of life.
             </p>
-            <p className="text-[#4A5568] text-base leading-relaxed mb-8 font-medium">
+            <p className="text-[#4A5568] text-sm sm:text-base leading-relaxed mb-8 font-medium">
               We want to be a global Innovative Solutions provider serving Pharmaceutical, Nutrition, Agrochemical, Consumer and Industrial customers with our customised products and solutions that are innovative, cost-effective and conforming to excellent quality standards.
             </p>
 
-            <Link href="/about" className="btn-navy px-7 py-3.5 rounded-full text-sm font-bold inline-flex items-center gap-2 shadow-lg shadow-navy/20">
+            <Link href="/about" className="btn-navy px-6 sm:px-7 py-3 sm:py-3.5 rounded-full text-xs sm:text-sm font-bold inline-flex items-center gap-2 shadow-lg shadow-navy/20">
               Know More →
             </Link>
 
-            <div className="flex gap-10 mt-10 pt-8" style={{ borderTop: '1px solid #E2E8F0' }}>
+            <div className="grid grid-cols-2 md:flex md:gap-10 mt-10 pt-8 gap-y-8" style={{ borderTop: '1px solid #E2E8F0' }}>
               {STATS.map(s => (
-                <div key={s.label} className="text-center">
-                  <div className="text-3xl font-black text-[#1F4E79] tracking-tight">{s.val}</div>
-                  <div className="text-xs text-[#94A3B8] font-bold mt-1 max-w-[80px] leading-tight uppercase tracking-wider">{s.label}</div>
+                <div key={s.label} className="text-center md:text-left">
+                  <div className="text-2xl sm:text-3xl font-black text-[#1F4E79] tracking-tight">{s.val}</div>
+                  <div className="text-[10px] sm:text-xs text-[#94A3B8] font-bold mt-1 sm:max-w-[80px] leading-tight uppercase tracking-wider">{s.label}</div>
                 </div>
               ))}
             </div>

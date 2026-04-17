@@ -109,15 +109,15 @@ export default function CertificationsPreview() {
             className="text-center mb-16"
           >
             <p className="section-tag text-[#4DA8DA] mb-3">WHY CHOOSE US</p>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="font-display text-3xl sm:text-5xl font-bold text-white mb-4">
               The Parul Chemicals
             </h2>
-            <p className="text-white/60 text-lg max-w-lg mx-auto">
+            <p className="text-white/60 text-base sm:text-lg max-w-lg mx-auto">
               From precision manufacturing to on-time delivery — here is why leading companies trust us.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {FEATURES.map((f, i) => (
               <motion.div
                 key={f.title}
@@ -126,7 +126,7 @@ export default function CertificationsPreview() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.12 }}
                 whileHover={{ y: -10, scale: 1.02 }}
-                className="feature-card min-h-[320px] rounded-2xl group transition-all duration-500 overflow-hidden relative flex flex-col justify-end p-8"
+                className="feature-card min-h-[280px] sm:min-h-[320px] rounded-2xl group transition-all duration-500 overflow-hidden relative flex flex-col justify-end p-6 sm:p-8"
                 style={{ border: '1px solid rgba(255,255,255,0.10)' }}
               >
                 {/* Full Card Video Background */}
@@ -234,9 +234,9 @@ export default function CertificationsPreview() {
             </p>
           </motion.div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 sm:gap-4">
             {/* First Row: 5 Certifications */}
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
               {['ISO 9001:2015','ISO 22000:2018','ISO 45001:2018','ISO 9235:2013','GMP'].map((name, i) => (
                 <motion.div
                   key={name}
@@ -245,16 +245,16 @@ export default function CertificationsPreview() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
                   whileHover={{ y: -5, borderColor: '#4DA8DA' }}
-                  className="cert-card w-[160px] bg-white border border-[#E2E8F0] rounded-2xl p-4 flex flex-col items-center gap-2 transition-all duration-300 shadow-sm"
+                  className="cert-card w-[130px] sm:w-[160px] bg-white border border-[#E2E8F0] rounded-2xl p-3 sm:p-4 flex flex-col items-center gap-2 transition-all duration-300 shadow-sm"
                 >
-                  <span className="text-[#1F4E79] scale-110">{CERT_ICONS[name]}</span>
-                  <span className="text-[11px] font-bold text-[#1F4E79] text-center leading-tight uppercase tracking-tight">{name}</span>
+                  <span className="text-[#1F4E79] scale-100 sm:scale-110">{CERT_ICONS[name]}</span>
+                  <span className="text-[9px] sm:text-[11px] font-bold text-[#1F4E79] text-center leading-tight uppercase tracking-tight">{name}</span>
                 </motion.div>
               ))}
             </div>
 
             {/* Second Row: 4 Certifications (Centered) */}
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
               {['HACCP','Kosher (TEC)','Kosher (DEP)','Registration'].map((name, i) => (
                 <motion.div
                   key={name}
@@ -263,10 +263,10 @@ export default function CertificationsPreview() {
                   viewport={{ once: true }}
                   transition={{ delay: (i + 5) * 0.05 }}
                   whileHover={{ y: -5, borderColor: '#4DA8DA' }}
-                  className="cert-card w-[160px] bg-white border border-[#E2E8F0] rounded-2xl p-4 flex flex-col items-center gap-2 transition-all duration-300 shadow-sm"
+                  className="cert-card w-[130px] sm:w-[160px] bg-white border border-[#E2E8F0] rounded-2xl p-3 sm:p-4 flex flex-col items-center gap-2 transition-all duration-300 shadow-sm"
                 >
-                  <span className="text-[#1F4E79] scale-110">{CERT_ICONS[name]}</span>
-                  <span className="text-[11px] font-bold text-[#1F4E79] text-center leading-tight uppercase tracking-tight">{name}</span>
+                  <span className="text-[#1F4E79] scale-100 sm:scale-110">{CERT_ICONS[name]}</span>
+                  <span className="text-[9px] sm:text-[11px] font-bold text-[#1F4E79] text-center leading-tight uppercase tracking-tight">{name}</span>
                 </motion.div>
               ))}
             </div>
