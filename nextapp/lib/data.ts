@@ -159,6 +159,7 @@ export const PRODUCTS = [
 ]
 
 export const CERTIFICATIONS = [
+  { id: 'ecocert',    name: 'Ecocert',           desc: 'Organic & Natural Certification',              image: '/certificates/ecocert.png', pdf: '/certificates/Ecocert 2026.pdf' },
   { id: 'iso9001',    name: 'ISO 9001:2015',     desc: 'Quality Management System',                    image: '/certificates/iso90012015.webp' },
   { id: 'iso22000',   name: 'ISO 22000:2018',    desc: 'Food Safety Management System',                image: '/certificates/iso220002018.webp' },
   { id: 'iso45001',   name: 'ISO 45001:2018',    desc: 'Occupational Health & Safety Management',      image: '/certificates/iso450012018.webp' },
@@ -170,7 +171,6 @@ export const CERTIFICATIONS = [
   { id: 'reg',        name: 'Registration',       desc: 'Government Business Registration Certificate', image: '/certificates/registrationcerti.webp' },
   { id: 'halal',      name: 'Halal Certified',    desc: 'Jamiat Ulama-i-Hind Halal Trust',             image: '/certificates/Halal.webp' },
   { id: 'halal_doc',  name: 'Halal Compliance',   desc: 'Halal Certification Confirmation',            image: '/certificates/juth.webp' },
-  { id: 'ecocert',    name: 'Ecocert',           desc: 'Organic & Natural Certification',              image: '/certificates/ecocert.png', pdf: '/certificates/Ecocert 2026.pdf' },
 ]
 
 export const PHILOSOPHY = {
