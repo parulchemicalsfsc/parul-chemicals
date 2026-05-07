@@ -72,7 +72,8 @@ export async function POST(req: Request) {
     }
 
     try {
-      const leadResponse = await fetch("https://pc-sales-8phu.onrender.com/api/leads/intake", {
+      const baseUrl = process.env.LEAD_API_URL || "https://pc-sales-8phu.onrender.com"
+      const leadResponse = await fetch(`${baseUrl}/api/leads/intake`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
