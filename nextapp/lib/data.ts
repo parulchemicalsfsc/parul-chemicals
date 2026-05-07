@@ -170,6 +170,7 @@ export const CERTIFICATIONS = [
   { id: 'reg',        name: 'Registration',       desc: 'Government Business Registration Certificate', image: '/certificates/registrationcerti.webp' },
   { id: 'halal',      name: 'Halal Certified',    desc: 'Jamiat Ulama-i-Hind Halal Trust',             image: '/certificates/Halal.webp' },
   { id: 'halal_doc',  name: 'Halal Compliance',   desc: 'Halal Certification Confirmation',            image: '/certificates/juth.webp' },
+  { id: 'ecocert',    name: 'Ecocert',           desc: 'Organic & Natural Certification',              image: '/certificates/ecocert.png', pdf: '/certificates/Ecocert 2026.pdf' },
 ]
 
 export const PHILOSOPHY = {
