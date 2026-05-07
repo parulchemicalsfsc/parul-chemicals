@@ -59,7 +59,40 @@ export async function POST(req: Request) {
       </div>
     `
 
-    // 3. Send the Email
+    // 3. Send to Lead Management System (External API)
+    const leadPayload = {
+      source_website: "parul_chemicals",
+      full_name: name,
+      email: email,
+      company_name: company || "N/A",
+      product_interest: isAppointment ? "Technical Consultation" : (product || "General Inquiry"),
+      message: isAppointment 
+        ? `[APPOINTMENT] Date: ${date}, Time: ${time}, Type: ${meetingType}. Topics: ${topics || 'N/A'}`
+        : message
+    }
+
+    try {
+      const leadResponse = await fetch("https://pc-sales-8phu.onrender.com/api/leads/intake", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-API-Key": process.env.LEAD_API_KEY || "test-lead-key-change-me"
+        },
+        body: JSON.stringify(leadPayload)
+      });
+      
+      if (!leadResponse.ok) {
+        console.error(`LMS API Error: ${leadResponse.status}`);
+      } else {
+        const leadData = await leadResponse.json();
+        console.log("Lead successfully synced to LMS:", leadData);
+      }
+    } catch (lmsError) {
+      console.error("Failed to sync to LMS:", lmsError);
+      // We don't throw here to ensure email still sends if LMS is down
+    }
+
+    // 4. Send the Email
     // Note: If credentials are not set, this will fail. 
     // We wrap it in a try-catch to ensure the API doesn't crash.
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
@@ -70,13 +103,12 @@ export async function POST(req: Request) {
         subject: subject,
         html: htmlContent,
       })
-      return NextResponse.json({ success: true, message: 'Email sent successfully' })
+      return NextResponse.json({ success: true, message: 'Lead synced and email sent successfully' })
     } else {
       console.warn("Mailing keys missing. Data received:", body)
-      // Return success anyway for front-end demo if keys are missing
       return NextResponse.json({ 
         success: true, 
-        message: 'Data captured (Mailing credentials missing in .env.local)' 
+        message: 'Lead synced (Mailing credentials missing in .env.local)' 
       })
     }
 
