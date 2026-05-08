@@ -119,7 +119,7 @@ export default function ContactPage() {
                       <p className="text-[#4A5568] max-w-xs mx-auto">
                         {mode === 'inquiry' 
                           ? "We'll get back to you within 24 hours." 
-                          : "Shlok will review your schedule and confirm via email shortly."}
+                          : "Our team will review your appointment request and confirm via email shortly."}
                       </p>
                       <button onClick={() => setSent(false)} className="mt-8 text-sm font-bold text-[#4DA8DA] hover:underline">Send another?</button>
                     </motion.div>
