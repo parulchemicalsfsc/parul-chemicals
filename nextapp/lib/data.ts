@@ -287,3 +287,39 @@ export const FS_CALCIVAL_DATA = {
     { stage: 'Pregnant Animals', instruction: '20 to 40ml daily as per advice to boost overall health and calf health.' }
   ]
 }
+
+export const REVIEWS = [
+  {
+    id: 1,
+    name: "Sophie Lefebvre",
+    role: "Operations Manager",
+    company: "EuroChem Distribution",
+    location: "Lyon, France",
+    text: "Parul Chemicals is a dependable pillar in our luxury fragrance supply chain. Their DEP purity levels are consistently superior for the EU market.",
+    stars: 5,
+    avatar: "SL",
+    image: "/images/reviews/sophie.webp"
+  },
+  {
+    id: 2,
+    name: "Hans Müller",
+    role: "Quality Assurance",
+    company: "Rheinland Pharma",
+    location: "Mannheim, Germany",
+    text: "For our strict European pharmaceutical standards, Parul's DEP has passed every lab test with flying colors. A reliable global manufacturer.",
+    stars: 5,
+    avatar: "HM",
+    image: "/images/reviews/hans.webp"
+  },
+  {
+    id: 3,
+    name: "Marco Rossi",
+    role: "Purchasing Director",
+    company: "Milan Flavors",
+    location: "Milan, Italy",
+    text: "The Triethyl Citrate from Parul Chemicals is of exceptional quality. It has become a key stabilizer in our high-end food-grade formulations.",
+    stars: 5,
+    avatar: "MR",
+    image: "/images/reviews/marco.webp"
+  }
+]

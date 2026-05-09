@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion'
+import { REVIEWS } from '@/lib/data'
 
 interface Review {
   id?: number;
@@ -17,7 +18,7 @@ interface Review {
 }
 
 export default function Testimonials() {
-  const [reviews, setReviews] = useState<Review[]>([])
+  const [reviews, setReviews] = useState<Review[]>(REVIEWS)
   const [showAll, setShowAll] = useState(false)
   const [showForm, setShowForm] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -29,21 +30,6 @@ export default function Testimonials() {
     text: '',
     stars: 5
   })
-
-  useEffect(() => {
-    fetchReviews()
-  }, [])
-
-  const fetchReviews = async () => {
-    try {
-      const res = await fetch('/api/reviews')
-      const data = await res.json()
-      // Only show approved reviews
-      setReviews(data.filter((r: Review) => r.approved === true))
-    } catch (error) {
-      console.error('Error fetching reviews:', error)
-    }
-  }
 
   const handleAddReview = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -58,7 +44,7 @@ export default function Testimonials() {
         // We don't fetchReviews() here because the new review won't be approved yet
         setShowForm(false)
         setNewReview({ name: '', role: '', company: '', location: '', text: '', stars: 5 })
-        alert('Thank you for your review! It will be visible once approved.')
+        alert('Review is added successfully in Supabase')
       }
     } catch (error) {
       console.error('Error adding review:', error)
