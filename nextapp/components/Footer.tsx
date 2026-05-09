@@ -20,6 +20,7 @@ export default function Footer() {
               {[
                 { label: 'LinkedIn', href: 'https://www.linkedin.com/company/parul-chemicals/', icon: 'in' },
                 { label: 'WhatsApp', href: `https://wa.me/919427784082`, icon: 'W' },
+                { label: 'Email', href: `mailto:${SITE.email}`, icon: 'M' },
               ].map(s => (
                 <a
                   key={s.label}

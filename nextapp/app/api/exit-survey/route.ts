@@ -9,7 +9,7 @@ import { supabase } from '@/lib/supabase'
 export async function POST(req: Request) {
   try {
     const body = await req.json()
-    const { name, company, country, insightful, product, knowCompany, duration } = body
+    const { name, company, country, contact, insightful, product, knowCompany, duration } = body
 
     // --- 1. STORE IN SUPABASE DATABASE ---
     try {
@@ -19,6 +19,7 @@ export async function POST(req: Request) {
           name,
           company,
           country,
+          contact,
           insightful,
           product,
           know_company: knowCompany,
