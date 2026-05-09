@@ -1,18 +1,17 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
-
-const REVIEWS_FILE = path.join(process.cwd(), 'lib', 'reviews.json');
+import { supabase } from '@/lib/supabase';
 
 export async function GET() {
   try {
-    if (!fs.existsSync(REVIEWS_FILE)) {
-      return NextResponse.json([]);
-    }
-    const data = fs.readFileSync(REVIEWS_FILE, 'utf8');
-    return NextResponse.json(JSON.parse(data));
+    const { data, error } = await supabase
+      .from('reviews')
+      .select('*')
+      .order('id', { ascending: false });
+
+    if (error) throw error;
+    return NextResponse.json(data);
   } catch (error) {
-    console.error('Error reading reviews:', error);
+    console.error('Error fetching reviews:', error);
     return NextResponse.json({ error: 'Failed to fetch reviews' }, { status: 500 });
   }
 }
@@ -21,25 +20,18 @@ export async function POST(request: Request) {
   try {
     const newReview = await request.json();
     
-    // Read existing reviews
-    let reviews = [];
-    if (fs.existsSync(REVIEWS_FILE)) {
-      const data = fs.readFileSync(REVIEWS_FILE, 'utf8');
-      reviews = JSON.parse(data);
-    }
+    const { data, error } = await supabase
+      .from('reviews')
+      .insert([{
+        ...newReview,
+        approved: false,
+        date: new Date().toISOString()
+      }])
+      .select();
+
+    if (error) throw error;
     
-    // Add new review to the beginning
-    reviews.unshift({
-      ...newReview,
-      id: Date.now(),
-      date: new Date().toISOString(),
-      approved: false
-    });
-    
-    // Write back to file
-    fs.writeFileSync(REVIEWS_FILE, JSON.stringify(reviews, null, 2));
-    
-    return NextResponse.json({ success: true, review: reviews[0] });
+    return NextResponse.json({ success: true, review: data[0] });
   } catch (error) {
     console.error('Error saving review:', error);
     return NextResponse.json({ error: 'Failed to save review' }, { status: 500 });

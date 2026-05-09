@@ -1,37 +1,35 @@
 import { NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
-import fs from 'fs'
-import path from 'path'
+import { supabase } from '@/lib/supabase'
 
 /**
  * API Route for handling Exit Intent Questionnaire
  */
-
-const SURVEYS_FILE = path.join(process.cwd(), 'lib', 'surveys.json');
 
 export async function POST(req: Request) {
   try {
     const body = await req.json()
     const { name, company, country, insightful, product, knowCompany, duration } = body
 
-    // --- 1. STORE IN LOCAL JSON "DATABASE" ---
+    // --- 1. STORE IN SUPABASE DATABASE ---
     try {
-      let surveys = [];
-      if (fs.existsSync(SURVEYS_FILE)) {
-        const data = fs.readFileSync(SURVEYS_FILE, 'utf8');
-        surveys = JSON.parse(data);
-      }
+      const { error } = await supabase
+        .from('surveys')
+        .insert([{
+          name,
+          company,
+          country,
+          insightful,
+          product,
+          know_company: knowCompany,
+          duration,
+          date: new Date().toISOString()
+        }])
       
-      surveys.unshift({
-        id: Date.now(),
-        date: new Date().toISOString(),
-        ...body
-      });
-      
-      fs.writeFileSync(SURVEYS_FILE, JSON.stringify(surveys, null, 2));
-      console.log("Survey saved to local file system.");
-    } catch (fsError) {
-      console.error("Failed to save survey to file:", fsError);
+      if (error) throw error;
+      console.log("Survey saved to Supabase.");
+    } catch (dbError) {
+      console.error("Failed to save survey to Supabase:", dbError);
     }
 
     // --- 2. SETUP NODEMAILER TRANSPORTER ---
