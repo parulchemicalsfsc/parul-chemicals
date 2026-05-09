@@ -2,12 +2,12 @@
 import { motion } from 'framer-motion'
 
 const PARTNERS = [
-  { name: 'PharmaTech Solutions', logo: 'PTS', color: '#0ea5e9' },
-  { name: 'Global Logistics Corp', logo: 'GLC', color: '#6366f1' },
-  { name: 'Industrial Biotics', logo: 'IB', color: '#10b981' },
-  { name: 'Apex Agrochemicals', logo: 'AA', color: '#f59e0b' },
-  { name: 'PureFlow Labs', logo: 'PFL', color: '#8b5cf6' },
-  { name: 'Summit Healthcare', logo: 'SHC', color: '#06b6d4' },
+  { name: 'PharmaTech Solutions', logo: '/COMPANY LOGO/pharmatech.webp', color: '#0ea5e9' },
+  { name: 'Global Logistics Corp', logo: '/COMPANY LOGO/globallogistic.webp', color: '#6366f1' },
+  { name: 'Industrial Biotics', logo: '/COMPANY LOGO/industrialbiotics.webp', color: '#10b981' },
+  { name: 'Apex Agrochemicals', logo: '/COMPANY LOGO/apexagrochemicals.webp', color: '#f59e0b' },
+  { name: 'PureFlow Labs', logo: '/COMPANY LOGO/pureflowlabs.webp', color: '#8b5cf6' },
+  { name: 'Summit Healthcare', logo: '/COMPANY LOGO/summithealthcare.webp', color: '#06b6d4' },
 ]
 
 export default function GlobalPartners() {
@@ -68,12 +68,20 @@ export default function GlobalPartners() {
               className="flex flex-col items-center justify-center p-6 sm:p-12 bg-white rounded-[2rem] sm:rounded-[3rem] border border-slate-50 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.03)] hover:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.08)] transition-all duration-500 group relative"
             >
               <div 
-                className="w-16 h-16 sm:w-24 sm:h-24 rounded-[1rem] sm:rounded-[1.5rem] flex items-center justify-center mb-6 sm:mb-8 transition-all duration-500 group-hover:scale-110 shadow-inner border border-white/80"
+                className="w-16 h-16 sm:w-28 sm:h-28 rounded-[1rem] sm:rounded-[1.5rem] flex items-center justify-center mb-6 sm:mb-8 transition-all duration-500 group-hover:scale-110 shadow-inner border border-white/80 p-2"
                 style={{ backgroundColor: `${partner.color}08`, color: partner.color }}
               >
-                <span className="text-xl sm:text-3xl font-black tracking-tight">
-                  {partner.logo}
-                </span>
+                {partner.logo.startsWith('/') ? (
+                  <img 
+                    src={partner.logo} 
+                    alt={partner.name} 
+                    className="w-full h-full object-contain transition-all duration-500 group-hover:drop-shadow-[0_0_15px_rgba(77,168,218,0.4)]"
+                  />
+                ) : (
+                  <span className="text-xl sm:text-3xl font-black tracking-tight group-hover:drop-shadow-[0_0_10px_rgba(77,168,218,0.3)]">
+                    {partner.logo}
+                  </span>
+                )}
               </div>
               <span className="text-[9px] sm:text-[10px] font-black text-slate-400 text-center uppercase tracking-widest leading-normal sm:leading-loose group-hover:text-[#0F1C33] transition-colors max-w-[120px]">
                 {partner.name}

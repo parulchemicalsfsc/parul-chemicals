@@ -67,8 +67,19 @@ const ExitSurvey = () => {
 
   const handleClose = () => {
     setIsVisible(false)
-    setStep(1) // Reset for next time
-    setIsSubmitted(false) // Reset for next time
+    setStep(1)
+    setIsSubmitted(false)
+    // Clear all previously entered data
+    setFormData({
+      name: '',
+      company: '',
+      country: '',
+      email: '',
+      insightful: '',
+      product: '',
+      knowCompany: '',
+      duration: ''
+    })
   }
 
   const handleNext = () => {
