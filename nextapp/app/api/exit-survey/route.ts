@@ -9,7 +9,7 @@ import { supabase } from '@/lib/supabase'
 export async function POST(req: Request) {
   try {
     const body = await req.json()
-    const { name, company, country, contact, insightful, product, knowCompany, duration } = body
+    const { name, company, country, email, insightful, product, knowCompany, duration } = body
 
     // --- 1. STORE IN SUPABASE DATABASE ---
     try {
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
           name,
           company,
           country,
-          contact,
+          email,
           insightful,
           product,
           know_company: knowCompany,
@@ -55,9 +55,10 @@ export async function POST(req: Request) {
           </h2>
           
           <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-            <tr><td style="padding: 8px 0; font-weight: bold; width: 180px;">Name:</td><td>${name || 'N/A'}</td></tr>
-            <tr><td style="padding: 8px 0; font-weight: bold;">Company:</td><td>${company || 'N/A'}</td></tr>
-            <tr><td style="padding: 8px 0; font-weight: bold;">Country:</td><td>${country || 'N/A'}</td></tr>
+             <tr><td style="padding: 8px 0; font-weight: bold; width: 180px;">Name:</td><td>${name || 'N/A'}</td></tr>
+             <tr><td style="padding: 8px 0; font-weight: bold;">Email:</td><td>${email || 'N/A'}</td></tr>
+             <tr><td style="padding: 8px 0; font-weight: bold;">Company:</td><td>${company || 'N/A'}</td></tr>
+             <tr><td style="padding: 8px 0; font-weight: bold;">Country:</td><td>${country || 'N/A'}</td></tr>
             <tr><td style="padding: 8px 0; font-weight: bold;">Found Insightful?</td><td>${insightful || 'N/A'}</td></tr>
             <tr><td style="padding: 8px 0; font-weight: bold;">Product of Interest:</td><td>${product || 'N/A'}</td></tr>
             <tr><td style="padding: 8px 0; font-weight: bold;">Known us before?</td><td>${knowCompany || 'N/A'}</td></tr>
@@ -74,7 +75,7 @@ export async function POST(req: Request) {
     const leadPayload = {
       source_website: "parul_chemicals_exit_survey",
       full_name: name || "Anonymous Visitor",
-      email: "exit-survey@visitor.com",
+      email: email || "exit-survey@visitor.com",
       company_name: company || country || "N/A",
       product_interest: product || "General Interest",
       message: `[EXIT SURVEY] 
