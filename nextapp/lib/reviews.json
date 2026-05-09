@@ -1,12 +1,24 @@
 [
-   {
+  {
+    "name": "test",
+    "role": "test",
+    "company": "test",
+    "location": "test",
+    "text": "test",
+    "stars": 5,
+    "id": 1778307170424,
+    "date": "2026-05-09T06:12:50.424Z",
+    "approved": false
+  },
+  {
     "name": "Sophie Lefebvre",
     "role": "Operations Manager",
     "company": "EuroChem Distribution",
     "location": "Lyon, France",
     "text": "Parul Chemicals is a dependable pillar in our luxury fragrance supply chain. Their DEP purity levels are consistently superior for the EU market.",
     "stars": 5,
-    "image": "/images/reviews/sophie.webp"
+    "image": "/images/reviews/sophie.webp",
+    "approved": true
   },
   {
     "name": "Hans Müller",
@@ -15,7 +27,8 @@
     "location": "Mannheim, Germany",
     "text": "For our strict European pharmaceutical standards, Parul's DEP has passed every lab test with flying colors. A reliable global manufacturer.",
     "stars": 5,
-    "image": "/images/reviews/hans.webp"
+    "image": "/images/reviews/hans.webp",
+    "approved": true
   },
   {
     "name": "Marco Rossi",
@@ -24,6 +37,7 @@
     "location": "Milan, Italy",
     "text": "The Triethyl Citrate from Parul Chemicals is of exceptional quality. It has become a key stabilizer in our high-end food-grade formulations.",
     "stars": 5,
-    "image": "/images/reviews/marco.webp"
+    "image": "/images/reviews/marco.webp",
+    "approved": true
   }
 ]

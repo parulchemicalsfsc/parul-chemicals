@@ -32,7 +32,8 @@ export async function POST(request: Request) {
     reviews.unshift({
       ...newReview,
       id: Date.now(),
-      date: new Date().toISOString()
+      date: new Date().toISOString(),
+      approved: false
     });
     
     // Write back to file

@@ -13,6 +13,7 @@ interface Review {
   stars: number;
   avatar?: string;
   image?: string;
+  approved?: boolean;
 }
 
 export default function Testimonials() {
@@ -37,7 +38,8 @@ export default function Testimonials() {
     try {
       const res = await fetch('/api/reviews')
       const data = await res.json()
-      setReviews(data)
+      // Only show approved reviews
+      setReviews(data.filter((r: Review) => r.approved === true))
     } catch (error) {
       console.error('Error fetching reviews:', error)
     }
@@ -53,9 +55,10 @@ export default function Testimonials() {
         body: JSON.stringify(newReview)
       })
       if (res.ok) {
-        await fetchReviews()
+        // We don't fetchReviews() here because the new review won't be approved yet
         setShowForm(false)
         setNewReview({ name: '', role: '', company: '', location: '', text: '', stars: 5 })
+        alert('Thank you for your review! It will be visible once approved.')
       }
     } catch (error) {
       console.error('Error adding review:', error)

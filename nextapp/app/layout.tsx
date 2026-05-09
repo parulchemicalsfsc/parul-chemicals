@@ -3,6 +3,7 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ScrollToTop from '@/components/ScrollToTop'
+import ExitSurvey from '@/components/ExitSurvey'
 
 export const metadata: Metadata = {
   title: 'Parul Chemicals — Precision Chemistry',
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <Footer />
         <ScrollToTop />
+        <ExitSurvey />
       </body>
     </html>
   )
