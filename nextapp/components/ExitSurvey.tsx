@@ -21,49 +21,28 @@ const ExitSurvey = () => {
   })
 
   useEffect(() => {
-    let lastY = 0;
-    
-    const handleMouseMove = (e: MouseEvent) => {
-      // Track velocity: if moving upwards quickly towards the top
-      const velocity = lastY - e.clientY;
-      lastY = e.clientY;
-
-      if (e.clientY < 50 && velocity > 10) {
-        triggerSurvey();
+    // Show feedback survey automatically after 3 minutes
+    const timer = setTimeout(() => {
+      const lastShown = localStorage.getItem('exit_survey_last_shown');
+      const now = Date.now();
+      
+      // Only show once every 12 hours to avoid being intrusive
+      if (lastShown && now - parseInt(lastShown) < 12 * 60 * 60 * 1000) {
+        return;
       }
-    };
 
-    const handleMouseOut = (e: MouseEvent) => {
-      // Traditional exit intent: mouse leaves the window through the top
-      if (!e.relatedTarget && e.clientY <= 5) {
-        triggerSurvey();
-      }
-    };
+      triggerSurvey();
+    }, 180000); // 3 minute delay
 
-    const handleVisibilityChange = () => {
-      // Trigger if user switches tabs
-      if (document.visibilityState === 'hidden') {
-        triggerSurvey();
-      }
-    };
+    return () => clearTimeout(timer);
+  }, [isVisible, isSubmitted])
 
-    const triggerSurvey = () => {
-      // Always show if not already visible or submitted in this specific instance
-      if (!isVisible && !isSubmitted) {
-        setIsVisible(true);
-      }
-    };
-
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseout', handleMouseOut);
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseout', handleMouseOut);
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
-  }, [])
+  const triggerSurvey = () => {
+    if (!isVisible && !isSubmitted) {
+      setIsVisible(true);
+      localStorage.setItem('exit_survey_last_shown', Date.now().toString());
+    }
+  };
 
   const handleClose = () => {
     setIsVisible(false)
@@ -223,111 +202,124 @@ const ExitSurvey = () => {
           className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
         >
           <motion.div
+            layout
             initial={{ scale: 0.9, y: 20 }}
             animate={{ scale: 1, y: 0 }}
             exit={{ scale: 0.9, y: 20 }}
-            className="relative w-full max-w-lg overflow-hidden bg-[#0F1C33]/90 border border-white/10 rounded-3xl shadow-2xl backdrop-blur-xl"
+            className="relative w-full max-w-[360px] h-auto min-h-[420px] flex flex-col overflow-hidden bg-white/[0.12] border border-white/40 rounded-[2.5rem] shadow-[0_40px_100px_-15px_rgba(255,255,255,0.1),0_20px_40px_-10px_rgba(0,0,0,0.3)] backdrop-blur-[60px]"
           >
-            {/* Close Button - Moved slightly higher and more right */}
+            {/* Liquid glass reflections */}
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-white/10 via-transparent to-white/10 pointer-events-none" />
+            <div className="absolute -top-20 -left-20 w-48 h-48 bg-blue-300/10 rounded-full blur-[60px] pointer-events-none" />
+            <div className="absolute -bottom-20 -right-20 w-48 h-48 bg-purple-300/10 rounded-full blur-[60px] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-10 pointer-events-none bg-[radial-gradient(circle_at_center,white_0%,transparent_70%)]" />
+
+            {/* Close Button */}
             <button
               onClick={handleClose}
-              className="absolute top-4 right-4 p-2 rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300 group z-10"
+              className="absolute top-6 right-6 p-2 rounded-full text-white/50 hover:text-white hover:bg-white/10 transition-all duration-300 z-30 backdrop-blur-md border border-white/10"
               aria-label="Close"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:rotate-90 transition-transform duration-300">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             </button>
 
-            <div className="p-8 md:p-10 pt-12"> {/* Increased top padding */}
+            <div className="relative flex-1 flex flex-col p-8 z-10">
               {!isSubmitted ? (
                 <>
-                  <div className="space-y-6">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 rounded-lg bg-white/5">
-                          {currentStepData?.icon}
-                        </div>
-                        <span className="text-xs font-medium text-blue-400 uppercase tracking-widest">
-                          Step {step} of {totalSteps}
+                  <div className="flex-1 flex flex-col">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="p-3 rounded-2xl bg-white/20 border border-white/30 shadow-lg backdrop-blur-md">
+                        {React.cloneElement(currentStepData?.icon as React.ReactElement, { width: 18, height: 18, className: "text-white" })}
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-[10px] font-black text-white/50 uppercase tracking-[0.3em]">
+                          STEP {step} OF {totalSteps}
                         </span>
                       </div>
-                      
-                      {step > 1 && (
-                        <button 
-                          onClick={handleBack}
-                          className="text-xs font-medium text-gray-400 hover:text-white flex items-center gap-1 transition-colors"
-                        >
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-                          BACK
-                        </button>
-                      )}
                     </div>
 
-                    {/* Progress Bar - Repositioned below step info */}
-                    <div className="w-full h-1 bg-white/5 rounded-full">
+                    {/* Luminous Progress Bar */}
+                    <div className="w-full h-1.5 bg-black/10 rounded-full overflow-hidden mb-8 border border-white/10">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${(step / totalSteps) * 100}%` }}
-                        className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full"
+                        className="h-full bg-gradient-to-r from-white/40 via-white to-white/40 bg-[length:200%_100%] rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)]"
+                        transition={{ duration: 0.4 }}
                       />
                     </div>
 
-                    <h2 className="text-2xl md:text-3xl font-bold text-white pt-2">
-                      {currentStepData?.question}
-                    </h2>
+                    <div className="flex-1 flex flex-col">
+                      <h2 className="text-2xl font-bold text-white tracking-tight leading-tight mb-8 drop-shadow-md">
+                        {currentStepData?.question}
+                      </h2>
 
-                    <div className="mt-8">
-                      {currentStepData?.type === 'choice' ? (
-                        <div className="grid grid-cols-1 gap-3">
-                          {currentStepData.options?.map((option) => (
+                      <div className="space-y-3">
+                        {currentStepData?.type === 'choice' ? (
+                          <div className="grid grid-cols-1 gap-3">
+                            {currentStepData.options?.map((option) => (
+                              <button
+                                key={option}
+                                onClick={() => {
+                                  updateField(currentStepData.field, option)
+                                  if (currentStepData.field === 'knowCompany' && option === 'No') {
+                                    updateField('duration', 'N/A')
+                                    setTimeout(submitData, 100)
+                                  } else {
+                                    handleNext()
+                                  }
+                                }}
+                                className={`w-full p-4 text-left rounded-2xl border transition-all duration-300 relative overflow-hidden group ${
+                                  formData[currentStepData.field as keyof typeof formData] === option
+                                    ? 'bg-white/30 border-white/60 text-white shadow-xl scale-[1.02]'
+                                    : 'bg-white/5 border-white/10 text-white/70 hover:bg-white/15 hover:border-white/30 hover:text-white'
+                                }`}
+                              >
+                                <span className="font-bold text-base relative z-10">{option}</span>
+                                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                              </button>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="relative group">
+                            <input
+                              autoFocus
+                              type="text"
+                              value={formData[currentStepData?.field as keyof typeof formData]}
+                              onChange={(e) => updateField(currentStepData?.field || '', e.target.value)}
+                              onKeyDown={(e) => e.key === 'Enter' && handleNext()}
+                              placeholder={currentStepData?.placeholder}
+                              className="w-full p-5 bg-white/5 border border-white/20 rounded-2xl text-white text-lg font-medium placeholder:text-white/20 focus:outline-none focus:bg-white/10 focus:border-white/50 transition-all shadow-inner"
+                            />
                             <button
-                              key={option}
-                              onClick={() => {
-                                updateField(currentStepData.field, option)
-                                if (currentStepData.field === 'knowCompany' && option === 'No') {
-                                  updateField('duration', 'N/A')
-                                  // Wait for state to update then submit
-                                  setTimeout(submitData, 100)
-                                } else {
-                                  handleNext()
-                                }
-                              }}
-                              className={`w-full p-4 text-left rounded-xl border transition-all duration-300 ${
-                                formData[currentStepData.field as keyof typeof formData] === option
-                                  ? 'bg-blue-600/20 border-blue-500 text-white'
-                                  : 'bg-white/5 border-white/10 text-gray-300 hover:bg-white/10 hover:border-white/20'
-                              }`}
+                              onClick={handleNext}
+                              className="absolute right-2 top-2 bottom-2 px-6 bg-white text-black hover:bg-white/90 rounded-xl shadow-xl transition-all transform active:scale-95 flex items-center justify-center font-bold"
                             >
-                              {option}
+                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                             </button>
-                          ))}
-                        </div>
-                      ) : (
-                        <div className="relative">
-                          <input
-                            autoFocus
-                            type="text"
-                            value={formData[currentStepData?.field as keyof typeof formData]}
-                            onChange={(e) => updateField(currentStepData?.field || '', e.target.value)}
-                            onKeyDown={(e) => e.key === 'Enter' && handleNext()}
-                            placeholder={currentStepData?.placeholder}
-                            className="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
-                          />
-                          <button
-                            onClick={handleNext}
-                            className="absolute right-2 top-2 p-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors"
-                          >
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                          </button>
-                        </div>
-                      )}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
 
-                  <p className="mt-10 text-xs text-gray-500 text-center uppercase tracking-widest">
-                    PARUL CHEMICALS • FEEDBACK SYSTEM
-                  </p>
+                  <div className="mt-8 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <p className="text-[10px] text-white/40 font-black uppercase tracking-[0.4em]">
+                        PARUL CHEMICALS
+                      </p>
+                    </div>
+
+                    {step > 1 && (
+                      <button 
+                        onClick={handleBack}
+                        className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-[11px] font-bold text-white/60 hover:text-white transition-all border border-white/20 backdrop-blur-md"
+                      >
+                        BACK
+                      </button>
+                    )}
+                  </div>
                 </>
               ) : (
                 <motion.div
