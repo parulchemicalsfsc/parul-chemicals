@@ -18,7 +18,7 @@ export default function TermsAndConditions() {
             Parul Chemicals is an Indian manufacturer and distributor of specialty chemicals, including Triethyl Citrate (TEC), Diethyl Phthalate (DEP), and FS CALCIVAL (a calcium supplement for animal feed). We serve pharmaceutical, nutritional, agrochemical, and industrial customers across India.
           </p>
           <address className="not-italic mt-4 p-4 bg-gray-100 rounded-lg">
-            <strong>Registered Office:</strong> Survey No 63/A – Part 1, Village Panchdevla, Taluka: Vaghodia, District Vadodara, Gujarat – 391510<br />
+            <strong>Registered Office:</strong> C1B-336/29, Press Stamping Industries, Makarpura, Industrial Estate Makarpura, Vadodara, Gujarat 390010<br />
             <strong>GST No:</strong> 24AASFP5315P1ZM<br />
             <strong>Contact:</strong> <a href="mailto:parulchemicals2016@gmail.com" className="text-[#4DA8DA]">parulchemicals2016@gmail.com</a> | +91-94277 84082
           </address>

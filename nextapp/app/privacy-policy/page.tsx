@@ -160,8 +160,8 @@ export default function PrivacyPolicy() {
           </p>
           <address className="not-italic mt-4 p-4 bg-gray-100 rounded-lg">
             <strong>Parul chemicals</strong><br />
-            Ranjan Society 2 Near, Lions Hall Race Course,<br />
-            Vadodara, Gujarat, 390007<br />
+            C1B-336/29, Press Stamping Industries, Makarpura,<br />
+            Industrial Estate Makarpura, Vadodara, Gujarat, 390010<br />
             Email: <a href="mailto:info@parulchemicals.com" className="text-[#4DA8DA]">info@parulchemicals.com</a><br />
             Phone: +91-94277 84082, +91-98256 37101
           </address>

@@ -3,7 +3,7 @@ export const SITE = {
   tagline: 'Leading Manufacturer of Diethyl Phthalate & Triethyl Citrate',
   phone: '+91 94277 84082',
   email: 'parulchemicals2016@gmail.com',
-  address: 'Ranjan Society 2, Near Lions Hall, Race Course, Vadodara, Gujarat 390007',
+  address: 'C1B-336/29, Press Stamping Industries, Makarpura, Industrial Estate Makarpura, Vadodara, Gujarat 390010',
   gstin: '24AADCP9515J1ZI',
 }
 
