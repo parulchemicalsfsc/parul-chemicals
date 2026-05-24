@@ -9,7 +9,7 @@ import nodemailer from 'nodemailer'
 export async function POST(req: Request) {
   try {
     const body = await req.json()
-    const { mode, name, email, company, product, message, date, time, meetingType, topics } = body
+    const { mode, name, email, phone, company, product, message, date, time, meetingType, topics } = body
 
     // 1. Setup Nodemailer Transporter
     // In production, these should be in .env.local
@@ -64,11 +64,12 @@ export async function POST(req: Request) {
       source_website: "parul_chemicals",
       full_name: name,
       email: email,
+      phone: phone || "N/A",
       company_name: company || "N/A",
       product_interest: isAppointment ? "Technical Consultation" : (product || "General Inquiry"),
       message: isAppointment 
         ? `[APPOINTMENT] Date: ${date}, Time: ${time}, Type: ${meetingType}. Topics: ${topics || 'N/A'}`
-        : message
+        : (message || "N/A")
     }
 
     try {
@@ -77,7 +78,7 @@ export async function POST(req: Request) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-API-Key": process.env.LEAD_API_KEY || "test-lead-key-change-me"
+          "X-API-Key": process.env.LEAD_API_KEY || "PCSALES"
         },
         body: JSON.stringify(leadPayload)
       });

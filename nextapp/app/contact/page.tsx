@@ -133,13 +133,17 @@ export default function ContactPage() {
                       className="space-y-6"
                     >
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div>
+                        <div className="sm:col-span-2">
                           <label className={LABEL}>Full Name *</label>
                           <input name="name" required className={INPUT} placeholder="Rajesh Patel" />
                         </div>
                         <div>
                           <label className={LABEL}>Email *</label>
                           <input name="email" required type="email" className={INPUT} placeholder="rajesh@example.com" />
+                        </div>
+                        <div>
+                          <label className={LABEL}>Phone Number *</label>
+                          <input name="phone" required type="tel" className={INPUT} placeholder="+91 XXXXX XXXXX" />
                         </div>
                       </div>
 
