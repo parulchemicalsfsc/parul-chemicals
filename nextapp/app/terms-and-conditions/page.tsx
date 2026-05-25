@@ -20,7 +20,7 @@ export default function TermsAndConditions() {
           <address className="not-italic mt-4 p-4 bg-gray-100 rounded-lg">
             <strong>Registered Office:</strong> C1B-336/29, Press Stamping Industries, Makarpura, Industrial Estate Makarpura, Vadodara, Gujarat 390010<br />
             <strong>GST No:</strong> 24AASFP5315P1ZM<br />
-            <strong>Contact:</strong> <a href="mailto:parulchemicals2016@gmail.com" className="text-[#4DA8DA]">parulchemicals2016@gmail.com</a> | +91-94277 84082
+            <strong>Contact:</strong> <a href="mailto:info@parulchemicals.in" className="text-[#4DA8DA]">info@parulchemicals.in</a> | +91-94277 84082
           </address>
 
           <p className="mt-6">
@@ -96,7 +96,7 @@ export default function TermsAndConditions() {
             These communications are strictly service-related in nature. Parul Chemicals will not send unsolicited promotional messages via WhatsApp without your explicit consent.
           </p>
           <p>
-            You may opt out of WhatsApp communications at any time by replying 'STOP' to any message, or by contacting us at parulchemicals2016@gmail.com or +91-94277 84082.
+            You may opt out of WhatsApp communications at any time by replying 'STOP' to any message, or by contacting us at info@parulchemicals.in or +91-94277 84082.
           </p>
 
           <h2 className="text-2xl font-semibold mt-8 mb-4 text-[#0D2137]">No warranties</h2>

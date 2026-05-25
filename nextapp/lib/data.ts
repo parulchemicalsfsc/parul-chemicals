@@ -2,9 +2,9 @@ export const SITE = {
   name: 'Parul Chemicals',
   tagline: 'Leading Manufacturer of Diethyl Phthalate & Triethyl Citrate',
   phone: '+91 94277 84082',
-  email: 'parulchemicals2016@gmail.com',
+  email: 'info@parulchemicals.in',
   address: 'C1B-336/29, Press Stamping Industries, Makarpura, Industrial Estate Makarpura, Vadodara, Gujarat 390010',
-  gstin: '24AADCP9515J1ZI',
+  gstin: '24AASFP5315P1ZM',
 }
 
 export const PRODUCTS = [

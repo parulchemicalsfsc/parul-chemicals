@@ -46,7 +46,7 @@ export default function ShippingPolicy() {
 
           <h2 className="text-2xl font-semibold mt-8 mb-4 text-[#0D2137]">6. How do I cancel or change my order?</h2>
           <p>
-            If you need help canceling your order, please email us at <a href="mailto:info@parulchemicals.com" className="text-[#4DA8DA]">info@parulchemicals.com</a> or send us a WhatsApp on 9825336101, & call us on 9825637101 with your order number. If we have already processed your order, we may not be able to cancel it. Please refer to our Returns Policy for more details.
+            If you need help canceling your order, please email us at <a href="mailto:info@parulchemicals.in" className="text-[#4DA8DA]">info@parulchemicals.in</a> or send us a WhatsApp on 9825336101, & call us on 9825637101 with your order number. If we have already processed your order, we may not be able to cancel it. Please refer to our Returns Policy for more details.
           </p>
           <p>
             If you need to change your shipping address once your order has been placed, please reach out to us as soon as possible. If the order has already fulfilled already, we will not be able to change the shipping address.
@@ -54,7 +54,7 @@ export default function ShippingPolicy() {
 
           <h2 className="text-2xl font-semibold mt-8 mb-4 text-[#0D2137]">7. What if I have a delivery dispute?</h2>
           <p>
-            If you have any delivery dispute, please email us at <a href="mailto:info@parulchemicals.com" className="text-[#4DA8DA]">info@parulchemicals.com</a> or send us a WhatsApp on 9825336101, & call us on 9825637101 with your order number and our customer experience team would be more than happy to assist.
+            If you have any delivery dispute, please email us at <a href="mailto:info@parulchemicals.in" className="text-[#4DA8DA]">info@parulchemicals.in</a> or send us a WhatsApp on 9825336101, & call us on 9825637101 with your order number and our customer experience team would be more than happy to assist.
           </p>
         </div>
       </div>

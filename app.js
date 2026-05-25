@@ -25,7 +25,7 @@ const siteData = {
   siteName : 'Parul Chemicals',
   tagline  : 'Precision Chemistry',
   phone    : '+91 94277 84082',
-  email    : 'parulchemicals2016@gmail.com',
+  email    : 'info@parulchemicals.in',
   address  : 'Ranjan Society 2, Near Lions Hall, Race Course, Vadodara, Gujarat 390007',
   products : [
     {

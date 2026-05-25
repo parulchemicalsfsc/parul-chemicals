@@ -36,7 +36,7 @@ export default function RefundPolicy() {
           </p>
 
           <p className="mt-8">
-            Please contact us at <a href="mailto:info@parulchemicals.com" className="text-[#4DA8DA]">info@parulchemicals.com</a> & +91 9825637101 with any questions or concerns about our refund policy.
+            Please contact us at <a href="mailto:info@parulchemicals.in" className="text-[#4DA8DA]">info@parulchemicals.in</a> & +91 9825637101 with any questions or concerns about our refund policy.
           </p>
         </div>
       </div>

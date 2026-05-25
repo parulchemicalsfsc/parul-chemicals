@@ -73,7 +73,7 @@ export default function PrivacyPolicy() {
             By providing your mobile number and engaging with PARUL CHEMICALS, you explicitly consent to receive messages from us via WhatsApp. These messages are strictly transactional and service-related and are not promotional in nature unless explicitly consented to.
           </p>
           <p>
-            You may opt out of receiving WhatsApp communications at any time by replying “STOP” to any message or by contacting us at parulchemicals2016@gmail.com or +91-94277 84082.
+            You may opt out of receiving WhatsApp communications at any time by replying “STOP” to any message or by contacting us at info@parulchemicals.in or +91-94277 84082.
           </p>
           <p>
             PARUL CHEMICALS follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services’ analytics. The information collected by log files include Internet Protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users’ movement on the website, and gathering demographic information.
@@ -162,7 +162,7 @@ export default function PrivacyPolicy() {
             <strong>Parul chemicals</strong><br />
             C1B-336/29, Press Stamping Industries, Makarpura,<br />
             Industrial Estate Makarpura, Vadodara, Gujarat, 390010<br />
-            Email: <a href="mailto:info@parulchemicals.com" className="text-[#4DA8DA]">info@parulchemicals.com</a><br />
+            Email: <a href="mailto:info@parulchemicals.in" className="text-[#4DA8DA]">info@parulchemicals.in</a><br />
             Phone: +91-94277 84082, +91-98256 37101
           </address>
           <p className="mt-8">
