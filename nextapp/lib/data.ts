@@ -3,7 +3,7 @@ export const SITE = {
   tagline: 'Leading Manufacturer of Diethyl Phthalate & Triethyl Citrate',
   phone: '+91 94277 84082',
   email: 'info@parulchemicals.in',
-  address: 'Survey no. 63/A-part 1, Village Panchdevla, Taluka Wadhodia, Dist. Vadodara, Gujarat, India - 391510',
+  address: 'C1B-336/29, Press Stamping Industries, Makarpura, Industrial Estate Makarpura, Vadodara, Gujarat 390010',
   gstin: '24AASFP5315P1ZM',
 }
 
