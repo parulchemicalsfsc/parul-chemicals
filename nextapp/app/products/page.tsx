@@ -141,7 +141,7 @@ export default function ProductsPage() {
           </p>
 
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
-            Explore F.S. Calcival
+            Explore our new product 
           </h2>
 
           <p className="text-[#D6E3F0] text-sm md:text-base max-w-xl">
