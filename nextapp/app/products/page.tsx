@@ -151,12 +151,12 @@ export default function ProductsPage() {
 
         {/* Button */}
         <Link
-          href="https://parulchemicals.in/fs-calcival"
+          href="/fs-calcival"
           target="_blank"
           rel="noopener noreferrer"
           className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold text-white transition-all duration-300 hover:scale-105"
           style={{
-            background: 'linear-gradient(135deg, #0F766E 0%, #0891B2 100%)',
+            background: 'linear-gradient(135deg, #0F766E 0%, #f59e0b 100%)',
             boxShadow: '0 8px 24px rgba(77,168,218,0.25)'
           }}
         >
