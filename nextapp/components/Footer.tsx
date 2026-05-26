@@ -11,7 +11,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-2">
-              <img src="/parul_logo.webp" alt="Parul Chemicals" className="h-12 w-auto object-contain drop-shadow-md" />
+              <img src="/parul_logo.webp" alt="Parul Chemicals" className="h-16 w-auto object-contain drop-shadow-md" />
             </div>
             <p className="text-white/50 text-sm leading-relaxed max-w-xs">
               Leading manufacturer of high-purity Diethyl Phthalate (DEP) and Triethyl Citrate (TEC), trusted by pharmaceutical, agrochemical, food, and cosmetics industries.
