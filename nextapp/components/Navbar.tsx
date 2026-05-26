@@ -32,9 +32,13 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group">
             <img 
-              src="/parul_logo.webp" 
-              alt="Parul Chemicals" 
-              className={`w-auto object-contain transition-all duration-500 drop-shadow-[0_0_10px_rgba(255,255,255,0.4)] group-hover:scale-105 ${scrolled ? 'h-16' : 'h-28'}`} 
+              src={pathname === '/fs-calcival' ? '/f.s calcival/f.s calcival logo.webp' : '/parul_logo.webp'} 
+              alt={pathname === '/fs-calcival' ? 'F.S. Calcival' : 'Parul Chemicals'} 
+              className={`w-auto object-contain transition-all duration-500 drop-shadow-[0_0_10px_rgba(255,255,255,0.4)] group-hover:scale-105 ${
+                pathname === '/fs-calcival'
+                  ? scrolled ? 'h-12' : 'h-20'
+                  : scrolled ? 'h-16' : 'h-28'
+              }`} 
             />
           </Link>
 
