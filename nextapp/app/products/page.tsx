@@ -118,7 +118,7 @@ export default function ProductsPage() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="relative overflow-hidden rounded-3xl px-8 py-8 md:px-10 md:py-9"
+      className="relative overflow-hidden rounded-3xl px-8 py-8 md:px-10 md:py-9 group"
       style={{
         background: 'linear-gradient(135deg, #0F766E 0%, #0891B2 100%)',
         boxShadow: '0 12px 40px rgba(15,28,51,0.14)'
@@ -132,12 +132,21 @@ export default function ProductsPage() {
         }}
       />
 
-      <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-8">
         
+        {/* Logo Container */}
+        <div className="shrink-0 w-20 h-20 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-2 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+          <img 
+            src="/f.s calcival/f.s calcival logo.webp" 
+            alt="F.S. Calcival Logo" 
+            className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]"
+          />
+        </div>
+
         {/* Left Content */}
-        <div className="text-center md:text-left">
-          <p className="text-xs font-bold tracking-[0.25em] text-[#4DA8DA] uppercase mb-2">
-            
+        <div className="text-center md:text-left flex-grow">
+          <p className="text-xs font-bold tracking-[0.25em] text-[#F59E0B] uppercase mb-2">
+            ANIMAL NUTRITION
           </p>
 
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
@@ -152,8 +161,6 @@ export default function ProductsPage() {
         {/* Button */}
         <Link
           href="/fs-calcival"
-          target="_blank"
-          rel="noopener noreferrer"
           className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold text-white transition-all duration-300 hover:scale-105"
           style={{
             background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
