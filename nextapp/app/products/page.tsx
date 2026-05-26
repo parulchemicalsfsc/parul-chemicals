@@ -110,7 +110,73 @@ export default function ProductsPage() {
           {PRODUCTS.map((p, i) => <ProductDetailCard key={p.id} product={p as Product} index={i} onOpen={setSelectedProduct} />)}
         </div>
       </section>
+          {/* Explore New Product CTA */}
+<section className="pb-12 bg-white relative overflow-hidden">
+  <div className="max-w-4xl mx-auto px-6">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="relative overflow-hidden rounded-3xl px-8 py-8 md:px-10 md:py-9"
+      style={{
+        background: 'linear-gradient(135deg, #0F766E 0%, #0891B2 100%)',
+        boxShadow: '0 12px 40px rgba(15,28,51,0.14)'
+      }}
+    >
+      {/* Glow */}
+      <div
+        className="absolute -top-20 -left-20 w-52 h-52 rounded-full opacity-20"
+        style={{
+          background: 'radial-gradient(circle, #4DA8DA 0%, transparent 70%)'
+        }}
+      />
 
+      <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        {/* Left Content */}
+        <div className="text-center md:text-left">
+          <p className="text-xs font-bold tracking-[0.25em] text-[#4DA8DA] uppercase mb-2">
+            
+          </p>
+
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+            Explore F.S. Calcival
+          </h2>
+
+          <p className="text-[#D6E3F0] text-sm md:text-base max-w-xl">
+            FS Calcival - animal feed supplement
+          </p>
+        </div>
+
+        {/* Button */}
+        <Link
+          href="https://parulchemicals.in/fs-calcival"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold text-white transition-all duration-300 hover:scale-105"
+          style={{
+            background: 'linear-gradient(135deg, #0F766E 0%, #0891B2 100%)',
+            boxShadow: '0 8px 24px rgba(77,168,218,0.25)'
+          }}
+        >
+          Explore Now
+
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </Link>
+      </div>
+    </motion.div>
+  </div>
+</section>
       <AnimatePresence>
         {selectedProduct && (
           <ProductModal 
