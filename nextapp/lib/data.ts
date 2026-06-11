@@ -159,7 +159,7 @@ export const PRODUCTS = [
 ]
 
 export const CERTIFICATIONS = [
-  { id: 'ecocert',    name: 'Ecocert',           desc: 'Organic & Natural Certification',              image: '/certificates/ecocert.png', pdf: '/certificates/Ecocert 2026.pdf' },
+  { id: 'ecocert',    name: 'Ecocert',           desc: 'Organic & Natural Certification',              image: '/certificates/ecocert.png', pdf: '/certificates/Ecocert 2026 (1).pdf' },
   { id: 'iso9001',    name: 'ISO 9001:2015',     desc: 'Quality Management System',                    image: '/certificates/iso90012015.webp' },
   { id: 'iso22000',   name: 'ISO 22000:2018',    desc: 'Food Safety Management System',                image: '/certificates/iso220002018.webp' },
   { id: 'iso45001',   name: 'ISO 45001:2018',    desc: 'Occupational Health & Safety Management',      image: '/certificates/iso450012018.webp' },
@@ -171,6 +171,7 @@ export const CERTIFICATIONS = [
   { id: 'reg',        name: 'Registration',       desc: 'Government Business Registration Certificate', image: '/certificates/registrationcerti.webp' },
   { id: 'halal',      name: 'Halal Certified',    desc: 'Jamiat Ulama-i-Hind Halal Trust',             image: '/certificates/Halal.webp' },
   { id: 'halal_doc',  name: 'Halal Compliance',   desc: 'Halal Certification Confirmation',            image: '/certificates/juth.webp' },
+  { id: 'fda2025',    name: 'US FDA Registered',  desc: 'U.S. FDA Registration — Triethyl Citrate (GRAS)', image: '/certificates/CERTI2025.webp' },
 ]
 
 export const PHILOSOPHY = {
@@ -239,7 +240,7 @@ export const TIMELINE = [
 export const STATS = [
   { val: '15+', label: 'Years of Excellence' },
   { val: '500+', label: 'Clients Served' },
-  { val: '11+', label: 'International Certifications' },
+  { val: '12+', label: 'International Certifications' },
   { val: '8+', label: 'Export Countries' },
 ]
 
