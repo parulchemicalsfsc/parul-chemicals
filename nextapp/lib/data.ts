@@ -167,7 +167,8 @@ export const CERTIFICATIONS = [
   { id: 'gmp',        name: 'GMP',               desc: 'Good Manufacturing Practice',                  image: '/certificates/gmp.webp' },
   { id: 'haccp',      name: 'HACCP',             desc: 'Hazard Analysis Critical Control Points',      image: '/certificates/haccp.webp' },
   { id: 'kosher1',    name: 'Kosher (TEC)',       desc: 'Triethyl Citrate — Kosher Certified',          image: '/certificates/kosher1.webp' },
-  { id: 'kosher2',    name: 'Kosher (DEP)',       desc: 'Diethyl Phthalate — Kosher Certified',         image: '/certificates/kosher2.webp' },
+  { id: 'kosher2',    name: 'Star-K Kosher (TEC)', desc: 'Triethyl Citrate — Star-K Kosher Certified',   image: '/certificates/kosher2.webp' },
+  { id: 'kosher2026', name: 'Kosher 2026 (TEC)', desc: 'Star-K Kosher Certification — Triethyl Citrate (Valid to Apr 2027)', image: '/certificates/kosher2026.webp' },
   { id: 'reg',        name: 'Registration',       desc: 'Government Business Registration Certificate', image: '/certificates/registrationcerti.webp' },
   { id: 'halal',      name: 'Halal Certified',    desc: 'Jamiat Ulama-i-Hind Halal Trust',             image: '/certificates/Halal.webp' },
   { id: 'halal_doc',  name: 'Halal Compliance',   desc: 'Halal Certification Confirmation',            image: '/certificates/juth.webp' },
@@ -240,7 +241,7 @@ export const TIMELINE = [
 export const STATS = [
   { val: '15+', label: 'Years of Excellence' },
   { val: '500+', label: 'Clients Served' },
-  { val: '12+', label: 'International Certifications' },
+  { val: '13+', label: 'International Certifications' },
   { val: '8+', label: 'Export Countries' },
 ]
 
