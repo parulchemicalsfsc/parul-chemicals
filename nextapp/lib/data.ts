@@ -261,6 +261,7 @@ export const NAV = [
   { label: 'About Us',       href: '/about' },
   { label: 'Products',       href: '/products' },
   { label: 'Certifications', href: '/certifications' },
+  { label: 'Careers',        href: '/careers' },
 ]
 export const FS_CALCIVAL_DATA = {
   name: 'F. S. Calcival',
