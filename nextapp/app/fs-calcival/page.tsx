@@ -149,7 +149,7 @@ export default function FSCalcivalPage() {
                 key={i}
                 whileHover={{ y: -10 }}
                 onClick={() => setSelectedPack(`${pack.size} ${pack.type}`)}
-                className={`min-w-[260px] md:min-w-[240px] lg:min-w-0 lg:flex-1 shrink-0 snap-center p-6 rounded-[2.5rem] border-2 transition-all cursor-pointer text-center group ${
+                className={`w-[260px] md:w-[240px] lg:w-auto lg:flex-1 shrink-0 snap-center p-6 rounded-[2.5rem] border-2 transition-all cursor-pointer text-center group ${
                   selectedPack === `${pack.size} ${pack.type}` 
                   ? 'border-[#F59E0B] bg-[#FFFBEB] shadow-xl shadow-orange-500/10' 
                   : 'border-slate-100 hover:border-[#F59E0B]/30 hover:bg-slate-50'
