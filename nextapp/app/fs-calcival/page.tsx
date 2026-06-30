@@ -143,13 +143,13 @@ export default function FSCalcivalPage() {
             <h2 className="text-3xl md:text-5xl font-bold text-[#0F1C33]">Available Variants</h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="flex overflow-x-auto gap-4 md:gap-6 pb-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
             {FS_CALCIVAL_DATA.packaging.map((pack, i) => (
               <motion.div
                 key={i}
                 whileHover={{ y: -10 }}
                 onClick={() => setSelectedPack(`${pack.size} ${pack.type}`)}
-                className={`p-6 rounded-[2.5rem] border-2 transition-all cursor-pointer text-center group ${
+                className={`min-w-[260px] md:min-w-[240px] lg:min-w-0 lg:flex-1 shrink-0 snap-center p-6 rounded-[2.5rem] border-2 transition-all cursor-pointer text-center group ${
                   selectedPack === `${pack.size} ${pack.type}` 
                   ? 'border-[#F59E0B] bg-[#FFFBEB] shadow-xl shadow-orange-500/10' 
                   : 'border-slate-100 hover:border-[#F59E0B]/30 hover:bg-slate-50'
