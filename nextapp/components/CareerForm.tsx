@@ -27,10 +27,13 @@ export default function CareerForm() {
     setSuccess(false)
 
     try {
+      const formPayload = new FormData()
+      Object.entries(formData).forEach(([key, value]) => formPayload.append(key, value))
+      formPayload.append('source', 'TEC & DEP')
+      
       const res = await fetch('/api/careers', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: formPayload
       })
 
       const data = await res.json()

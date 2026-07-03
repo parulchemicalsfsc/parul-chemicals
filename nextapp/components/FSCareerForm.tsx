@@ -25,18 +25,34 @@ export default function FSCareerForm() {
     }
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
     setError('')
     setSuccess(false)
 
-    // Simulate API call since we might not have a specific endpoint for this extensive form yet
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500))
+      const formData = new FormData(e.currentTarget)
+      
+      formData.append('source', 'F.S. Calcival')
+      formData.append('experienceLevel', experienceLevel)
+      formData.append('currentAddress', currentAddress)
+      if (permanentAddress) formData.append('permanentAddress', permanentAddress)
+
+      const res = await fetch('/api/careers', {
+        method: 'POST',
+        body: formData
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to submit application')
+      }
+
       setSuccess(true)
     } catch (err: any) {
-      setError('An unexpected error occurred. Please try again.')
+      setError(err.message || 'An unexpected error occurred. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -80,15 +96,15 @@ export default function FSCareerForm() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
-              <input required type="text" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+              <input required type="text" name="name" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Mobile Number *</label>
-              <input required type="tel" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+              <input required type="tel" name="phone" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
-              <input required type="email" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+              <input required type="email" name="email" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Date of Birth *</label>
@@ -129,19 +145,19 @@ export default function FSCareerForm() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Highest Qualification *</label>
-              <input required type="text" placeholder="e.g. BSc Agriculture, MBA" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+              <input required type="text" name="highestQualification" placeholder="e.g. BSc Agriculture, MBA" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">College / University *</label>
-              <input required type="text" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+              <input required type="text" name="college" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Year of Passing *</label>
-              <input required type="text" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+              <input required type="text" name="passingYear" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Percentage / CGPA *</label>
-              <input required type="text" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+              <input required type="text" name="percentage" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
             </div>
           </div>
         </section>
@@ -166,42 +182,42 @@ export default function FSCareerForm() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Current Company *</label>
-                <input required type="text" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+                <input required type="text" name="currentCompany" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Current Designation *</label>
-                <input required type="text" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+                <input required type="text" name="currentDesignation" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Total Experience (Years) *</label>
-                <input required type="text" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+                <input required type="text" name="totalExperience" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Relevant Experience *</label>
-                <input required type="text" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+                <input required type="text" name="relevantExperience" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Current Salary *</label>
-                <input required type="text" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+                <input required type="text" name="currentSalary" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Expected Salary *</label>
-                <input required type="text" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+                <input required type="text" name="expectedSalary" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Notice Period *</label>
-                <input required type="text" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+                <input required type="text" name="noticePeriod" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Reason for Job Change *</label>
-                <input required type="text" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+                <input required type="text" name="reasonForChange" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
               </div>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Expected Salary *</label>
-                <input required type="text" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+                <input required type="text" name="expectedSalary" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
               </div>
             </div>
           )}
@@ -213,19 +229,19 @@ export default function FSCareerForm() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Willing to Travel? *</label>
-              <select required className="w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none bg-white">
+              <select required name="willingToTravel" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none bg-white">
                 <option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option>
               </select>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Have Two-Wheeler? *</label>
-              <select required className="w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none bg-white">
+              <select required name="twoWheeler" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none bg-white">
                 <option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option>
               </select>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Valid Driving License? *</label>
-              <select required className="w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none bg-white">
+              <select required name="drivingLicense" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none bg-white">
                 <option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option>
               </select>
             </div>
@@ -238,19 +254,19 @@ export default function FSCareerForm() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Languages Known (Gujarati Must) *</label>
-              <input required type="text" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" placeholder="e.g. Gujarati, Hindi, English" />
+              <input required type="text" name="languages" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" placeholder="e.g. Gujarati, Hindi, English" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Computer Skills</label>
-              <input type="text" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" placeholder="e.g. MS Excel, Email, CRM" />
+              <input type="text" name="computerSkills" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" placeholder="e.g. MS Excel, Email, CRM" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Sales Experience (Years/Details)</label>
-              <input type="text" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+              <input type="text" name="salesExperience" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Animal Husbandry/Dairy Exp.</label>
-              <input type="text" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" placeholder="If any" />
+              <input type="text" name="animalHusbandryExp" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" placeholder="If any" />
             </div>
           </div>
         </section>
@@ -263,7 +279,7 @@ export default function FSCareerForm() {
             {['Resume *', 'Passport Photo', 'Aadhaar Card', 'PAN Card', 'Driving License', 'Educational Certificates'].map((doc, i) => (
               <div key={i}>
                 <label className="block text-xs font-semibold text-gray-600 mb-1">{doc}</label>
-                <input type="file" className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#4DA8DA]/10 file:text-[#4DA8DA] hover:file:bg-[#4DA8DA]/20" />
+                <input type="file" name={doc.replace(/[^a-zA-Z]/g, '')} className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#4DA8DA]/10 file:text-[#4DA8DA] hover:file:bg-[#4DA8DA]/20" />
               </div>
             ))}
           </div>
@@ -277,18 +293,18 @@ export default function FSCareerForm() {
             <div>
               <h5 className="font-semibold text-gray-800 mb-3 border-b pb-1">A. General Questions</h5>
               <div className="space-y-4">
-                <div><label className="block text-sm text-gray-700 mb-1">Why do you want to join our company? *</label><textarea required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
-                <div><label className="block text-sm text-gray-700 mb-1">What do you know about FSCALCIVAL? *</label><textarea required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
-                <div><label className="block text-sm text-gray-700 mb-1">Are you comfortable working in rural areas? *</label><select required className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
+                <div><label className="block text-sm text-gray-700 mb-1">Why do you want to join our company? *</label><textarea name="whyJoin" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                <div><label className="block text-sm text-gray-700 mb-1">What do you know about FSCALCIVAL? *</label><textarea name="whatKnowAboutUs" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                <div><label className="block text-sm text-gray-700 mb-1">Are you comfortable working in rural areas? *</label><select name="ruralAreas" required className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
               </div>
             </div>
             
             <div>
               <h5 className="font-semibold text-gray-800 mb-3 border-b pb-1">B. Sales Questions</h5>
               <div className="space-y-4">
-                <div><label className="block text-sm text-gray-700 mb-1">How do you convince a customer? *</label><textarea required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
-                <div><label className="block text-sm text-gray-700 mb-1">How do you handle rejection? *</label><textarea required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
-                <div><label className="block text-sm text-gray-700 mb-1">How do you plan your daily route? *</label><textarea required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                <div><label className="block text-sm text-gray-700 mb-1">How do you convince a customer? *</label><textarea name="convinceCustomer" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                <div><label className="block text-sm text-gray-700 mb-1">How do you handle rejection? *</label><textarea name="handleRejection" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                <div><label className="block text-sm text-gray-700 mb-1">How do you plan your daily route? *</label><textarea name="planDailyRoute" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
               </div>
             </div>
           </div>

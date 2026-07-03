@@ -103,8 +103,8 @@ export default function GoogleTranslate() {
   if (!isClient) return null
 
   return (
-    <>
-      <style dangerouslySetInnerHTML={{__html: `
+    <div className="inline-block">
+      <style>{`
         /* Hide everything from Google Translate widget */
         .goog-te-banner-frame.skiptranslate { display: none !important; }
         body { top: 0px !important; }
@@ -114,7 +114,7 @@ export default function GoogleTranslate() {
         .goog-tooltip:hover { display: none !important; }
         .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
         #google_translate_element { display: none !important; }
-      `}} />
+      `}</style>
       
       <div id="google_translate_element"></div>
 
@@ -142,6 +142,6 @@ export default function GoogleTranslate() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   )
 }
