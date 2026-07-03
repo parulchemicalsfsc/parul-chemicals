@@ -1,6 +1,7 @@
 import React from 'react'
 import CareerForm from '@/components/CareerForm'
 import GoogleTranslate from '@/components/GoogleTranslate'
+import TECDecJobProfilesSlider from '@/components/TECDecJobProfilesSlider'
 
 export const metadata = {
   title: 'Careers - TEC & DEP | Parul Chemicals',
@@ -26,6 +27,9 @@ export default function Careers() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-10">
               
+              {/* Job Info Section (Slider) */}
+              <TECDecJobProfilesSlider />
+
               {/* Why Work With Us Section */}
               <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
                 <h2 className="text-2xl font-bold mb-6 text-[#0F1C33]">Why Work With Us?</h2>

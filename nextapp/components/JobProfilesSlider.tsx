@@ -112,7 +112,7 @@ export default function JobProfilesSlider() {
                     <li>Must have an Android smartphone with wireless Bluetooth connectivity.</li>
                     <li>Must have Laptop/Computer and internet facilities.</li>
                     <li>Graduate / Undergraduate in any discipline.</li>
-                    <li>Good communication and convincing skills. Ability to communicate in Gujarati and Hindi.</li>
+                    <li>Convincing skills. Ability to communicate in Gujarati.</li>
                     <li>Basic computer knowledge, data entry skills, and professional telephone etiquette.</li>
                     <li>Experience in telecalling, customer service, sales, agriculture, or rural marketing preferred.</li>
                   </ul>
