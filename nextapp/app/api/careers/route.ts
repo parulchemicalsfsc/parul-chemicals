@@ -46,8 +46,8 @@ export async function POST(req: Request) {
     `
 
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
-      // Send to info@parulchemicals.in as requested by the user
-      const receiver = 'info@parulchemicals.in';
+      // Send to career.parulchemicals@gmail.com as requested by the user
+      const receiver = 'career.parulchemicals@gmail.com';
       
       await transporter.sendMail({
         from: `"Parul Careers" <${process.env.EMAIL_USER}>`,

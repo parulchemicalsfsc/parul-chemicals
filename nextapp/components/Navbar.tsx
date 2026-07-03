@@ -47,23 +47,56 @@ export default function Navbar() {
             linksWhite ? 'bg-[#0F1C33]/60 backdrop-blur-lg border border-white/15 shadow-2xl' : ''
           }`}>
             {NAV.map(item => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-200 relative group ${
-                  linksWhite
-                    ? 'text-white hover:text-[#4DA8DA] hover:bg-white/5'
-                    : 'text-[#4A5568] hover:text-[#0F1C33] hover:bg-black/5'
-                }`}
-              >
-                {item.label}
-                {pathname === item.href && (
-                  <motion.div
-                    layoutId="nav-indicator"
-                    className="absolute bottom-1.5 left-4 right-4 h-[2px] bg-[#4DA8DA] rounded-full shadow-[0_0_8px_rgba(77,168,218,0.6)]"
-                  />
+              <div key={item.label} className="relative group">
+                {item.subItems ? (
+                  <div
+                    className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-200 cursor-pointer block ${
+                      linksWhite
+                        ? 'text-white hover:text-[#4DA8DA] hover:bg-white/5'
+                        : 'text-[#4A5568] hover:text-[#0F1C33] hover:bg-black/5'
+                    }`}
+                  >
+                    {item.label}
+                    {pathname.startsWith('/careers') && (
+                      <motion.div
+                        layoutId="nav-indicator"
+                        className="absolute bottom-1.5 left-4 right-4 h-[2px] bg-[#4DA8DA] rounded-full shadow-[0_0_8px_rgba(77,168,218,0.6)]"
+                      />
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-200 block relative ${
+                      linksWhite
+                        ? 'text-white hover:text-[#4DA8DA] hover:bg-white/5'
+                        : 'text-[#4A5568] hover:text-[#0F1C33] hover:bg-black/5'
+                    }`}
+                  >
+                    {item.label}
+                    {pathname === item.href && (
+                      <motion.div
+                        layoutId="nav-indicator"
+                        className="absolute bottom-1.5 left-4 right-4 h-[2px] bg-[#4DA8DA] rounded-full shadow-[0_0_8px_rgba(77,168,218,0.6)]"
+                      />
+                    )}
+                  </Link>
                 )}
-              </Link>
+
+                {item.subItems && (
+                  <div className="absolute top-full left-0 mt-2 w-48 bg-white/90 backdrop-blur-md rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden">
+                    {item.subItems.map(subItem => (
+                      <Link
+                        key={subItem.href}
+                        href={subItem.href}
+                        className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-[#4DA8DA] hover:bg-[#F8F9FA] transition-colors"
+                      >
+                        {subItem.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
 
@@ -108,18 +141,36 @@ export default function Navbar() {
           >
             {NAV.map((item, i) => (
               <motion.div
-                key={item.href}
+                key={item.label}
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.07 }}
               >
-                <Link
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="block py-4 text-2xl font-semibold text-[#0F1C33] hover:text-[#4DA8DA] border-b border-[#E2E8F0] transition-colors"
-                >
-                  {item.label}
-                </Link>
+                {item.subItems ? (
+                  <div className="py-4 border-b border-[#E2E8F0]">
+                    <div className="text-2xl font-semibold text-[#0F1C33] mb-3">{item.label}</div>
+                    <div className="pl-4 flex flex-col gap-4">
+                      {item.subItems.map(subItem => (
+                        <Link
+                          key={subItem.href}
+                          href={subItem.href}
+                          onClick={() => setOpen(false)}
+                          className="block text-xl font-medium text-gray-600 hover:text-[#4DA8DA] transition-colors"
+                        >
+                          {subItem.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className="block py-4 text-2xl font-semibold text-[#0F1C33] hover:text-[#4DA8DA] border-b border-[#E2E8F0] transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                )}
               </motion.div>
             ))}
             <Link

@@ -133,12 +133,17 @@ export default function PrivacyPolicy() {
             PARUL CHEMICALS does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.
           </p>
 
-          <h2 className="text-2xl font-semibold mt-8 mb-4 text-[#0D2137]">10. Conclusion</h2>
+          <h2 className="text-2xl font-semibold mt-8 mb-4 text-[#0D2137]">10. HR Information & Career Applications</h2>
+          <p>
+            When you apply for a position via our Careers page, the information you provide (such as your personal details, educational background, employment history, and documents) is strictly confidential. It will only be accessible by our HR Department and relevant hiring managers for the purpose of evaluating your candidacy. You may contact our HR department at career.parulchemicals@gmail.com or +91-94277 84082, +91-98256 37101 for any queries regarding your application data.
+          </p>
+
+          <h2 className="text-2xl font-semibold mt-8 mb-4 text-[#0D2137]">11. Conclusion</h2>
           <p>
             Parul chemicals is highly concerned of privacy of our customers or visitors to our website www.parulchemicals.in. We hereby declared a privacy policy to inform you that our policies regarding the data or information submitted by you like your Name, Address, Email, etc. on our website will not be disclosed to any other agency without prior permission from you.
           </p>
 
-          <h2 className="text-2xl font-semibold mt-8 mb-4 text-[#0D2137]">11. Our Commitment to Your Privacy</h2>
+          <h2 className="text-2xl font-semibold mt-8 mb-4 text-[#0D2137]">12. Our Commitment to Your Privacy</h2>
           <p>
             Parul Chemicals is committed to protecting the privacy of our customers and website visitors. Personal data shared with us will be used solely for the purposes described in this Privacy Policy and will not be disclosed to any third party without your prior consent.
           </p>
@@ -146,7 +151,7 @@ export default function PrivacyPolicy() {
             We regularly review our privacy practices and update this policy when required. We encourage you to review this page periodically. Significant changes will be communicated to you directly or prominently posted on our website.
           </p>
 
-          <h2 className="text-2xl font-semibold mt-8 mb-4 text-[#0D2137]">12. Governing Law</h2>
+          <h2 className="text-2xl font-semibold mt-8 mb-4 text-[#0D2137]">13. Governing Law</h2>
           <p>
             This Privacy Policy is governed by the laws of India, including the Information Technology Act, 2000, and the Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011.
           </p>
@@ -154,7 +159,7 @@ export default function PrivacyPolicy() {
             Any disputes arising out of or in connection with this Privacy Policy shall be subject to the exclusive jurisdiction of the courts located at Vadodara, Gujarat, India.
           </p>
 
-          <h2 className="text-2xl font-semibold mt-8 mb-4 text-[#0D2137]">13. Contact Us</h2>
+          <h2 className="text-2xl font-semibold mt-8 mb-4 text-[#0D2137]">14. Contact Us</h2>
           <p>
             If you have any questions about this Privacy Policy or our practices regarding your personal information, please contact us at:
           </p>
