@@ -43,14 +43,6 @@ export default function FSCalcivalCareers() {
                   <div className="flex gap-4">
                     <div className="mt-1 text-green-500"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
                     <div>
-                      <h4 className="font-bold text-gray-800">Structured Training &amp; Development</h4>
-                      <p className="text-sm text-gray-600 mt-1">Receive professional training in product knowledge, sales techniques, customer relationship management, and leadership skills.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex gap-4">
-                    <div className="mt-1 text-green-500"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-                    <div>
                       <h4 className="font-bold text-gray-800">Career Growth Opportunities</h4>
                       <p className="text-sm text-gray-600 mt-1">We believe in promoting talent from within. Your performance and commitment can lead to exciting career advancement opportunities.</p>
                     </div>
@@ -75,14 +67,6 @@ export default function FSCalcivalCareers() {
                   <div className="flex gap-4">
                     <div className="mt-1 text-green-500"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
                     <div>
-                      <h4 className="font-bold text-gray-800">Supportive Team Culture</h4>
-                      <p className="text-sm text-gray-600 mt-1">Work alongside experienced professionals in a collaborative environment that values learning, innovation, integrity, and teamwork.</p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="mt-1 text-green-500"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-                    <div>
                       <h4 className="font-bold text-gray-800">Learning Every Day</h4>
                       <p className="text-sm text-gray-600 mt-1">Gain exposure to sales, marketing, dairy cooperatives, veterinary professionals, distributors, and rural markets.</p>
                     </div>
@@ -91,8 +75,16 @@ export default function FSCalcivalCareers() {
                   <div className="flex gap-4">
                     <div className="mt-1 text-green-500"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
                     <div>
-                      <h4 className="font-bold text-gray-800">Stability with Growth</h4>
-                      <p className="text-sm text-gray-600 mt-1">Join a growing organization with ambitious expansion plans across India, offering long-term career opportunities.</p>
+                      <h4 className="font-bold text-gray-800">Structured Training &amp; Development</h4>
+                      <p className="text-sm text-gray-600 mt-1">Receive professional training in product knowledge, sales techniques, customer relationship management, and leadership skills.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex gap-4">
+                    <div className="mt-1 text-green-500"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                    <div>
+                      <h4 className="font-bold text-gray-800">Supportive Team Culture</h4>
+                      <p className="text-sm text-gray-600 mt-1">Work alongside experienced professionals in a collaborative environment that values learning, innovation, integrity, and teamwork.</p>
                     </div>
                   </div>
 
@@ -112,7 +104,7 @@ export default function FSCalcivalCareers() {
               <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 sticky top-32">
                 <h3 className="text-xl font-bold text-[#0F1C33] mb-4">Current Open Vacancies</h3>
                 <div className="space-y-3">
-                  {['Field Sales Officer', 'Tele Caller', 'Jr. R & D Executive'].map((job, idx) => (
+                  {['Field Sales Officer', 'Tele Caller', 'R&D, QC & QA'].map((job, idx) => (
                     <div key={idx} className="p-4 border border-gray-100 rounded-xl hover:border-[#4DA8DA] hover:shadow-md transition-all cursor-pointer group">
                       <div className="font-bold text-gray-800 group-hover:text-[#4DA8DA] transition-colors">{job}</div>
                       <div className="text-xs text-gray-500 mt-1 flex items-center gap-1">

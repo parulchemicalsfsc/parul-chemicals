@@ -39,7 +39,7 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-bold tracking-widest uppercase text-[#4DA8DA] mb-2">Company</h4>
             <ul className="space-y-1">
-              {NAV.map(item => (
+              {NAV.flatMap(item => item.subItems ? item.subItems : [item]).map(item => (
                 <li key={item.href}>
                   <Link href={item.href} className="text-sm text-white/50 hover:text-white transition-colors">
                     {item.label}

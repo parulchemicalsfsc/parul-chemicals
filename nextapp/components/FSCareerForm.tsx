@@ -10,6 +10,7 @@ export default function FSCareerForm() {
   const [permanentAddress, setPermanentAddress] = useState('')
   const [sameAddress, setSameAddress] = useState(false)
   const [experienceLevel, setExperienceLevel] = useState('Experienced')
+  const [position, setPosition] = useState('')
 
   const handleSameAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSameAddress(e.target.checked)
@@ -82,17 +83,17 @@ export default function FSCareerForm() {
         {/* Position Applied For */}
         <section>
           <label htmlFor="position" className="block text-sm font-semibold text-gray-700 mb-2">POSITION APPLIED FOR *</label>
-          <select required id="position" name="position" className="w-full md:w-1/2 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#4DA8DA] focus:ring-2 focus:ring-[#4DA8DA]/20 outline-none bg-gray-50/50">
+          <select required id="position" name="position" value={position} onChange={(e) => setPosition(e.target.value)} className="w-full md:w-1/2 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#4DA8DA] focus:ring-2 focus:ring-[#4DA8DA]/20 outline-none bg-gray-50/50">
             <option value="">Select Position</option>
             <option value="Field Sales Officer">Field Sales Officer</option>
             <option value="Tele Caller">Tele Caller</option>
-            <option value="Jr. R & D Executive">Jr. R & D Executive</option>
+            <option value="R&D, QC & QA">R&D, QC & QA</option>
           </select>
         </section>
 
         {/* A. Personal Information */}
         <section>
-          <h4 className="text-lg font-bold text-[#0D2137] mb-4 flex items-center gap-2"><span className="bg-[#4DA8DA] text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">A</span> Personal Information</h4>
+          <h4 className="text-lg font-bold text-[#0D2137] mb-4">Personal Information</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
@@ -141,7 +142,7 @@ export default function FSCareerForm() {
 
         {/* B. Education */}
         <section>
-          <h4 className="text-lg font-bold text-[#0D2137] mb-4 flex items-center gap-2"><span className="bg-[#4DA8DA] text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">B</span> Education</h4>
+          <h4 className="text-lg font-bold text-[#0D2137] mb-4">Education</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Highest Qualification *</label>
@@ -164,7 +165,7 @@ export default function FSCareerForm() {
 
         {/* C. Employment Details */}
         <section>
-          <h4 className="text-lg font-bold text-[#0D2137] mb-4 flex items-center gap-2"><span className="bg-[#4DA8DA] text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">C</span> Employment Details</h4>
+          <h4 className="text-lg font-bold text-[#0D2137] mb-4">Employment Details</h4>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 mb-2">Experience Level *</label>
             <div className="flex gap-4">
@@ -224,33 +225,35 @@ export default function FSCareerForm() {
         </section>
 
         {/* D. Preferred Location */}
-        <section>
-          <h4 className="text-lg font-bold text-[#0D2137] mb-4 flex items-center gap-2"><span className="bg-[#4DA8DA] text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">D</span> Travel & Location</h4>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Willing to Travel? *</label>
-              <select required name="willingToTravel" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none bg-white">
-                <option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option>
-              </select>
+        {position === 'Field Sales Officer' && (
+          <section>
+            <h4 className="text-lg font-bold text-[#0D2137] mb-4">Travel & Location</h4>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Willing to Travel? *</label>
+                <select required name="willingToTravel" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none bg-white">
+                  <option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Have Two-Wheeler? *</label>
+                <select required name="twoWheeler" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none bg-white">
+                  <option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Valid Driving License? *</label>
+                <select required name="drivingLicense" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none bg-white">
+                  <option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option>
+                </select>
+              </div>
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Have Two-Wheeler? *</label>
-              <select required name="twoWheeler" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none bg-white">
-                <option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Valid Driving License? *</label>
-              <select required name="drivingLicense" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none bg-white">
-                <option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option>
-              </select>
-            </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* E. Skills */}
         <section>
-          <h4 className="text-lg font-bold text-[#0D2137] mb-4 flex items-center gap-2"><span className="bg-[#4DA8DA] text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">E</span> Skills & Knowledge</h4>
+          <h4 className="text-lg font-bold text-[#0D2137] mb-4">Skills & Knowledge</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Languages Known (Gujarati Must) *</label>
@@ -273,7 +276,7 @@ export default function FSCareerForm() {
 
         {/* F. Documents to Upload */}
         <section>
-          <h4 className="text-lg font-bold text-[#0D2137] mb-4 flex items-center gap-2"><span className="bg-[#4DA8DA] text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">F</span> Documents Upload</h4>
+          <h4 className="text-lg font-bold text-[#0D2137] mb-4">Documents Upload</h4>
           <p className="text-sm text-gray-500 mb-4">Please prepare the following documents. You can upload them here or provide them during the interview stage.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {['Resume *', 'Passport Photo', 'Aadhaar Card', 'PAN Card', 'Driving License', 'Educational Certificates'].map((doc, i) => (
@@ -287,26 +290,30 @@ export default function FSCareerForm() {
 
         {/* G. Screening Questions */}
         <section>
-          <h4 className="text-lg font-bold text-[#0D2137] mb-4 flex items-center gap-2"><span className="bg-[#4DA8DA] text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">G</span> Screening Questions</h4>
+          <h4 className="text-lg font-bold text-[#0D2137] mb-4">Screening Questions</h4>
           
           <div className="space-y-6">
             <div>
-              <h5 className="font-semibold text-gray-800 mb-3 border-b pb-1">A. General Questions</h5>
+              <h5 className="font-semibold text-gray-800 mb-3 border-b pb-1">General Questions</h5>
               <div className="space-y-4">
                 <div><label className="block text-sm text-gray-700 mb-1">Why do you want to join our company? *</label><textarea name="whyJoin" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
                 <div><label className="block text-sm text-gray-700 mb-1">What do you know about FSCALCIVAL? *</label><textarea name="whatKnowAboutUs" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
-                <div><label className="block text-sm text-gray-700 mb-1">Are you comfortable working in rural areas? *</label><select name="ruralAreas" required className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
+                {position === 'Field Sales Officer' && (
+                  <div><label className="block text-sm text-gray-700 mb-1">Are you comfortable working in rural areas? *</label><select name="ruralAreas" required className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
+                )}
               </div>
             </div>
             
-            <div>
-              <h5 className="font-semibold text-gray-800 mb-3 border-b pb-1">B. Sales Questions</h5>
-              <div className="space-y-4">
-                <div><label className="block text-sm text-gray-700 mb-1">How do you convince a customer? *</label><textarea name="convinceCustomer" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
-                <div><label className="block text-sm text-gray-700 mb-1">How do you handle rejection? *</label><textarea name="handleRejection" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
-                <div><label className="block text-sm text-gray-700 mb-1">How do you plan your daily route? *</label><textarea name="planDailyRoute" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+            {position === 'Field Sales Officer' && (
+              <div>
+                <h5 className="font-semibold text-gray-800 mb-3 border-b pb-1">Sales Questions</h5>
+                <div className="space-y-4">
+                  <div><label className="block text-sm text-gray-700 mb-1">How do you convince a customer? *</label><textarea name="convinceCustomer" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                  <div><label className="block text-sm text-gray-700 mb-1">How do you handle rejection? *</label><textarea name="handleRejection" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                  <div><label className="block text-sm text-gray-700 mb-1">How do you plan your daily route? *</label><textarea name="planDailyRoute" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </section>
 
