@@ -3,8 +3,13 @@ import nodemailer from 'nodemailer'
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json()
-    const { name, email, phone, role, linkedin, message } = body
+    const formData = await req.formData()
+    
+    // Extract base fields safely
+    const name = (formData.get('name') || formData.get('fullName') || '').toString()
+    const email = (formData.get('email') || '').toString()
+    const role = (formData.get('role') || formData.get('position') || '').toString()
+    const source = (formData.get('source') || 'Careers Page').toString()
 
     if (!name || !email || !role) {
       return NextResponse.json({ success: false, error: 'Missing required fields' }, { status: 400 })
@@ -18,25 +23,48 @@ export async function POST(req: Request) {
       },
     })
 
-    const subject = `🚀 JOB APPLICATION: ${name} - ${role}`
+    const subject = `🚀 JOB APPLICATION (${source}): ${name} - ${role}`
+
+    const attachments = []
+    const textFields: Record<string, string> = {}
+
+    for (const [key, value] of Array.from(formData.entries())) {
+      if (value instanceof File) {
+        if (value.size > 0) {
+          const buffer = Buffer.from(await value.arrayBuffer())
+          attachments.push({
+            filename: value.name,
+            content: buffer
+          })
+        }
+      } else {
+        textFields[key] = value.toString()
+      }
+    }
+
+    let fieldsHtml = ''
+    for (const [key, val] of Object.entries(textFields)) {
+      if (key === 'source' || !val) continue
+      const formattedKey = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())
+      fieldsHtml += `
+        <tr>
+          <td style="padding: 10px; font-weight: bold; width: 35%; border-bottom: 1px solid #e2e8f0; color: #4DA8DA;">${formattedKey}:</td>
+          <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; white-space: pre-wrap;">${val}</td>
+        </tr>
+      `
+    }
 
     const htmlContent = `
-      <div style="font-family: sans-serif; max-width: 600px; margin: auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">
+      <div style="font-family: sans-serif; max-width: 700px; margin: auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">
         <div style="background-color: #0F1C33; padding: 20px; text-align: center;">
-          <h1 style="color: #ffffff; margin: 0; font-size: 20px;">Parul Chemicals - Careers</h1>
+          <h1 style="color: #ffffff; margin: 0; font-size: 20px;">${source} - Job Application</h1>
         </div>
         <div style="padding: 30px; color: #4a5568;">
           <h2 style="color: #0F1C33; border-bottom: 2px solid #4DA8DA; padding-bottom: 10px;">
-            New Job Application
+            Application Details
           </h2>
-          
           <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-            <tr><td style="padding: 8px 0; font-weight: bold; width: 140px;">Applicant Name:</td><td>${name}</td></tr>
-            <tr><td style="padding: 8px 0; font-weight: bold;">Email Address:</td><td>${email}</td></tr>
-            <tr><td style="padding: 8px 0; font-weight: bold;">Phone Number:</td><td>${phone || 'N/A'}</td></tr>
-            <tr><td style="padding: 8px 0; font-weight: bold;">Applied Role:</td><td style="color: #4DA8DA; font-weight: bold;">${role}</td></tr>
-            <tr><td style="padding: 8px 0; font-weight: bold;">LinkedIn/Portfolio:</td><td>${linkedin ? `<a href="${linkedin}">${linkedin}</a>` : 'N/A'}</td></tr>
-            <tr><td style="padding: 8px 0; font-weight: bold; vertical-align: top;">Cover Letter:</td><td style="white-space: pre-wrap;">${message || 'N/A'}</td></tr>
+            ${fieldsHtml}
           </table>
         </div>
         <div style="background-color: #f8fafc; padding: 15px; text-align: center; font-size: 11px; color: #94a3b8;">
@@ -46,14 +74,15 @@ export async function POST(req: Request) {
     `
 
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
-      // Send to career.parulchemicals@gmail.com as requested by the user
-      const receiver = 'career.parulchemicals@gmail.com';
+      // Send applications to the official careers email defined in .env.local
+      const receiver = process.env.CAREERS_RECEIVER_EMAIL || 'career.parulchemicals@gmail.com';
       
       await transporter.sendMail({
         from: `"Parul Careers" <${process.env.EMAIL_USER}>`,
         to: receiver,
         subject: subject,
         html: htmlContent,
+        attachments
       })
       return NextResponse.json({ success: true, message: 'Application submitted successfully' })
     } else {
