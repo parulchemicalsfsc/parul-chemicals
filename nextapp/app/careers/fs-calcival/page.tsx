@@ -1,6 +1,7 @@
 import React from 'react'
 import FSCareerForm from '@/components/FSCareerForm'
 import GoogleTranslate from '@/components/GoogleTranslate'
+import JobProfilesSlider from '@/components/JobProfilesSlider'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -27,90 +28,8 @@ export default function FSCalcivalCareers() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-10">
               
-              {/* Job Info Section */}
-              <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-                <h2 className="text-2xl font-bold mb-6 text-[#0F1C33] flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-[#4DA8DA]/10 flex items-center justify-center text-[#4DA8DA]">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                  </div>
-                  Information for Job Vacancies
-                </h2>
-                
-                <div className="space-y-8">
-                  <div>
-                    <h3 className="text-lg font-bold text-[#0D2137] mb-3">A. Job Overview</h3>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 text-sm text-gray-600">
-                      <li><strong>Job Title:</strong> Variable</li>
-                      <li><strong>Department:</strong> Field Sales / R&amp;D</li>
-                      <li><strong>Reporting Manager:</strong> Area Sales Manager</li>
-                      <li><strong>Employment Type:</strong> Full-time / Permanent</li>
-                      <li><strong>Location:</strong> Variable (Field/HQ)</li>
-                      <li><strong>Travel Requirement:</strong> High (For Sales)</li>
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h3 className="text-lg font-bold text-[#0D2137] mb-3">B. Job Summary (Example - Field Sales Officer)</h3>
-                    <ul className="list-disc pl-5 space-y-1 text-sm text-gray-600">
-                      <li>Generate sales in assigned territory.</li>
-                      <li>Visit villages daily.</li>
-                      <li>Meet dairy farmers and societies.</li>
-                      <li>Conduct product demonstrations.</li>
-                      <li>Collect market intelligence.</li>
-                      <li>Maintain daily reports.</li>
-                      <li>Build distributor relationships.</li>
-                      <li>Achieve monthly targets.</li>
-                    </ul>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <h3 className="text-lg font-bold text-[#0D2137] mb-2">C. Education</h3>
-                      <p className="text-sm text-gray-600">Any Graduate / Diploma / Agriculture / Veterinary / Dairy Technology / MBA (Marketing)</p>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-[#0D2137] mb-2">D. Qualification</h3>
-                      <p className="text-sm text-gray-600">Experience / Fresher Welcome OR 1–3 Years Preferred</p>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <h3 className="text-lg font-bold text-[#0D2137] mb-3">E. Required Skills</h3>
-                      <ul className="list-disc pl-5 text-sm text-gray-600 grid grid-cols-2 gap-1">
-                        <li>Communication Skills</li>
-                        <li>Sales Skills</li>
-                        <li>Negotiation</li>
-                        <li>MS Excel</li>
-                        <li>Reporting</li>
-                        <li>Relationship Building</li>
-                        <li>Problem Solving</li>
-                        <li>Teamwork</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-[#0D2137] mb-3">F. Requirements</h3>
-                      <ul className="list-disc pl-5 text-sm text-gray-600 space-y-1">
-                        <li>Two-wheeler</li>
-                        <li>Driving License</li>
-                        <li>Smartphone</li>
-                        <li>Willing to travel</li>
-                        <li>Ready for village visits</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="bg-[#4DA8DA]/5 p-5 rounded-xl border border-[#4DA8DA]/20">
-                    <h3 className="text-lg font-bold text-[#0F1C33] mb-3">G. Perks &amp; Benefits</h3>
-                    <p className="text-sm text-gray-600 mb-4">Instead of only salary, we provide a comprehensive benefits package:</p>
-                    <div className="flex flex-wrap gap-2">
-                      {['Competitive Salary', 'Performance Incentives', 'Travel Allowance', 'Training Programs', 'Career Growth', 'Employee Recognition', 'Paid Leave'].map(perk => (
-                        <span key={perk} className="px-3 py-1 bg-white border border-[#4DA8DA]/30 rounded-full text-xs font-semibold text-[#4DA8DA]">{perk}</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {/* Job Info Section (Slider) */}
+              <JobProfilesSlider />
 
               {/* Why Work With Us Section */}
               <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
