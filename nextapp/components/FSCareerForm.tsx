@@ -297,9 +297,26 @@ export default function FSCareerForm() {
               <h5 className="font-semibold text-gray-800 mb-3 border-b pb-1">General Questions</h5>
               <div className="space-y-4">
                 <div><label className="block text-sm text-gray-700 mb-1">Why do you want to join our company? *</label><textarea name="whyJoin" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
-                <div><label className="block text-sm text-gray-700 mb-1">What do you know about FSCALCIVAL? *</label><textarea name="whatKnowAboutUs" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                <div><label className="block text-sm text-gray-700 mb-1">What do you know about {position === 'R&D, QC & QA' ? 'Parul Chemicals' : 'FSCALCIVAL'}? *</label><textarea name="whatKnowAboutUs" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                
                 {position === 'Field Sales Officer' && (
                   <div><label className="block text-sm text-gray-700 mb-1">Are you comfortable working in rural areas? *</label><select name="ruralAreas" required className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
+                )}
+
+                {position === 'Tele Caller' && (
+                  <>
+                    <div><label className="block text-sm text-gray-700 mb-1">Do you have prior experience in outbound calling, cold calling, or handling customer complaints? *</label><textarea name="telecallerExperience" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                    <div><label className="block text-sm text-gray-700 mb-1">Are you familiar with using any Sales Management Software, Google Sheets, or dialer applications? *</label><textarea name="telecallerSoftware" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                    <div><label className="block text-sm text-gray-700 mb-1">Are you comfortable working in rotating shifts or on weekends if required? *</label><select name="telecallerShifts" required className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
+                  </>
+                )}
+
+                {position === 'R&D, QC & QA' && (
+                  <>
+                    <div><label className="block text-sm text-gray-700 mb-1">Are you familiar with basic laboratory testing procedures, documentation, and safety protocols? *</label><textarea name="qaLabProcedures" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                    <div><label className="block text-sm text-gray-700 mb-1">Are you comfortable maintaining detailed logbooks, batch manufacturing records (BMR), or QA/QC documentation? *</label><select name="qaDocumentation" required className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
+                    <div><label className="block text-sm text-gray-700 mb-1">Briefly describe a successful lab experiment, product testing, or quality check process you have handled. *</label><textarea name="qaExperiment" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                  </>
                 )}
               </div>
             </div>
