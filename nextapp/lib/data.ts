@@ -262,8 +262,8 @@ export const NAV = [
   { label: 'Products',       href: '/products' },
   { label: 'Certifications', href: '/certifications' },
   { label: 'Careers',        href: '#', subItems: [
-    { label: 'TEC & DEP', href: '/careers/tec-dec' },
-    { label: 'F.S. Calcival', href: '/careers/fs-calcival' }
+    { label: 'Apply for TEC & DEC Careers', href: '/careers/tec-dec' },
+    { label: 'Apply for F.S. Calcival Careers', href: '/careers/fs-calcival' }
   ] },
 ]
 export const FS_CALCIVAL_DATA = {

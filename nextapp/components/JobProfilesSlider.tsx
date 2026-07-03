@@ -7,7 +7,7 @@ export default function JobProfilesSlider() {
 
   const tabs = [
     { id: 0, title: 'Field Sales Officer' },
-    { id: 1, title: 'Jr. R&D Executive' },
+    { id: 1, title: 'R&D, QC & QA' },
     { id: 2, title: 'Telecaller' }
   ]
 
@@ -50,12 +50,10 @@ export default function JobProfilesSlider() {
               <p><strong>Marketing &amp; Advertising:</strong> The employee has to spread awareness of our product using different methods like Banners, Pamphlets, testimonials videos, etc.</p>
               <p><strong>Relationship with Customers:</strong> Maintain healthy relationships with customers (secretary of dairy) and handle any circumstances. Take feedback and update the reporting manager timely.</p>
               <p><strong>Product Demo:</strong> Schedule a product demonstration once a month to generate maximum potential leads from that specific location (Dairy).</p>
-              <p><strong>Targets:</strong> Monthly sales targets will be assigned which must be achieved after a 1-month training period. Penalties apply if targets are not met afterward.</p>
-              <p><strong>Achieved Target/Penalties:</strong> If the employee achieves more than the assigned target, they get an extra incentive of Rs. 3 per liter. If not achieved, Rs. 1.5 per liter will be deducted as penalties.</p>
+              <p><strong>Targets:</strong> Employees are expected to achieve their assigned sales targets. If an employee exceeds their target, they will receive additional performance incentives. If the target is not achieved, penalties will be applied on a per-liter basis as per company policy.</p>
               <p><strong>Payment Collection:</strong> Entirely liable for timely collection of payments into the company’s account; non-compliance will lead to legal action.</p>
               <p><strong>Cheque Collection:</strong> Collect cheque payments based on customer orders, along with required documents (Aadhar Card, PAN, bank details, photo, light bill, references).</p>
               <p><strong>Security Deposit:</strong> Submit a cheque as a security deposit against every order. It will be returned once payment is received. Responsible to maintain stock and update regularly.</p>
-              <p><strong>Performance Incentives:</strong> Top performers based on collections receive annual bonuses (1st: ₹10,000; 2nd: ₹7,000; 3rd: ₹5,000).</p>
               <p><strong>Sales Order:</strong> Responsible from getting orders till payment collection. Verify delivered orders with the invoice copy.</p>
               <p><strong>Payment Receipt:</strong> Share the payment receipt to the customer once the payment has been made.</p>
             </div>
@@ -64,12 +62,13 @@ export default function JobProfilesSlider() {
 
         {activeTab === 1 && (
           <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
-            <h3 className="text-xl font-bold text-[#4DA8DA] border-b-2 border-[#4DA8DA]/20 pb-2 mb-4">2. Junior R&amp;D Executive (QC Profile)</h3>
+            <h3 className="text-xl font-bold text-[#4DA8DA] border-b-2 border-[#4DA8DA]/20 pb-2 mb-4">2. R&amp;D, QC &amp; QA</h3>
             <div className="space-y-4 text-sm text-gray-700 leading-relaxed">
               <p>This is a full-time, on-site role as a Junior Research and Development (R&amp;D) Officer based in Vadodara. The Jr. R&amp;D Officer will engage in research and development activities to support innovation for industrial products, applying laboratory techniques to develop and test new formulations. The role includes conducting experiments, analysing chemical compositions, maintaining detailed records, and collaborating with cross-functional teams to optimize processes and ensure high-quality outputs.</p>
               <div>
                 <h4 className="font-bold text-[#0F1C33] mb-2">Responsibilities &amp; Requirements:</h4>
                 <ul className="list-disc pl-5 space-y-1.5">
+                  <li>Oversee and monitor daily operations in the production department to ensure quality, efficiency, and compliance with company standards.</li>
                   <li>Research and Development (R&amp;D), and Analytical Skills.</li>
                   <li>Proficiency in Laboratory Skills, including the use of specialized equipment.</li>
                   <li>Excellent Communication skills to collaborate with cross-functional teams.</li>
@@ -90,7 +89,7 @@ export default function JobProfilesSlider() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-gray-50 p-4 rounded-xl border border-gray-100 mb-4">
                 <div><strong className="text-gray-900">Department:</strong> Sales &amp; Marketing</div>
                 <div><strong className="text-gray-900">Reporting To:</strong> Sales Representative / Sales Manager</div>
-                <div className="sm:col-span-2"><strong className="text-gray-900">Job Location &amp; Shift Time:</strong> Remote / 7am to 1pm and 4pm to 9pm</div>
+                <div className="sm:col-span-2"><strong className="text-gray-900">Work Type:</strong> Remote / Full-Time / Part-Time</div>
               </div>
               
               <p><strong>Job Summary:</strong> Responsible for contacting Sabhasads (members), Pashu Palaks (livestock farmers) across assigned villages and talukas to promote the company’s animal feed supplement products. The role involves generating awareness, collecting detailed information, maintaining accurate records, and supporting the field sales team through lead generation and reporting.</p>
@@ -98,6 +97,7 @@ export default function JobProfilesSlider() {
               <div>
                 <h4 className="font-bold text-[#0F1C33] mb-2">Key Responsibilities:</h4>
                 <ul className="list-disc pl-5 space-y-1.5">
+                  <li><strong>System Operations:</strong> Operate and manage the company's software systems efficiently for daily business operations.</li>
                   <li><strong>Promotional Activities:</strong> Make outbound promotional calls to Sabhasads and livestock farmers. Explain benefits, ongoing schemes, and awareness campaigns. Generate interest and schedule follow-up calls for field officers.</li>
                   <li><strong>Data Collection &amp; Documentation:</strong> Collect and verify detailed information of Sabhasads, Mantrys, dairy societies, and farmers. Accurately complete prescribed data collection forms and update profiles in the database.</li>
                   <li><strong>Reporting &amp; Record Management:</strong> Prepare daily call reports and activity summaries. Maintain records of leads generated and follow-up actions. Coordinate with management for report analysis.</li>
@@ -109,6 +109,7 @@ export default function JobProfilesSlider() {
                 <div>
                   <h4 className="font-bold text-[#0F1C33] mb-2">Skills &amp; Qualifications:</h4>
                   <ul className="list-disc pl-5 space-y-1.5">
+                    <li>Must have an Android smartphone with wireless Bluetooth connectivity.</li>
                     <li>Must have Laptop/Computer and internet facilities.</li>
                     <li>Graduate / Undergraduate in any discipline.</li>
                     <li>Good communication and convincing skills. Ability to communicate in Gujarati and Hindi.</li>
