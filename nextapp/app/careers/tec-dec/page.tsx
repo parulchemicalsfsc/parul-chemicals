@@ -1,5 +1,6 @@
 import React from 'react'
 import CareerForm from '@/components/CareerForm'
+import GoogleTranslate from '@/components/GoogleTranslate'
 
 export const metadata = {
   title: 'Careers - TEC & DEP | Parul Chemicals',
@@ -10,9 +11,12 @@ export default function Careers() {
   return (
     <div className="pt-32 pb-20 bg-[#F8F9FA] text-[#0D2137] min-h-screen">
       <div className="max-w-5xl mx-auto px-6">
-        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[#0F1C33]">
-          Careers in <span className="text-[#4DA8DA]">TEC & DEP</span>
-        </h1>
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#0F1C33]">
+            Careers in <span className="text-[#4DA8DA]">TEC & DEP</span>
+          </h1>
+          <GoogleTranslate />
+        </div>
         
         <div className="prose prose-lg text-gray-700 max-w-none">
           <p className="text-xl leading-relaxed text-gray-600 border-l-4 border-[#4DA8DA] pl-6 mb-12 bg-white p-6 rounded-r-xl shadow-sm">
