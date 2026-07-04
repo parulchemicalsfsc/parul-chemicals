@@ -89,13 +89,19 @@ export default function Footer() {
                 <span className="text-[#4DA8DA] mt-0.5 shrink-0">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 </span>
-                <span>{SITE.address}</span>
+                <span>
+                  <strong className="text-white/80 block mb-1">Factory Address:</strong>
+                  {SITE.address}
+                </span>
               </li>
               <li className="flex items-start gap-2 mb-2">
                 <span className="text-[#4DA8DA] mt-0.5 shrink-0">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 </span>
-                <span>C1B-336/29, Press Stamping Industries, Makarpura, Industrial Estate Makarpura, Vadodara, Gujarat, 390010</span>
+                <span>
+                  <strong className="text-white/80 block mb-1">Registered Office Address:</strong>
+                  C1B-336/29, Press Stamping Industries, Makarpura, Industrial Estate Makarpura, Vadodara, Gujarat, 390010
+                </span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-[#4DA8DA] shrink-0">
