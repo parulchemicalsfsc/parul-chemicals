@@ -8,6 +8,7 @@ import { NAV } from '@/lib/data'
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen]         = useState(false)
+  const [mobileSubNavOpen, setMobileSubNavOpen] = useState<string | null>(null)
   const pathname = usePathname()
 
   useEffect(() => {
@@ -148,19 +149,41 @@ export default function Navbar() {
               >
                 {item.subItems ? (
                   <div className="py-4 border-b border-[#E2E8F0]">
-                    <div className="text-2xl font-semibold text-[#0F1C33] mb-3">{item.label}</div>
-                    <div className="pl-4 flex flex-col gap-4">
-                      {item.subItems.map(subItem => (
-                        <Link
-                          key={subItem.href}
-                          href={subItem.href}
-                          onClick={() => setOpen(false)}
-                          className="block text-xl font-medium text-gray-600 hover:text-[#4DA8DA] transition-colors"
+                    <button 
+                      onClick={() => setMobileSubNavOpen(prev => prev === item.label ? null : item.label)}
+                      className="w-full flex items-center justify-between text-2xl font-semibold text-[#0F1C33]"
+                    >
+                      {item.label}
+                      <motion.svg 
+                        animate={{ rotate: mobileSubNavOpen === item.label ? 180 : 0 }}
+                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                      >
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </motion.svg>
+                    </button>
+                    <AnimatePresence>
+                      {mobileSubNavOpen === item.label && (
+                        <motion.div 
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          className="overflow-hidden"
                         >
-                          {subItem.label}
-                        </Link>
-                      ))}
-                    </div>
+                          <div className="pl-4 pt-4 flex flex-col gap-4">
+                            {item.subItems.map(subItem => (
+                              <Link
+                                key={subItem.href}
+                                href={subItem.href}
+                                onClick={() => setOpen(false)}
+                                className="block text-xl font-medium text-gray-600 hover:text-[#4DA8DA] transition-colors"
+                              >
+                                {subItem.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 ) : (
                   <Link

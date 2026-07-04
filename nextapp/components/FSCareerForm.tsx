@@ -314,7 +314,7 @@ export default function FSCareerForm() {
                 {position === 'R&D, QC & QA' && (
                   <>
                     <div><label className="block text-sm text-gray-700 mb-1">Are you familiar with basic laboratory testing procedures, documentation, and safety protocols? *</label><textarea name="qaLabProcedures" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
-                    <div><label className="block text-sm text-gray-700 mb-1">Are you comfortable maintaining detailed logbooks, batch manufacturing records (BMR), or QA/QC documentation? *</label><select name="qaDocumentation" required className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
+                    <div><label className="block text-sm text-gray-700 mb-1">Are you comfortable maintaining detailed logbooks, batch manufacturing records (BMR), or QA/QC documentation? *</label><textarea name="qaDocumentation" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
                     <div><label className="block text-sm text-gray-700 mb-1">Briefly describe a successful lab experiment, product testing, or quality check process you have handled. *</label><textarea name="qaExperiment" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
                   </>
                 )}

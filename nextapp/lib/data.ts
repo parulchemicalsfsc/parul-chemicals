@@ -262,7 +262,7 @@ export const NAV = [
   { label: 'Products',       href: '/products' },
   { label: 'Certifications', href: '/certifications' },
   { label: 'Careers',        href: '#', subItems: [
-    { label: 'Apply for TEC & DEC Careers', href: '/careers/tec-dec' },
+    { label: 'Apply for TEC & DEP Careers', href: '/careers/tec-dec' },
     { label: 'Apply for F.S. Calcival Careers', href: '/careers/fs-calcival' }
   ] },
 ]
