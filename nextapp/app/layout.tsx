@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ScrollToTop from '@/components/ScrollToTop'
 import ExitSurvey from '@/components/ExitSurvey'
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
   title: 'Parul Chemicals — Precision Chemistry',
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <ScrollToTop />
         <ExitSurvey />
+        <Analytics />
       </body>
     </html>
   )
