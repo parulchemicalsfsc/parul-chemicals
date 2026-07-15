@@ -67,12 +67,12 @@ export default function CareerForm() {
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-1">Full Name *</label>
-              <input required type="text" id="name" name="name" value={formData.name} onChange={handleChange} className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#4DA8DA] focus:ring-2 focus:ring-[#4DA8DA]/20 outline-none transition-all bg-gray-50/50" placeholder="John Doe" />
+              <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-1">Full Name</label>
+              <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#4DA8DA] focus:ring-2 focus:ring-[#4DA8DA]/20 outline-none transition-all bg-gray-50/50" placeholder="John Doe" />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-1">Email Address *</label>
-              <input required type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#4DA8DA] focus:ring-2 focus:ring-[#4DA8DA]/20 outline-none transition-all bg-gray-50/50" placeholder="john@example.com" />
+              <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-1">Email Address</label>
+              <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#4DA8DA] focus:ring-2 focus:ring-[#4DA8DA]/20 outline-none transition-all bg-gray-50/50" placeholder="john@example.com" />
             </div>
           </div>
 
@@ -82,8 +82,8 @@ export default function CareerForm() {
               <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#4DA8DA] focus:ring-2 focus:ring-[#4DA8DA]/20 outline-none transition-all bg-gray-50/50" placeholder="+91 98765 43210" />
             </div>
             <div>
-              <label htmlFor="role" className="block text-sm font-semibold text-gray-700 mb-1">Role Applying For *</label>
-              <select required id="role" name="role" value={formData.role} onChange={handleChange} className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#4DA8DA] focus:ring-2 focus:ring-[#4DA8DA]/20 outline-none transition-all bg-gray-50/50 appearance-none">
+              <label htmlFor="role" className="block text-sm font-semibold text-gray-700 mb-1">Role Applying For</label>
+              <select id="role" name="role" value={formData.role} onChange={handleChange} className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#4DA8DA] focus:ring-2 focus:ring-[#4DA8DA]/20 outline-none transition-all bg-gray-50/50 appearance-none">
                 <option value="">Select a role</option>
                 <option value="Research & Development">Research & Development</option>
                 <option value="Quality Control & Assurance">Quality Control & Assurance</option>

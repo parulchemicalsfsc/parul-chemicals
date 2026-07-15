@@ -82,8 +82,8 @@ export default function FSCareerForm() {
         
         {/* Position Applied For */}
         <section>
-          <label htmlFor="position" className="block text-sm font-semibold text-gray-700 mb-2">POSITION APPLIED FOR *</label>
-          <select required id="position" name="position" value={position} onChange={(e) => setPosition(e.target.value)} className="w-full md:w-1/2 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#4DA8DA] focus:ring-2 focus:ring-[#4DA8DA]/20 outline-none bg-gray-50/50">
+          <label htmlFor="position" className="block text-sm font-semibold text-gray-700 mb-2">POSITION APPLIED FOR</label>
+          <select id="position" name="position" value={position} onChange={(e) => setPosition(e.target.value)} className="w-full md:w-1/2 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#4DA8DA] focus:ring-2 focus:ring-[#4DA8DA]/20 outline-none bg-gray-50/50">
             <option value="">Select Position</option>
             <option value="Field Sales Officer">Field Sales Officer</option>
             <option value="Tele Caller">Tele Caller</option>
@@ -96,20 +96,20 @@ export default function FSCareerForm() {
           <h4 className="text-lg font-bold text-[#0D2137] mb-4">Personal Information</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
-              <input required type="text" name="name" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+              <input type="text" name="name" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Mobile Number *</label>
-              <input required type="tel" name="phone" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
+              <input type="tel" name="phone" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
-              <input required type="email" name="email" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+              <input type="email" name="email" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Date of Birth *</label>
-              <input required type="date" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
+              <input type="date" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Gender (Optional)</label>
@@ -124,18 +124,18 @@ export default function FSCareerForm() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Current Address (Taluka, Dist, State) *</label>
-              <textarea required rows={2} value={currentAddress} onChange={handleCurrentAddressChange} className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Current Address (Taluka, Dist, State)</label>
+              <textarea rows={2} value={currentAddress} onChange={handleCurrentAddressChange} className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea>
             </div>
             <div>
               <div className="flex items-center justify-between mb-1">
-                <label className="block text-sm font-medium text-gray-700">Permanent Address (Taluka, Dist, State) *</label>
+                <label className="block text-sm font-medium text-gray-700">Permanent Address (Taluka, Dist, State)</label>
                 <label className="flex items-center gap-2 text-xs text-gray-600 cursor-pointer">
                   <input type="checkbox" checked={sameAddress} onChange={handleSameAddressChange} className="w-3.5 h-3.5 text-[#4DA8DA]" />
                   Same as Current
                 </label>
               </div>
-              <textarea required rows={2} value={permanentAddress} onChange={(e) => setPermanentAddress(e.target.value)} disabled={sameAddress} className={`w-full px-4 py-2.5 rounded-lg border outline-none resize-none ${sameAddress ? 'bg-gray-100 border-gray-200 text-gray-500 cursor-not-allowed' : 'border-gray-200 focus:border-[#4DA8DA]'}`}></textarea>
+              <textarea rows={2} value={permanentAddress} onChange={(e) => setPermanentAddress(e.target.value)} disabled={sameAddress} className={`w-full px-4 py-2.5 rounded-lg border outline-none resize-none ${sameAddress ? 'bg-gray-100 border-gray-200 text-gray-500 cursor-not-allowed' : 'border-gray-200 focus:border-[#4DA8DA]'}`}></textarea>
             </div>
           </div>
         </section>
@@ -145,20 +145,20 @@ export default function FSCareerForm() {
           <h4 className="text-lg font-bold text-[#0D2137] mb-4">Education</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Highest Qualification *</label>
-              <input required type="text" name="highestQualification" placeholder="e.g. BSc Agriculture, MBA" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Highest Qualification</label>
+              <input type="text" name="highestQualification" placeholder="e.g. BSc Agriculture, MBA" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">College / University *</label>
-              <input required type="text" name="college" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">College / University</label>
+              <input type="text" name="college" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Year of Passing *</label>
-              <input required type="text" name="passingYear" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Year of Passing</label>
+              <input type="text" name="passingYear" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Percentage / CGPA *</label>
-              <input required type="text" name="percentage" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Percentage / CGPA</label>
+              <input type="text" name="percentage" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
             </div>
           </div>
         </section>
@@ -167,7 +167,7 @@ export default function FSCareerForm() {
         <section>
           <h4 className="text-lg font-bold text-[#0D2137] mb-4">Employment Details</h4>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Experience Level *</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Experience Level</label>
             <div className="flex gap-4">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input type="radio" name="exp_level" value="Fresher" checked={experienceLevel === 'Fresher'} onChange={(e) => setExperienceLevel(e.target.value)} className="w-4 h-4 text-[#4DA8DA]" />
@@ -182,43 +182,43 @@ export default function FSCareerForm() {
           {experienceLevel === 'Experienced' ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Current Company *</label>
-                <input required type="text" name="currentCompany" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Current Company</label>
+                <input type="text" name="currentCompany" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Current Designation *</label>
-                <input required type="text" name="currentDesignation" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Current Designation</label>
+                <input type="text" name="currentDesignation" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Total Experience (Years) *</label>
-                <input required type="text" name="totalExperience" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Total Experience (Years)</label>
+                <input type="text" name="totalExperience" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Relevant Experience *</label>
-                <input required type="text" name="relevantExperience" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Relevant Experience</label>
+                <input type="text" name="relevantExperience" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Current Salary *</label>
-                <input required type="text" name="currentSalary" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Current Salary</label>
+                <input type="text" name="currentSalary" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Expected Salary *</label>
-                <input required type="text" name="expectedSalary" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Expected Salary</label>
+                <input type="text" name="expectedSalary" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Notice Period *</label>
-                <input required type="text" name="noticePeriod" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Notice Period</label>
+                <input type="text" name="noticePeriod" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Reason for Job Change *</label>
-                <input required type="text" name="reasonForChange" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Reason for Job Change</label>
+                <input type="text" name="reasonForChange" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
               </div>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Expected Salary *</label>
-                <input required type="text" name="expectedSalary" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Expected Salary</label>
+                <input type="text" name="expectedSalary" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" />
               </div>
             </div>
           )}
@@ -230,20 +230,20 @@ export default function FSCareerForm() {
             <h4 className="text-lg font-bold text-[#0D2137] mb-4">Travel & Location</h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Willing to Travel? *</label>
-                <select required name="willingToTravel" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none bg-white">
+                <label className="block text-sm font-medium text-gray-700 mb-2">Willing to Travel?</label>
+                <select name="willingToTravel" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none bg-white">
                   <option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option>
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Have Two-Wheeler? *</label>
-                <select required name="twoWheeler" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none bg-white">
+                <label className="block text-sm font-medium text-gray-700 mb-2">Have Two-Wheeler?</label>
+                <select name="twoWheeler" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none bg-white">
                   <option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option>
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Valid Driving License? *</label>
-                <select required name="drivingLicense" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none bg-white">
+                <label className="block text-sm font-medium text-gray-700 mb-2">Valid Driving License?</label>
+                <select name="drivingLicense" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none bg-white">
                   <option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option>
                 </select>
               </div>
@@ -256,8 +256,8 @@ export default function FSCareerForm() {
           <h4 className="text-lg font-bold text-[#0D2137] mb-4">Skills & Knowledge</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Languages Known (Gujarati Must) *</label>
-              <input required type="text" name="languages" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" placeholder="e.g. Gujarati, Hindi, English" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Languages Known (Gujarati Must)</label>
+              <input type="text" name="languages" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none" placeholder="e.g. Gujarati, Hindi, English" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Computer Skills</label>
@@ -279,7 +279,7 @@ export default function FSCareerForm() {
           <h4 className="text-lg font-bold text-[#0D2137] mb-4">Documents Upload</h4>
           <p className="text-sm text-gray-500 mb-4">Please prepare the following documents. You can upload them here or provide them during the interview stage.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {['Resume *', 'Passport Photo', 'Aadhaar Card', 'PAN Card', 'Driving License', 'Educational Certificates'].map((doc, i) => (
+            {['Resume', 'Passport Photo', 'Aadhaar Card', 'PAN Card', 'Driving License', 'Educational Certificates'].map((doc, i) => (
               <div key={i}>
                 <label className="block text-xs font-semibold text-gray-600 mb-1">{doc}</label>
                 <input type="file" name={doc.replace(/[^a-zA-Z]/g, '')} className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#4DA8DA]/10 file:text-[#4DA8DA] hover:file:bg-[#4DA8DA]/20" />
@@ -296,26 +296,26 @@ export default function FSCareerForm() {
             <div>
               <h5 className="font-semibold text-gray-800 mb-3 border-b pb-1">General Questions</h5>
               <div className="space-y-4">
-                <div><label className="block text-sm text-gray-700 mb-1">Why do you want to join our company? *</label><textarea name="whyJoin" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
-                <div><label className="block text-sm text-gray-700 mb-1">What do you know about {position === 'R&D, QC & QA' ? 'Parul Chemicals' : 'FSCALCIVAL'}? *</label><textarea name="whatKnowAboutUs" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                <div><label className="block text-sm text-gray-700 mb-1">Why do you want to join our company?</label><textarea name="whyJoin" rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                <div><label className="block text-sm text-gray-700 mb-1">What do you know about {position === 'R&D, QC & QA' ? 'Parul Chemicals' : 'FSCALCIVAL'}?</label><textarea name="whatKnowAboutUs" rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
                 
                 {position === 'Field Sales Officer' && (
-                  <div><label className="block text-sm text-gray-700 mb-1">Are you comfortable working in rural areas? *</label><select name="ruralAreas" required className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
+                  <div><label className="block text-sm text-gray-700 mb-1">Are you comfortable working in rural areas?</label><select name="ruralAreas" className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
                 )}
 
                 {position === 'Tele Caller' && (
                   <>
-                    <div><label className="block text-sm text-gray-700 mb-1">Do you have prior experience in outbound calling, cold calling, or handling customer complaints? *</label><textarea name="telecallerExperience" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
-                    <div><label className="block text-sm text-gray-700 mb-1">Are you familiar with using any Sales Management Software, Google Sheets, or dialer applications? *</label><textarea name="telecallerSoftware" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
-                    <div><label className="block text-sm text-gray-700 mb-1">Are you comfortable working in rotating shifts or on weekends if required? *</label><select name="telecallerShifts" required className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
+                    <div><label className="block text-sm text-gray-700 mb-1">Do you have prior experience in outbound calling, cold calling, or handling customer complaints?</label><textarea name="telecallerExperience" rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                    <div><label className="block text-sm text-gray-700 mb-1">Are you familiar with using any Sales Management Software, Google Sheets, or dialer applications?</label><textarea name="telecallerSoftware" rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                    <div><label className="block text-sm text-gray-700 mb-1">Are you comfortable working in rotating shifts or on weekends if required?</label><select name="telecallerShifts" className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
                   </>
                 )}
 
                 {position === 'R&D, QC & QA' && (
                   <>
-                    <div><label className="block text-sm text-gray-700 mb-1">Are you familiar with basic laboratory testing procedures, documentation, and safety protocols? *</label><textarea name="qaLabProcedures" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
-                    <div><label className="block text-sm text-gray-700 mb-1">Are you comfortable maintaining detailed logbooks, batch manufacturing records (BMR), or QA/QC documentation? *</label><textarea name="qaDocumentation" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
-                    <div><label className="block text-sm text-gray-700 mb-1">Briefly describe a successful lab experiment, product testing, or quality check process you have handled. *</label><textarea name="qaExperiment" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                    <div><label className="block text-sm text-gray-700 mb-1">Are you familiar with basic laboratory testing procedures, documentation, and safety protocols?</label><textarea name="qaLabProcedures" rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                    <div><label className="block text-sm text-gray-700 mb-1">Are you comfortable maintaining detailed logbooks, batch manufacturing records (BMR), or QA/QC documentation?</label><textarea name="qaDocumentation" rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                    <div><label className="block text-sm text-gray-700 mb-1">Briefly describe a successful lab experiment, product testing, or quality check process you have handled.</label><textarea name="qaExperiment" rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
                   </>
                 )}
               </div>
@@ -325,9 +325,9 @@ export default function FSCareerForm() {
               <div>
                 <h5 className="font-semibold text-gray-800 mb-3 border-b pb-1">Sales Questions</h5>
                 <div className="space-y-4">
-                  <div><label className="block text-sm text-gray-700 mb-1">How do you convince a customer? *</label><textarea name="convinceCustomer" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
-                  <div><label className="block text-sm text-gray-700 mb-1">How do you handle rejection? *</label><textarea name="handleRejection" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
-                  <div><label className="block text-sm text-gray-700 mb-1">How do you plan your daily route? *</label><textarea name="planDailyRoute" required rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                  <div><label className="block text-sm text-gray-700 mb-1">How do you convince a customer?</label><textarea name="convinceCustomer" rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                  <div><label className="block text-sm text-gray-700 mb-1">How do you handle rejection?</label><textarea name="handleRejection" rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
+                  <div><label className="block text-sm text-gray-700 mb-1">How do you plan your daily route?</label><textarea name="planDailyRoute" rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-[#4DA8DA] outline-none resize-none"></textarea></div>
                 </div>
               </div>
             )}
@@ -338,11 +338,11 @@ export default function FSCareerForm() {
         <section className="bg-gray-50 p-5 rounded-xl border border-gray-200">
           <div className="space-y-3">
             <label className="flex items-start gap-3 cursor-pointer">
-              <input required type="checkbox" className="mt-1 w-4 h-4 text-[#4DA8DA] rounded border-gray-300" />
+              <input type="checkbox" className="mt-1 w-4 h-4 text-[#4DA8DA] rounded border-gray-300" />
               <span className="text-sm text-gray-700">I certify that all information provided is true and correct.</span>
             </label>
             <label className="flex items-start gap-3 cursor-pointer">
-              <input required type="checkbox" className="mt-1 w-4 h-4 text-[#4DA8DA] rounded border-gray-300" />
+              <input type="checkbox" className="mt-1 w-4 h-4 text-[#4DA8DA] rounded border-gray-300" />
               <span className="text-sm text-gray-700">I agree to the company's recruitment process.</span>
             </label>
           </div>
