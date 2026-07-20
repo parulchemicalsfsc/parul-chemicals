@@ -36,11 +36,11 @@ export default function FSCareerForm() {
       const formData = new FormData(e.currentTarget)
       
       let totalSize = 0;
-      for (const [key, value] of formData.entries()) {
+      formData.forEach((value) => {
         if (value instanceof File) {
           totalSize += value.size;
         }
-      }
+      });
       
       if (totalSize > 4 * 1024 * 1024) {
         setError(`Total file size is too large (${(totalSize / (1024 * 1024)).toFixed(2)}MB). Please ensure all uploaded files combined are under 4MB.`);
