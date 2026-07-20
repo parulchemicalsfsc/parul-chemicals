@@ -36,10 +36,20 @@ export default function CareerForm() {
         body: formPayload
       })
 
-      const data = await res.json()
+      let data;
+      const contentType = res.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        data = await res.json();
+      } else {
+        await res.text();
+        if (res.status === 413) {
+           throw new Error("Payload too large. Please reduce the size of your input.");
+        }
+        throw new Error(`Unexpected server response: ${res.status} ${res.statusText}`);
+      }
 
       if (!res.ok) {
-        throw new Error(data.error || 'Failed to submit application')
+        throw new Error(data?.error || 'Failed to submit application')
       }
 
       setSuccess(true)

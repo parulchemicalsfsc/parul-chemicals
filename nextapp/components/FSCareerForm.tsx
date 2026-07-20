@@ -35,6 +35,19 @@ export default function FSCareerForm() {
     try {
       const formData = new FormData(e.currentTarget)
       
+      let totalSize = 0;
+      for (const [key, value] of formData.entries()) {
+        if (value instanceof File) {
+          totalSize += value.size;
+        }
+      }
+      
+      if (totalSize > 4 * 1024 * 1024) {
+        setError(`Total file size is too large (${(totalSize / (1024 * 1024)).toFixed(2)}MB). Please ensure all uploaded files combined are under 4MB.`);
+        setLoading(false);
+        return;
+      }
+
       formData.append('source', 'F.S. Calcival')
       formData.append('experienceLevel', experienceLevel)
       formData.append('currentAddress', currentAddress)
@@ -45,10 +58,20 @@ export default function FSCareerForm() {
         body: formData
       })
 
-      const data = await res.json()
+      let data;
+      const contentType = res.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        data = await res.json();
+      } else {
+        await res.text(); // consume the body
+        if (res.status === 413) {
+           throw new Error("Payload too large. Please upload smaller files (under 4MB total).");
+        }
+        throw new Error(`Unexpected server response: ${res.status} ${res.statusText}`);
+      }
 
       if (!res.ok) {
-        throw new Error(data.error || 'Failed to submit application')
+        throw new Error(data?.error || 'Failed to submit application')
       }
 
       setSuccess(true)
