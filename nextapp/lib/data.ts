@@ -160,10 +160,13 @@ export const PRODUCTS = [
 
 export const CERTIFICATIONS = [
   { id: 'ecocert',    name: 'Ecocert',           desc: 'Organic & Natural Certification',              image: '/certificates/ecocert.png', pdf: '/certificates/Ecocert 2026 (1).pdf' },
+  { id: 'iso9235',    name: 'ISO 9235:2013',      desc: 'Aromatic Natural Raw Materials',               image: '/certificates/iso92352013.webp' },
   { id: 'iso9001',    name: 'ISO 9001:2015',     desc: 'Quality Management System',                    image: '/certificates/iso90012015.webp' },
+  { id: 'iso14001',   name: 'ISO 14001:2015',    desc: 'Environmental Management System',              image: '/certificates/iso140012015.webp' },
   { id: 'iso22000',   name: 'ISO 22000:2018',    desc: 'Food Safety Management System',                image: '/certificates/iso220002018.webp' },
   { id: 'iso45001',   name: 'ISO 45001:2018',    desc: 'Occupational Health & Safety Management',      image: '/certificates/iso450012018.webp' },
-  { id: 'iso9235',    name: 'ISO 9235:2013',      desc: 'Aromatic Natural Raw Materials',               image: '/certificates/iso92352013.webp' },
+  { id: 'iso50001',   name: 'ISO 50001:2018',    desc: 'Energy Management Systems',                    image: '/certificates/iso500012018.webp' },
+  { id: 'iso27001',   name: 'ISO 27001:2022',    desc: 'Information Security Management System',        image: '/certificates/iso270012022.webp' },
   { id: 'gmp',        name: 'GMP',               desc: 'Good Manufacturing Practice',                  image: '/certificates/gmp.webp' },
   { id: 'haccp',      name: 'HACCP',             desc: 'Hazard Analysis Critical Control Points',      image: '/certificates/haccp.webp' },
   { id: 'kosher1',    name: 'Kosher (TEC)',       desc: 'Triethyl Citrate — Kosher Certified',          image: '/certificates/kosher1.webp' },
