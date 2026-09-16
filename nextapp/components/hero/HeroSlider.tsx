@@ -88,7 +88,7 @@ export default function HeroSlider() {
       </div>
 
       {/* Content */}
-      <div className="absolute inset-0 z-10 flex flex-col justify-center pt-24 pb-8">
+      <div className="absolute inset-0 z-10 flex flex-col justify-center pt-36 pb-8">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -104,8 +104,8 @@ export default function HeroSlider() {
               className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-4 tracking-tight"
             >
               Welcome to<br />
-              <span style={{ color: '#4DA8DA' }}>Parul Chemicals.</span><br />
-              <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl opacity-90">Precision Chemistry.</span>
+              <span style={{ color: '#4DA8DA' }}>Parul Chemicals,</span><br />
+              <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl opacity-90">Precision Chemistry,</span>
             </motion.h1>
 
             <motion.p
