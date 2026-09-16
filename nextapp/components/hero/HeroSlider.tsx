@@ -37,7 +37,7 @@ export default function HeroSlider() {
   }, [])
 
   return (
-    <section className="relative h-screen overflow-hidden" id="hero">
+    <section className="relative min-h-[650px] md:min-h-[680px] h-screen overflow-hidden" id="hero">
       {/* Swiper */}
       <div ref={swiperRef} className="hero-swiper swiper">
         <div className="swiper-wrapper">
