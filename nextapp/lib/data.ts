@@ -289,7 +289,9 @@ export const FS_CALCIVAL_DATA = {
   ],
   brochures: [
     { lang: 'English', url: '/f.s calcival/brochure/1_Registered Work.pdf' },
-    { lang: 'Hindi', url: '/f.s calcival/brochure/brochure hindi.pdf' }
+    { lang: 'Gujarati', url: '/f.s calcival/brochure/New_Gujarati_language_Brochure.pdf' },
+    { lang: 'Hindi', url: '/f.s calcival/brochure/brochure hindi.pdf' },
+    { lang: 'Marathi', url: '/f.s calcival/brochure/New_Marathi_language_Brochure.pdf' }
   ],
   dosage: [
     { stage: 'Progenated Animals', instruction: '50ml doses, morning and evening, from one week after delivery until 5 months.' },
