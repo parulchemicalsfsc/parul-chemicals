@@ -9,12 +9,20 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen]         = useState(false)
   const [mobileSubNavOpen, setMobileSubNavOpen] = useState<string | null>(null)
+  const [desktopDropdownOpen, setDesktopDropdownOpen] = useState<string | null>(null)
   const pathname = usePathname()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Close desktop dropdown on outside click
+  useEffect(() => {
+    const handleOutsideClick = () => setDesktopDropdownOpen(null)
+    window.addEventListener('click', handleOutsideClick)
+    return () => window.removeEventListener('click', handleOutsideClick)
   }, [])
 
   // On all pages, the hero is now dark/video, so links should be white when not scrolled
@@ -48,23 +56,46 @@ export default function Navbar() {
             linksWhite ? 'bg-[#0F1C33]/60 backdrop-blur-lg border border-white/15 shadow-2xl' : ''
           }`}>
             {NAV.map(item => (
-              <div key={item.label} className="relative group">
+              <div
+                key={item.label}
+                className="relative group"
+                onMouseEnter={() => item.subItems && setDesktopDropdownOpen(item.label)}
+                onMouseLeave={() => item.subItems && setDesktopDropdownOpen(null)}
+              >
                 {item.subItems ? (
-                  <div
-                    className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-200 cursor-pointer block ${
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setDesktopDropdownOpen(prev => prev === item.label ? null : item.label)
+                    }}
+                    className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-200 cursor-pointer flex items-center gap-1.5 relative ${
                       linksWhite
                         ? 'text-white hover:text-[#4DA8DA] hover:bg-white/5'
                         : 'text-[#4A5568] hover:text-[#0F1C33] hover:bg-black/5'
                     }`}
                   >
-                    {item.label}
-                    {pathname.startsWith('/careers') && (
+                    <span>{item.label}</span>
+                    <svg
+                      className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                        desktopDropdownOpen === item.label ? 'rotate-180' : 'group-hover:rotate-180'
+                      }`}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                    {((item.label === 'Careers' && pathname.startsWith('/careers')) ||
+                      (item.label === 'Products' && (pathname.startsWith('/products') || pathname === '/triethyl-citrate-fragrance-flavour'))
+                    ) && (
                       <motion.div
                         layoutId="nav-indicator"
                         className="absolute bottom-1.5 left-4 right-4 h-[2px] bg-[#4DA8DA] rounded-full shadow-[0_0_8px_rgba(77,168,218,0.6)]"
                       />
                     )}
-                  </div>
+                  </button>
                 ) : (
                   <Link
                     href={item.href}
@@ -85,16 +116,36 @@ export default function Navbar() {
                 )}
 
                 {item.subItems && (
-                  <div className="absolute top-full left-0 mt-2 w-48 bg-white/90 backdrop-blur-md rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden">
-                    {item.subItems.map(subItem => (
-                      <Link
-                        key={subItem.href}
-                        href={subItem.href}
-                        className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-[#4DA8DA] hover:bg-[#F8F9FA] transition-colors"
-                      >
-                        {subItem.label}
-                      </Link>
-                    ))}
+                  <div
+                    className={`absolute top-full left-0 pt-2 w-64 z-50 transition-all duration-200 ${
+                      desktopDropdownOpen === item.label
+                        ? 'opacity-100 visible translate-y-0 pointer-events-auto'
+                        : 'opacity-0 invisible -translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto'
+                    }`}
+                  >
+                    <div
+                      className="bg-white rounded-2xl shadow-[0_20px_50px_rgba(15,28,51,0.22)] border border-slate-200 overflow-hidden p-1.5"
+                      style={{ backgroundColor: '#FFFFFF' }}
+                    >
+                      {item.subItems.map(subItem => {
+                        const isActive = pathname === subItem.href
+                        return (
+                          <Link
+                            key={subItem.href}
+                            href={subItem.href}
+                            onClick={() => setDesktopDropdownOpen(null)}
+                            className={`block px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-150 ${
+                              isActive
+                                ? 'text-[#0EA5A0] bg-[#F0FDF9] font-bold'
+                                : 'text-[#0F1C33] hover:text-[#0EA5A0] hover:bg-[#F4F6FA]'
+                            }`}
+                            style={{ color: isActive ? '#0EA5A0' : '#0F1C33' }}
+                          >
+                            {subItem.label}
+                          </Link>
+                        )
+                      })}
+                    </div>
                   </div>
                 )}
               </div>

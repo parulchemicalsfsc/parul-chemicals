@@ -93,6 +93,17 @@ function ProductCard({ product, index, onOpen }: { product: Product; index: numb
               View Detailed Specs
             </button>
           </div>
+
+          {product.id === 'tec' && (
+            <Link
+              href="/triethyl-citrate-fragrance-flavour"
+              onClick={(e) => e.stopPropagation()}
+              className="mt-2.5 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold text-[#00A88F] hover:text-[#008f7a] bg-[#00C9A7]/10 border border-[#00C9A7]/30 transition-all hover:bg-[#00C9A7]/20"
+            >
+              <span>Fragrance &amp; Flavour Grade Page</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </Link>
+          )}
         </div>
       </div>
     </motion.div>
