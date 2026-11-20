@@ -1,6 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { PRODUCTS } from '@/lib/data'
 
@@ -90,6 +91,17 @@ export default function ProductModal({ product, onClose }: { product: Product; o
                 </div>
                 Sample COA
               </a>
+              {product.id === 'tec' && (
+                <Link
+                  href="/triethyl-citrate-fragrance-flavour"
+                  className="flex items-center gap-3 text-xs font-bold text-[#00C9A7] hover:text-white transition-colors"
+                >
+                  <div className="w-8 h-8 rounded-lg bg-[#00C9A7]/20 flex items-center justify-center border border-[#00C9A7]/40">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </div>
+                  Fragrance &amp; Flavour Page →
+                </Link>
+              )}
             </div>
           </div>
         </div>

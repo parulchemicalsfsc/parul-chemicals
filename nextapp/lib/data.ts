@@ -262,7 +262,10 @@ export const EXPORT_COUNTRIES = [
 export const NAV = [
   { label: 'Home',           href: '/' },
   { label: 'About Us',       href: '/about' },
-  { label: 'Products',       href: '/products' },
+  { label: 'Products',       href: '/products', subItems: [
+    { label: 'All Products Overview', href: '/products' },
+    { label: 'TEC (Fragrance & Flavour)', href: '/triethyl-citrate-fragrance-flavour' },
+  ] },
   { label: 'Certifications', href: '/certifications' },
   { label: 'Careers',        href: '#', subItems: [
     { label: 'Apply for TEC & DEP Careers', href: '/careers/tec-dec' },
