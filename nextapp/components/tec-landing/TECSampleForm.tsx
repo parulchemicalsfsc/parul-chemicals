@@ -8,6 +8,7 @@ interface FormDataState {
   jobTitle: string
   company: string
   email: string
+  phone: string
   country: string
   application: string
   currentProduct: string
@@ -22,6 +23,7 @@ const INITIAL_FORM: FormDataState = {
   jobTitle: '',
   company: '',
   email: '',
+  phone: '',
   country: '',
   application: '',
   currentProduct: '',
@@ -92,6 +94,7 @@ export default function TECSampleForm() {
   const [formData, setFormData] = useState<FormDataState>(INITIAL_FORM)
   const [honeypot, setHoneypot] = useState('')
   const [loading, setLoading] = useState(false)
+  const [slowLoading, setSlowLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
   const [isMock, setIsMock] = useState(false)
@@ -138,6 +141,10 @@ export default function TECSampleForm() {
       setError('Please provide a valid work email address.')
       return false
     }
+    if (!formData.phone.trim()) {
+      setError('Please provide your contact phone number.')
+      return false
+    }
     if (!formData.country) {
       setError('Please select your destination country.')
       return false
@@ -163,6 +170,10 @@ export default function TECSampleForm() {
     if (!validateForm()) return
 
     setLoading(true)
+    setSlowLoading(false)
+    const slowTimer = setTimeout(() => {
+      setSlowLoading(true)
+    }, 4000)
 
     try {
       const response = await fetch('/api/sample-request', {
@@ -188,6 +199,8 @@ export default function TECSampleForm() {
         'A network communication error occurred. Please check your connection or contact info@parulchemicals.in.'
       )
     } finally {
+      clearTimeout(slowTimer)
+      setSlowLoading(false)
       setLoading(false)
     }
   }
@@ -198,6 +211,7 @@ export default function TECSampleForm() {
     setIsMock(false)
     setSuccess(false)
     setError(null)
+    setSlowLoading(false)
   }
 
   const INPUT_STYLE =
@@ -382,6 +396,23 @@ export default function TECSampleForm() {
               </div>
 
               <div>
+                <label htmlFor="phone" className={LABEL_STYLE}>
+                  Phone Number <span className="text-red-500">*</span>
+                </label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  required
+                  maxLength={30}
+                  value={formData.phone}
+                  onChange={handleTextChange}
+                  className={INPUT_STYLE}
+                  placeholder="e.g. +91 98765 43210"
+                />
+              </div>
+
+              <div>
                 <label htmlFor="country" className={LABEL_STYLE}>
                   Destination Country <span className="text-red-500">*</span>
                 </label>
@@ -402,7 +433,7 @@ export default function TECSampleForm() {
                 </select>
               </div>
 
-              <div>
+              <div className="sm:col-span-2">
                 <label htmlFor="application" className={LABEL_STYLE}>
                   Primary Application <span className="text-red-500">*</span>
                 </label>
@@ -554,7 +585,11 @@ export default function TECSampleForm() {
               {loading ? (
                 <>
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  <span>Processing Sample Request...</span>
+                  <span>
+                    {slowLoading
+                      ? 'Connecting to secure server (waking up, please wait)...'
+                      : 'Processing Sample Request...'}
+                  </span>
                 </>
               ) : (
                 <>

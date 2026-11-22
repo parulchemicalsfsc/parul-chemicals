@@ -73,7 +73,7 @@ export async function POST(req: Request) {
     }
 
     try {
-      const baseUrl = process.env.LEAD_API_URL || "https://pc-sales-8phu.onrender.com"
+      const baseUrl = process.env.LEAD_API_URL || "https://sales-management-backend-4uuu.onrender.com"
       const leadResponse = await fetch(`${baseUrl}/api/leads/intake`, {
         method: "POST",
         headers: {
@@ -86,8 +86,7 @@ export async function POST(req: Request) {
       if (!leadResponse.ok) {
         console.error(`LMS API Error: ${leadResponse.status}`);
       } else {
-        const leadData = await leadResponse.json();
-        console.log("Lead successfully synced to LMS:", leadData);
+        await leadResponse.json().catch(() => null);
       }
     } catch (lmsError) {
       console.error("Failed to sync to LMS:", lmsError);

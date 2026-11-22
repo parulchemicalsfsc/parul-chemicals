@@ -13,6 +13,7 @@ export async function POST(req: Request) {
       jobTitle,
       company,
       email,
+      phone,
       country,
       application,
       currentProduct,
@@ -66,6 +67,13 @@ export async function POST(req: Request) {
       )
     }
 
+    if (!phone || typeof phone !== 'string' || !phone.trim()) {
+      return NextResponse.json(
+        { success: false, error: 'Contact phone number is required.' },
+        { status: 400 }
+      )
+    }
+
     if (!country || typeof country !== 'string' || !country.trim()) {
       return NextResponse.json(
         { success: false, error: 'Destination country is required.' },
@@ -103,7 +111,6 @@ export async function POST(req: Request) {
       process.env.TEC_SAMPLE_MOCK_MODE === 'true'
 
     if (isMockMode) {
-      console.log('🧪 DEV MOCK MODE ACTIVE: Simulating sample request submission without external network requests.')
       return NextResponse.json({
         success: true,
         message: 'Sample request simulated successfully (Development Mock Mode).',
@@ -139,19 +146,19 @@ export async function POST(req: Request) {
       source_website: 'parul_chemicals',
       full_name: name.trim(),
       email: email.trim(),
-      phone: 'N/A',
+      phone: phone.trim(),
       country: country.trim(),
       company_name: company.trim(),
       product_interest: 'Triethyl Citrate (TEC) - Fragrance & Flavour Grade',
       message: structuredMessage,
     }
 
-    // 6. Send to Lead Management System (LMS) with 25,000ms Timeout (accounting for Render cold-starts)
+    // 6. Send to Lead Management System (LMS) with 60,000ms Timeout (accounting for Render cold-starts)
     const lmsUrl = process.env.LEAD_API_URL || 'https://sales-management-backend-4uuu.onrender.com'
     const lmsApiKey = process.env.LEAD_API_KEY || 'PCSALES'
 
     const controller = new AbortController()
-    const timeoutId = setTimeout(() => controller.abort(), 25000)
+    const timeoutId = setTimeout(() => controller.abort(), 60000)
 
     try {
       const headers: Record<string, string> = {
@@ -170,7 +177,6 @@ export async function POST(req: Request) {
 
       if (lmsResponse.ok) {
         const lmsData = await lmsResponse.json().catch(() => null)
-        console.log('TEC sample lead recorded in LMS:', lmsData)
         return NextResponse.json({
           success: true,
           message: 'Sample request successfully recorded.',
