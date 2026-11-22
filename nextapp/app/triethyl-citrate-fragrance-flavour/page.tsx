@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import TECFAQAccordion from '@/components/tec-landing/TECFAQAccordion'
+import TECSampleForm from '@/components/tec-landing/TECSampleForm'
 
 export const metadata: Metadata = {
   title: 'Triethyl Citrate (TEC) for Fragrance & Flavour | CAS 77-93-0 | Parul Chemicals, India',
@@ -775,7 +776,7 @@ export default function TECFragranceFlavourPage() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-          8. SAMPLE REQUEST (PHASE 2.2 POLISHED PLACEHOLDER)
+          8. SAMPLE REQUEST FORM
       ───────────────────────────────────────────────────────── */}
       <section id="sample-request" className="py-20 lg:py-24 bg-white scroll-mt-24">
         <div className="max-w-4xl mx-auto px-6">
@@ -789,76 +790,7 @@ export default function TECFragranceFlavourPage() {
             </p>
           </div>
 
-          <div className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-3xl p-6 sm:p-10 lg:p-12 shadow-sm">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 mb-6">
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[#64748B] mb-2">
-                  Full Name *
-                </label>
-                <div className="w-full bg-white border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm text-slate-400 cursor-not-allowed select-none">
-                  e.g. Dr. Jane Doe
-                </div>
-              </div>
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[#64748B] mb-2">
-                  Job Title *
-                </label>
-                <div className="w-full bg-white border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm text-slate-400 cursor-not-allowed select-none">
-                  e.g. Senior Flavourist / Perfumer
-                </div>
-              </div>
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[#64748B] mb-2">
-                  Company / Fragrance House *
-                </label>
-                <div className="w-full bg-white border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm text-slate-400 cursor-not-allowed select-none">
-                  e.g. Fragrance Labs Inc.
-                </div>
-              </div>
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[#64748B] mb-2">
-                  Work Email *
-                </label>
-                <div className="w-full bg-white border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm text-slate-400 cursor-not-allowed select-none">
-                  e.g. j.doe@fragrancelabs.com
-                </div>
-              </div>
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[#64748B] mb-2">
-                  Destination Country *
-                </label>
-                <div className="w-full bg-white border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm text-slate-400 cursor-not-allowed select-none">
-                  Select destination country
-                </div>
-              </div>
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[#64748B] mb-2">
-                  Primary Application *
-                </label>
-                <div className="w-full bg-white border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm text-slate-400 cursor-not-allowed select-none">
-                  Fine fragrance / Flavours / Cosmetics
-                </div>
-              </div>
-            </div>
-
-            <div className="p-4 rounded-xl bg-white border border-[#E2E8F0] mb-8 text-xs text-[#64748B] flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-xs">
-              <span className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#00C9A7]" />
-                Interactive 11-field sample intake &amp; automated dispatch routing (Phase 2.3 Ready)
-              </span>
-              <span className="font-bold text-[#00A88F] self-start sm:self-auto shrink-0">Sample Dispatch Desk</span>
-            </div>
-
-            <Link
-              href="/contact"
-              className="btn-primary w-full py-4 rounded-2xl font-bold text-base flex items-center justify-center gap-2 shadow-lg text-center"
-            >
-              <span>Connect with Technical Sales for Sample Request</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </div>
+          <TECSampleForm />
         </div>
       </section>
 
