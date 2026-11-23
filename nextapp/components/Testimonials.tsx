@@ -1,6 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
+import { useState } from 'react'
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion'
 import { REVIEWS } from '@/lib/data'
 
@@ -18,7 +17,7 @@ interface Review {
 }
 
 export default function Testimonials() {
-  const [reviews, setReviews] = useState<Review[]>(REVIEWS)
+  const reviews = REVIEWS
   const [showAll, setShowAll] = useState(false)
   const [showForm, setShowForm] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -44,7 +43,7 @@ export default function Testimonials() {
         // We don't fetchReviews() here because the new review won't be approved yet
         setShowForm(false)
         setNewReview({ name: '', role: '', company: '', location: '', text: '', stars: 5 })
-        alert('Review is added successfully in Supabase')
+        alert('Thank you! Your review has been submitted and will appear once approved by our team.')
       }
     } catch (error) {
       console.error('Error adding review:', error)

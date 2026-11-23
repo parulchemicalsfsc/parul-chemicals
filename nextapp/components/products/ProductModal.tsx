@@ -3,7 +3,6 @@ import { useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { PRODUCTS } from '@/lib/data'
 
 export type Product = {
   id: string;

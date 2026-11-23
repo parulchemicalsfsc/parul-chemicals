@@ -28,7 +28,6 @@ export async function POST(req: Request) {
         }])
       
       if (error) throw error;
-      console.log("Survey saved to Supabase.");
     } catch (dbError) {
       console.error("Failed to save survey to Supabase:", dbError);
     }
@@ -85,18 +84,26 @@ export async function POST(req: Request) {
         Duration: ${duration || 'N/A'}`
     }
 
-    try {
-      const baseUrl = process.env.LEAD_API_URL || "https://pc-sales-8phu.onrender.com"
-      await fetch(`${baseUrl}/api/leads/intake`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-API-Key": process.env.LEAD_API_KEY || "test-lead-key-change-me"
-        },
-        body: JSON.stringify(leadPayload)
-      });
-    } catch (lmsError) {
-      console.error("Failed to sync survey to LMS:", lmsError);
+    const lmsBaseUrl = process.env.LEAD_API_URL?.trim().replace(/\/+$/, '')
+    const lmsApiKey = process.env.LEAD_API_KEY?.trim()
+
+    if (!lmsBaseUrl) {
+      console.error("Server configuration error: LEAD_API_URL environment variable is missing or empty. Skipping LMS intake.")
+    } else if (!lmsApiKey) {
+      console.error("Server configuration error: LEAD_API_KEY environment variable is missing or empty. Skipping LMS intake.")
+    } else {
+      try {
+        await fetch(`${lmsBaseUrl}/api/leads/intake`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-API-Key": lmsApiKey
+          },
+          body: JSON.stringify(leadPayload)
+        });
+      } catch (lmsError) {
+        console.error("Failed to sync survey to LMS:", lmsError);
+      }
     }
 
     // --- 4. SEND THE EMAIL ---

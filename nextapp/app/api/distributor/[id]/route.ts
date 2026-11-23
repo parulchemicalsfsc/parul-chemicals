@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { findById } from '@/lib/store'
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
   const dist = findById(params.id)
   if (!dist) return NextResponse.json({ error: 'not_found' }, { status: 404 })
   

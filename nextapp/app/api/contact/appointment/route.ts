@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer'
 
 /**
  * API Route for handling Contact Inquiries and Appointment Scheduling
- * Target Recipient: shlokkharva@gmail.com
+ * Target Recipient: Configured via RECEIVER_EMAIL (defaults to info@parulchemicals.in)
  */
 
 export async function POST(req: Request) {
@@ -12,12 +12,12 @@ export async function POST(req: Request) {
     const { mode, name, email, phone, company, product, message, date, time, meetingType, topics } = body
 
     // 1. Setup Nodemailer Transporter
-    // In production, these should be in .env.local
+    // Credentials supplied via environment variables (EMAIL_USER, EMAIL_PASS)
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER, // Your sending email
-        pass: process.env.EMAIL_PASS, // Your App Password
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     })
 
@@ -72,25 +72,33 @@ export async function POST(req: Request) {
         : (message || "N/A")
     }
 
-    try {
-      const baseUrl = process.env.LEAD_API_URL || "https://sales-management-backend-4uuu.onrender.com"
-      const leadResponse = await fetch(`${baseUrl}/api/leads/intake`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-API-Key": process.env.LEAD_API_KEY || "PCSALES"
-        },
-        body: JSON.stringify(leadPayload)
-      });
-      
-      if (!leadResponse.ok) {
-        console.error(`LMS API Error: ${leadResponse.status}`);
-      } else {
-        await leadResponse.json().catch(() => null);
+    const lmsBaseUrl = process.env.LEAD_API_URL?.trim().replace(/\/+$/, '')
+    const lmsApiKey = process.env.LEAD_API_KEY?.trim()
+
+    if (!lmsBaseUrl) {
+      console.error("Server configuration error: LEAD_API_URL environment variable is missing or empty. Skipping LMS intake.")
+    } else if (!lmsApiKey) {
+      console.error("Server configuration error: LEAD_API_KEY environment variable is missing or empty. Skipping LMS intake.")
+    } else {
+      try {
+        const leadResponse = await fetch(`${lmsBaseUrl}/api/leads/intake`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-API-Key": lmsApiKey
+          },
+          body: JSON.stringify(leadPayload)
+        });
+        
+        if (!leadResponse.ok) {
+          console.error(`LMS API Error: ${leadResponse.status}`);
+        } else {
+          await leadResponse.json().catch(() => null);
+        }
+      } catch (lmsError) {
+        console.error("Failed to sync to LMS:", lmsError);
+        // We don't throw here to ensure email still sends if LMS is down
       }
-    } catch (lmsError) {
-      console.error("Failed to sync to LMS:", lmsError);
-      // We don't throw here to ensure email still sends if LMS is down
     }
 
     // 4. Send the Email
@@ -106,7 +114,7 @@ export async function POST(req: Request) {
       })
       return NextResponse.json({ success: true, message: 'Lead synced and email sent successfully' })
     } else {
-      console.warn("Mailing keys missing. Data received:", body)
+      console.warn("Mailing keys (EMAIL_USER / EMAIL_PASS) missing. Email dispatch skipped.")
       return NextResponse.json({ 
         success: true, 
         message: 'Lead synced (Mailing credentials missing in .env.local)' 

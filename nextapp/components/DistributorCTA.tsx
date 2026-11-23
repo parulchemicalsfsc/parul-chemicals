@@ -1,35 +1,10 @@
 'use client'
 import Link from 'next/link'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-
-const PARTNERS = [
-  { name: 'PharmaTech Solutions', logo: 'PTS', color: '#0ea5e9' },
-  { name: 'Global Logistics Corp', logo: 'GLC', color: '#6366f1' },
-  { name: 'Industrial Biotics', logo: 'IB', color: '#10b981' },
-  { name: 'Apex Agrochemicals', logo: 'AA', color: '#f59e0b' },
-  { name: 'PureFlow Labs', logo: 'PFL', color: '#8b5cf6' },
-  { name: 'Summit Healthcare', logo: 'SHC', color: '#06b6d4' },
-]
+import { motion } from 'framer-motion'
 
 export default function DistributorCTA() {
-  // Mouse tracking for 3D tilt
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-
-  // Smooth springs for tilt
-  const springConfig = { damping: 25, stiffness: 150 }
-  const rotateX = useSpring(useTransform(mouseY, [0, 600], [4, -4]), springConfig)
-  const rotateY = useSpring(useSpring(useTransform(mouseX, [0, 1500], [-4, 4]), springConfig))
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    mouseX.set(e.clientX - rect.left)
-    mouseY.set(e.clientY - rect.top)
-  }
-
   return (
     <section 
-      onMouseMove={handleMouseMove}
       className="py-24 relative overflow-hidden perspective-1000 bg-[#F8FAFC]"
     >
       {/* Decorative Background */}

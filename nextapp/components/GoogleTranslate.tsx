@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 
 const LANGUAGES = [
   { code: 'en', short: 'EN', label: 'English' },
@@ -10,20 +10,7 @@ const LANGUAGES = [
 
 export default function GoogleTranslate() {
   const [isClient, setIsClient] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
   const [currentLang, setCurrentLang] = useState('en')
-  const dropdownRef = useRef<HTMLDivElement>(null)
-
-  // Handle click outside to close dropdown
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false)
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => document.removeEventListener("mousedown", handleClickOutside)
-  }, [])
 
   useEffect(() => {
     setIsClient(true)
@@ -47,8 +34,8 @@ export default function GoogleTranslate() {
           // Set cookie so Google Translate auto-translates on load
           document.cookie = `googtrans=/en/${targetLang}; path=/;`
           document.cookie = `googtrans=/en/${targetLang}; path=/; domain=${window.location.hostname};`
-        } catch (error) {
-          console.error("Could not detect browser language for auto-translation", error)
+        } catch {
+          // Fallback to English is preserved
         }
       } else if (cookieMatch) {
         targetLang = cookieMatch[1]
@@ -90,7 +77,6 @@ export default function GoogleTranslate() {
 
   const handleLanguageChange = (code: string) => {
     setCurrentLang(code)
-    setIsOpen(false)
     
     // Set the cookie to the selected language
     document.cookie = `googtrans=/en/${code}; path=/;`

@@ -74,7 +74,7 @@ export async function POST(req: Request) {
     `
 
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
-      // Send applications to the official careers email defined in .env.local
+      // Send applications to the official careers email defined in environment variables
       const receiver = process.env.CAREERS_RECEIVER_EMAIL || 'career.parulchemicals@gmail.com';
       
       await transporter.sendMail({

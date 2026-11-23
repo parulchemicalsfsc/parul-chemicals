@@ -154,8 +154,34 @@ export async function POST(req: Request) {
     }
 
     // 6. Send to Lead Management System (LMS) with 60,000ms Timeout (accounting for Render cold-starts)
-    const lmsUrl = process.env.LEAD_API_URL || 'https://sales-management-backend-4uuu.onrender.com'
-    const lmsApiKey = process.env.LEAD_API_KEY || 'PCSALES'
+    const lmsBaseUrl = process.env.LEAD_API_URL?.trim().replace(/\/+$/, '')
+    const lmsApiKey = process.env.LEAD_API_KEY?.trim()
+
+    if (!lmsBaseUrl) {
+      console.error('Server configuration error: LEAD_API_URL environment variable is missing or empty.')
+      return NextResponse.json(
+        {
+          success: false,
+          error:
+            'Unable to record sample request in our system at this time. Please contact info@parulchemicals.in directly.',
+          lmsRecorded: false,
+        },
+        { status: 500 }
+      )
+    }
+
+    if (!lmsApiKey) {
+      console.error('Server configuration error: LEAD_API_KEY environment variable is missing or empty.')
+      return NextResponse.json(
+        {
+          success: false,
+          error:
+            'Unable to record sample request in our system at this time. Please contact info@parulchemicals.in directly.',
+          lmsRecorded: false,
+        },
+        { status: 500 }
+      )
+    }
 
     const controller = new AbortController()
     const timeoutId = setTimeout(() => controller.abort(), 60000)
@@ -163,12 +189,10 @@ export async function POST(req: Request) {
     try {
       const headers: Record<string, string> = {
         'Content-Type': 'application/json',
-      }
-      if (lmsApiKey) {
-        headers['X-API-Key'] = lmsApiKey
+        'X-API-Key': lmsApiKey,
       }
 
-      const lmsResponse = await fetch(`${lmsUrl}/api/leads/intake`, {
+      const lmsResponse = await fetch(`${lmsBaseUrl}/api/leads/intake`, {
         method: 'POST',
         headers,
         body: JSON.stringify(leadPayload),
@@ -198,7 +222,7 @@ export async function POST(req: Request) {
       }
     } catch (lmsError: any) {
       if (lmsError.name === 'AbortError') {
-        console.error('LMS request timed out after 25,000ms.')
+        console.error('LMS request timed out after 60,000ms.')
         return NextResponse.json(
           {
             success: false,
