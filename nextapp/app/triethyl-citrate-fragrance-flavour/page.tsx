@@ -5,16 +5,191 @@ import TECFAQAccordion from '@/components/tec-landing/TECFAQAccordion'
 import TECSampleForm from '@/components/tec-landing/TECSampleForm'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.parulchemicals.in'),
   title: 'Triethyl Citrate (TEC) for Fragrance & Flavour | CAS 77-93-0 | Parul Chemicals, India',
   description:
-    'Odourless, phthalate-free Triethyl Citrate (TEC) for fine fragrance, personal-care fragrance and flavours. FCC/USP grade, Kosher, ISO 22000. Request a sample and full regulatory pack.',
+    'Odourless, phthalate-free Triethyl Citrate (TEC) for fine fragrance, personal-care fragrance and flavours. High-purity FCC and USP grade solvent and fixative. Request a sample and full regulatory pack.',
   keywords:
     'Triethyl Citrate, TEC, fragrance solvent, flavour diluent, CAS 77-93-0, phthalate-free fixative, FEMA 3083, E1505, Parul Chemicals',
+  alternates: {
+    canonical: 'https://www.parulchemicals.in/triethyl-citrate-fragrance-flavour',
+  },
+  openGraph: {
+    title: 'Triethyl Citrate (TEC) for Fragrance & Flavour | CAS 77-93-0 | Parul Chemicals, India',
+    description:
+      'Odourless, phthalate-free Triethyl Citrate (TEC) for fine fragrance, personal-care fragrance and flavours. High-purity FCC and USP grade solvent and fixative. Request a sample and full regulatory pack.',
+    url: 'https://www.parulchemicals.in/triethyl-citrate-fragrance-flavour',
+    siteName: 'Parul Chemicals',
+    images: [
+      {
+        url: '/products/triethylcitrate.webp',
+        width: 800,
+        height: 600,
+        alt: 'Triethyl Citrate TEC drum packaging, Parul Chemicals',
+      },
+    ],
+    locale: 'en_IN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Triethyl Citrate (TEC) for Fragrance & Flavour | CAS 77-93-0 | Parul Chemicals, India',
+    description:
+      'Odourless, phthalate-free Triethyl Citrate (TEC) for fine fragrance, personal-care fragrance and flavours. High-purity FCC and USP grade solvent and fixative. Request a sample and full regulatory pack.',
+    images: ['/products/triethylcitrate.webp'],
+  },
+}
+
+const tecSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Product',
+      '@id': 'https://www.parulchemicals.in/triethyl-citrate-fragrance-flavour#product',
+      name: 'Triethyl Citrate (TEC)',
+      alternateName: ['TEC', 'Triethyl Citrate', 'Citric acid triethyl ester'],
+      image: 'https://www.parulchemicals.in/products/triethylcitrate.webp',
+      description:
+        'Odourless, phthalate-free Triethyl Citrate (TEC) manufactured to FCC and USP standards for fine fragrances, personal care, flavours (FEMA 3083, E1505), and pharmaceuticals.',
+      category: 'Chemicals > Specialty Chemicals > Fragrance & Food Ingredients',
+      brand: {
+        '@type': 'Brand',
+        name: 'Parul Chemicals',
+      },
+      manufacturer: {
+        '@type': 'Organization',
+        name: 'Parul Chemicals',
+        url: 'https://www.parulchemicals.in',
+      },
+      additionalProperty: [
+        {
+          '@type': 'PropertyValue',
+          name: 'CAS Number',
+          value: '77-93-0',
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'EC / EINECS Number',
+          value: '201-070-7',
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'FEMA Number',
+          value: '3083',
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'E-Number',
+          value: 'E1505',
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'Molecular Formula',
+          value: 'C12H20O7',
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'Molecular Weight',
+          value: '276.28 g/mol',
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'Assay / Ester Content',
+          value: '≥ 99.0% (GC)',
+        },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': 'https://www.parulchemicals.in/triethyl-citrate-fragrance-flavour#faq',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Can TEC replace DEP in my fragrance?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text:
+              'In most fragrance concentrates, yes. TEC dissolves most common aroma chemicals and essential oils. A few very non-polar materials can dissolve differently, so we recommend a stability and solubility check on your formula. We can send samples of both DEP and TEC for side-by-side trials.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Does your TEC have any odour?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text:
+              'It is practically odourless. Every batch passes an odour and colour check against a reference standard before release to ensure zero sensory interference with delicate notes.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Is your TEC suitable for flavours and food?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text:
+              'Yes. Our food grade meets FCC requirements. TEC is a permitted food additive (E1505) and is FEMA GRAS (FEMA 3083). Check local regulatory rules on use levels in your specific target market.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Do you provide an IFRA certificate?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text:
+              'Yes, we provide an IFRA conformity statement and fragrance allergen documentation on request for qualified manufacturing formulations.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Can you supply customers in the EU?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text:
+              'Yes. Our supply chain is structured to support European Union regulatory requirements, including REACH registration and Only Representative (OR) documentation.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'What is your minimum order quantity?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text:
+              'Standard commercial trial starts from single drums (200–225 kg). Larger containerized orders and annual supply contracts receive customized volume pricing.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Will you complete our supplier questionnaire and allow an audit?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text:
+              'Yes. Send us your quality questionnaire and our regulatory department will complete and return it. Both on-site and remote facility audits are welcome.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How do you notify changes?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text:
+              'We operate under strict change control procedures and provide formal advance written notification before any change to raw materials, production processes, or manufacturing site.',
+          },
+        },
+      ],
+    },
+  ],
 }
 
 export default function TECFragranceFlavourPage() {
   return (
     <div className="bg-white text-[#0F1C33]">
+      {/* Structured Data (JSON-LD) for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(tecSchema).replace(/</g, '\\u003c'),
+        }}
+      />
       {/* ─────────────────────────────────────────────────────────
           1. HERO SECTION
       ───────────────────────────────────────────────────────── */}
