@@ -6,10 +6,10 @@ export default function Footer() {
   return (
     <footer style={{ background: '#0D2137', borderTop: '1px solid rgba(255,255,255,0.05)' }} className="pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
 
           {/* Brand */}
-          <div className="md:col-span-2">
+          <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-2">
               <img src="/parul_logo.webp" alt="Parul Chemicals" className="h-16 w-auto object-contain drop-shadow-md" />
             </div>

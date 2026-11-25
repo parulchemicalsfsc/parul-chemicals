@@ -13,10 +13,12 @@ export default function ContactPage() {
   const [mode, setMode] = useState<FormMode>('inquiry')
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
+    setErrorMessage(null)
 
     // Collect Form Data
     const formData = new FormData(e.currentTarget)
@@ -30,15 +32,20 @@ export default function ContactPage() {
         body: JSON.stringify({ ...data, mode })
       })
 
-      if (response.ok) {
+      const result = await response.json().catch(() => null)
+
+      if (response.ok && result?.success) {
         setSent(true)
       } else {
-        alert("Failed to send. Please try again or check your .env settings.")
+        setErrorMessage(
+          result?.error || "We were unable to send your message. Please try again or contact us directly at info@parulchemicals.in."
+        )
       }
     } catch (err) {
-      console.error(err)
-      // Fallback for demo purposes if backend isn't ready
-      setSent(true)
+      console.error('Contact form submission error:', err)
+      setErrorMessage(
+        "A network communication error occurred. Please check your connection and try again, or reach us at info@parulchemicals.in."
+      )
     } finally {
       setLoading(false)
     }
@@ -91,7 +98,7 @@ export default function ContactPage() {
                   {(['inquiry', 'appointment'] as FormMode[]).map((m) => (
                     <button
                       key={m}
-                      onClick={() => { setMode(m); setSent(false); }}
+                      onClick={() => { setMode(m); setSent(false); setErrorMessage(null); }}
                       className={`flex-1 py-2.5 text-xs font-bold uppercase tracking-wider rounded-xl transition-all ${
                         mode === m ? 'bg-white text-[#0F1C33] shadow-sm' : 'text-slate-400 hover:text-slate-600'
                       }`}
@@ -121,7 +128,7 @@ export default function ContactPage() {
                           ? "We'll get back to you within 24 hours." 
                           : "Our team will review your appointment request and confirm via email shortly."}
                       </p>
-                      <button onClick={() => setSent(false)} className="mt-8 text-sm font-bold text-[#4DA8DA] hover:underline">Send another?</button>
+                      <button onClick={() => { setSent(false); setErrorMessage(null); }} className="mt-8 text-sm font-bold text-[#4DA8DA] hover:underline">Send another?</button>
                     </motion.div>
                   ) : (
                     <motion.form 
@@ -210,6 +217,12 @@ export default function ContactPage() {
                             <input name="topics" className={INPUT} placeholder="e.g., Bulk order pricing, technical specs" />
                           </div>
                         </>
+                      )}
+
+                      {errorMessage && (
+                        <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm leading-relaxed">
+                          {errorMessage}
+                        </div>
                       )}
 
                       <button type="submit" disabled={loading}

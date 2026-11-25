@@ -172,11 +172,11 @@ export default function Navbar() {
             aria-label="Menu"
           >
             <motion.span animate={open ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-              className={`block w-6 h-[2.5px] rounded transition-all shadow-sm ${linksWhite ? 'bg-white' : 'bg-[#0F1C33]'}`}/>
+              className={`block w-6 h-[2.5px] rounded transition-all shadow-sm ${!open && linksWhite ? 'bg-white' : 'bg-[#0F1C33]'}`}/>
             <motion.span animate={open ? { opacity: 0 } : { opacity: 1 }}
-              className={`block w-6 h-[2.5px] rounded transition-all shadow-sm ${linksWhite ? 'bg-white' : 'bg-[#0F1C33]'}`}/>
+              className={`block w-6 h-[2.5px] rounded transition-all shadow-sm ${!open && linksWhite ? 'bg-white' : 'bg-[#0F1C33]'}`}/>
             <motion.span animate={open ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-              className={`block w-6 h-[2.5px] rounded transition-all shadow-sm ${linksWhite ? 'bg-white' : 'bg-[#0F1C33]'}`}/>
+              className={`block w-6 h-[2.5px] rounded transition-all shadow-sm ${!open && linksWhite ? 'bg-white' : 'bg-[#0F1C33]'}`}/>
           </button>
         </div>
       </header>
@@ -189,7 +189,7 @@ export default function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'tween', duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-white flex flex-col pt-24 px-8 shadow-2xl"
+            className="fixed inset-0 z-40 bg-white flex flex-col pt-24 px-8 pb-12 overflow-y-auto max-h-screen shadow-2xl"
           >
             {NAV.map((item, i) => (
               <motion.div

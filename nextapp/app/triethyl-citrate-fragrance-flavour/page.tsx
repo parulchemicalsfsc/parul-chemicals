@@ -240,7 +240,7 @@ export default function TECFragranceFlavourPage() {
               <div className="flex flex-wrap items-center gap-4 mb-8 sm:mb-10">
                 <a
                   href="#sample-request"
-                  className="btn-primary px-7 sm:px-8 py-3.5 rounded-full text-sm sm:text-base font-bold shadow-lg shadow-amber-500/20 inline-flex items-center justify-center gap-2 text-white transition-transform hover:-translate-y-0.5"
+                  className="btn-primary w-full sm:w-auto px-7 sm:px-8 py-3.5 rounded-full text-sm sm:text-base font-bold shadow-lg shadow-amber-500/20 inline-flex items-center justify-center gap-2 text-white transition-transform hover:-translate-y-0.5"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
@@ -252,7 +252,7 @@ export default function TECFragranceFlavourPage() {
 
                 <a
                   href="#regulatory-pack"
-                  className="px-6 sm:px-7 py-3.5 rounded-full text-sm sm:text-base font-bold text-white border border-white/30 bg-white/10 hover:bg-white/20 hover:border-white/60 transition-all inline-flex items-center justify-center gap-2 backdrop-blur-sm shadow-md"
+                  className="w-full sm:w-auto px-6 sm:px-7 py-3.5 rounded-full text-sm sm:text-base font-bold text-white border border-white/30 bg-white/10 hover:bg-white/20 hover:border-white/60 transition-all inline-flex items-center justify-center gap-2 backdrop-blur-sm shadow-md"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -288,7 +288,7 @@ export default function TECFragranceFlavourPage() {
                   </div>
                   <div className="p-3 rounded-xl bg-white/[0.07] border border-white/10">
                     <span className="text-slate-300 block font-medium mb-0.5">FEMA / E-Number</span>
-                    <span className="font-mono font-bold text-white text-sm">FEMA 3083 · E1505</span>
+                    <span className="font-mono font-bold text-white text-xs sm:text-sm break-words">FEMA 3083 · E1505</span>
                   </div>
                   <div className="p-3 rounded-xl bg-white/[0.07] border border-white/10">
                     <span className="text-slate-300 block font-medium mb-0.5">EC / EINECS</span>
