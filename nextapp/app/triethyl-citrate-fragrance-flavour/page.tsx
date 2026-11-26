@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Fragment } from 'react'
 import TECFAQAccordion from '@/components/tec-landing/TECFAQAccordion'
 import TECSampleForm from '@/components/tec-landing/TECSampleForm'
 
@@ -179,6 +180,239 @@ const tecSchema = {
     },
   ],
 }
+
+interface RegulatoryDocItem {
+  title: string
+  classification: string
+  type: 'download' | 'certificate' | 'request'
+  href?: string
+  btnText?: string
+}
+
+interface RegulatoryCategory {
+  category: string
+  items: RegulatoryDocItem[]
+}
+
+const REGULATORY_DOSSIER: RegulatoryCategory[] = [
+  {
+    category: 'Core Specifications & Primary Accreditations',
+    items: [
+      {
+        title: 'Technical Data Sheet (TDS)',
+        classification: 'Product specification & handling',
+        type: 'download',
+        href: '/tds,coa,msds/TDS - Technical Data Sheet (1) (2).pdf',
+        btnText: 'Download PDF',
+      },
+      {
+        title: 'Safety Data Sheet (SDS)',
+        classification: 'GHS format safety data',
+        type: 'download',
+        href: '/tds,coa,msds/MSDS - TEC 31.01.25 Revised (2).pdf',
+        btnText: 'Download PDF',
+      },
+      {
+        title: 'Certificate of Analysis (COA)',
+        classification: 'Batch-specific analytical release',
+        type: 'download',
+        href: '/tds,coa,msds/COA for approval (1) (1).pdf',
+        btnText: 'View Sample COA',
+      },
+      {
+        title: 'ISO 9001:2015, ISO 22000:2018, ISO 45001:2018',
+        classification: 'Management & Food Safety Standards',
+        type: 'certificate',
+        href: '/certifications',
+        btnText: 'View Certificates',
+      },
+      {
+        title: 'GMP & HACCP Certificates',
+        classification: 'Manufacturing hygiene & hazard controls',
+        type: 'certificate',
+        href: '/certifications',
+        btnText: 'View Certificates',
+      },
+      {
+        title: 'Star-K Kosher Certificate',
+        classification: 'Kosher dietary compliance (TEC)',
+        type: 'certificate',
+        href: '/certifications',
+        btnText: 'View Certificate',
+      },
+      {
+        title: 'REACH Registration / OR Letter',
+        classification: 'European chemical compliance',
+        type: 'request',
+      },
+    ],
+  },
+  {
+    category: 'Dietary, Sourcing & Origin Statements',
+    items: [
+      {
+        title: 'Allergen Statement',
+        classification: 'Food & fragrance allergen declaration',
+        type: 'request',
+      },
+      {
+        title: 'Bioengineered (BE) Food Disclosure Statement',
+        classification: 'Bioengineered food disclosure',
+        type: 'request',
+      },
+      {
+        title: 'BSE / TSE & Animal-Origin Statement',
+        classification: 'Animal-origin & BSE/TSE declaration',
+        type: 'request',
+      },
+      {
+        title: 'Gluten-Free Statement',
+        classification: 'Gluten-free dietary declaration',
+        type: 'request',
+      },
+      {
+        title: 'GRAS Status Statement',
+        classification: 'Generally Recognized as Safe status',
+        type: 'request',
+      },
+      {
+        title: 'Natural Origin Statement',
+        classification: 'Natural origin status',
+        type: 'request',
+      },
+      {
+        title: 'Non-GMO Statement',
+        classification: 'Non-GMO declaration',
+        type: 'request',
+      },
+      {
+        title: 'Palm Oil Free Statement',
+        classification: 'Palm oil-free declaration',
+        type: 'request',
+      },
+    ],
+  },
+  {
+    category: 'Purity, Contaminant & Safety Declarations',
+    items: [
+      {
+        title: 'CMR Statement',
+        classification: 'Carcinogenic, mutagenic & reprotoxic status',
+        type: 'request',
+      },
+      {
+        title: 'Ethylene Oxide (EtO) Statement',
+        classification: 'Ethylene oxide residue status',
+        type: 'request',
+      },
+      {
+        title: 'Heavy Metals & Elemental Impurities',
+        classification: 'Elemental impurities testing',
+        type: 'request',
+      },
+      {
+        title: 'Irradiation Statement',
+        classification: 'Non-irradiation declaration',
+        type: 'request',
+      },
+      {
+        title: 'Microbiological Statement',
+        classification: 'Microbiological purity limits',
+        type: 'request',
+      },
+      {
+        title: 'Nitrosamine Risk Statement',
+        classification: 'Nitrosamine risk assessment',
+        type: 'request',
+      },
+      {
+        title: 'Non-Animal Testing Statement',
+        classification: 'Non-animal testing declaration',
+        type: 'request',
+      },
+      {
+        title: 'Phthalate-Free Statement',
+        classification: 'Phthalate-free declaration',
+        type: 'request',
+      },
+      {
+        title: 'Residual Solvents Statement',
+        classification: 'Residual solvents testing',
+        type: 'request',
+      },
+    ],
+  },
+  {
+    category: 'Global Regulatory & Environmental Standards',
+    items: [
+      {
+        title: 'IFRA Conformity Statement',
+        classification: 'Fragrance standards conformity',
+        type: 'request',
+      },
+      {
+        title: 'Microplastics & PFAS Statement',
+        classification: 'Microplastics & PFAS status',
+        type: 'request',
+      },
+      {
+        title: 'Nanomaterial Statement',
+        classification: 'Engineered nanomaterials status',
+        type: 'request',
+      },
+      {
+        title: 'California Proposition 65 Statement',
+        classification: 'California Proposition 65 compliance',
+        type: 'request',
+      },
+      {
+        title: 'Sewage Sludge Statement',
+        classification: 'Sewage sludge treatment status',
+        type: 'request',
+      },
+      {
+        title: 'SVHC & REACH Restrictions Statement',
+        classification: 'SVHC & REACH restrictions declaration',
+        type: 'request',
+      },
+    ],
+  },
+  {
+    category: 'Quality, Traceability & Technical Operations',
+    items: [
+      {
+        title: 'Breakdown Composition Statement',
+        classification: 'Chemical breakdown & active ester assay',
+        type: 'request',
+      },
+      {
+        title: 'Certifications & Quality Statement',
+        classification: 'Quality management summary',
+        type: 'request',
+      },
+      {
+        title: 'Global Chemical Inventories',
+        classification: 'Global chemical inventory listings',
+        type: 'request',
+      },
+      {
+        title: 'Origin, Traceability & Change Control',
+        classification: 'Sourcing, traceability & change control',
+        type: 'request',
+      },
+      {
+        title: 'Shelf Life Statement',
+        classification: 'Shelf life & packaging integrity',
+        type: 'request',
+      },
+      {
+        title: 'Test Methods',
+        classification: 'Quality control test procedures',
+        type: 'request',
+      },
+    ],
+  },
+]
 
 export default function TECFragranceFlavourPage() {
   return (
@@ -702,129 +936,77 @@ export default function TECFragranceFlavourPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#E2E8F0]">
-                  <tr className="hover:bg-slate-50/60 transition-colors">
-                    <td className="py-4 px-6 font-bold text-[#0F1C33]">Technical Data Sheet (TDS)</td>
-                    <td className="py-4 px-6 text-[#64748B]">Product specification &amp; handling</td>
-                    <td className="py-4 px-6 text-right">
-                      <a
-                        href="/tds,coa,msds/TDS - Technical Data Sheet (1) (2).pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#E6F9F5] text-[#00A88F] border border-[#00C9A7]/30 hover:bg-[#00C9A7]/20 transition-colors"
-                      >
-                        <span>Download PDF</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                          <path d="M7 17l9.2-9.2M17 17V7H7" />
-                        </svg>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr className="bg-slate-50/50 hover:bg-slate-50/90 transition-colors">
-                    <td className="py-4 px-6 font-bold text-[#0F1C33]">Safety Data Sheet (SDS)</td>
-                    <td className="py-4 px-6 text-[#64748B]">GHS format safety data</td>
-                    <td className="py-4 px-6 text-right">
-                      <a
-                        href="/tds,coa,msds/MSDS - TEC 31.01.25 Revised (2).pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#E6F9F5] text-[#00A88F] border border-[#00C9A7]/30 hover:bg-[#00C9A7]/20 transition-colors"
-                      >
-                        <span>Download PDF</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                          <path d="M7 17l9.2-9.2M17 17V7H7" />
-                        </svg>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-slate-50/60 transition-colors">
-                    <td className="py-4 px-6 font-bold text-[#0F1C33]">Certificate of Analysis (COA)</td>
-                    <td className="py-4 px-6 text-[#64748B]">Batch-specific analytical release</td>
-                    <td className="py-4 px-6 text-right">
-                      <a
-                        href="/tds,coa,msds/COA for approval (1) (1).pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#E6F9F5] text-[#00A88F] border border-[#00C9A7]/30 hover:bg-[#00C9A7]/20 transition-colors"
-                      >
-                        <span>View Sample COA</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                          <path d="M7 17l9.2-9.2M17 17V7H7" />
-                        </svg>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr className="bg-slate-50/50 hover:bg-slate-50/90 transition-colors">
-                    <td className="py-4 px-6 font-bold text-[#0F1C33]">ISO 9001:2015, ISO 22000:2018, ISO 45001:2018</td>
-                    <td className="py-4 px-6 text-[#64748B]">Management &amp; Food Safety Standards</td>
-                    <td className="py-4 px-6 text-right">
-                      <Link
-                        href="/certifications"
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#EEF4FB] text-[#1F4E79] border border-[#4DA8DA]/30 hover:bg-[#4DA8DA]/20 transition-colors"
-                      >
-                        <span>View Certificates</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                          <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-slate-50/60 transition-colors">
-                    <td className="py-4 px-6 font-bold text-[#0F1C33]">GMP &amp; HACCP Certificates</td>
-                    <td className="py-4 px-6 text-[#64748B]">Manufacturing hygiene &amp; hazard controls</td>
-                    <td className="py-4 px-6 text-right">
-                      <Link
-                        href="/certifications"
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#EEF4FB] text-[#1F4E79] border border-[#4DA8DA]/30 hover:bg-[#4DA8DA]/20 transition-colors"
-                      >
-                        <span>View Certificates</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                          <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr className="bg-slate-50/50 hover:bg-slate-50/90 transition-colors">
-                    <td className="py-4 px-6 font-bold text-[#0F1C33]">Star-K Kosher Certificate</td>
-                    <td className="py-4 px-6 text-[#64748B]">Kosher dietary compliance (TEC)</td>
-                    <td className="py-4 px-6 text-right">
-                      <Link
-                        href="/certifications"
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#EEF4FB] text-[#1F4E79] border border-[#4DA8DA]/30 hover:bg-[#4DA8DA]/20 transition-colors"
-                      >
-                        <span>View Certificate</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                          <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-slate-50/60 transition-colors">
-                    <td className="py-4 px-6 font-bold text-[#0F1C33]">IFRA Conformity Statement</td>
-                    <td className="py-4 px-6 text-[#64748B]">Fragrance standards dossier</td>
-                    <td className="py-4 px-6 text-right">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200">
-                        Available on Request
-                      </span>
-                    </td>
-                  </tr>
-                  <tr className="bg-slate-50/50 hover:bg-slate-50/90 transition-colors">
-                    <td className="py-4 px-6 font-bold text-[#0F1C33]">EU Allergen Statement</td>
-                    <td className="py-4 px-6 text-[#64748B]">Cosmetic allergen assessment</td>
-                    <td className="py-4 px-6 text-right">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200">
-                        Available on Request
-                      </span>
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-slate-50/60 transition-colors">
-                    <td className="py-4 px-6 font-bold text-[#0F1C33]">REACH Registration / OR Letter</td>
-                    <td className="py-4 px-6 text-[#64748B]">European chemical compliance</td>
-                    <td className="py-4 px-6 text-right">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200">
-                        Available on Request
-                      </span>
-                    </td>
-                  </tr>
+                  {REGULATORY_DOSSIER.map((cat) => (
+                    <Fragment key={cat.category}>
+                      <tr className="bg-[#F1F5F9]/90 border-t border-b border-[#CBD5E1]/60">
+                        <td
+                          colSpan={3}
+                          className="py-2.5 px-6 font-bold text-xs uppercase tracking-wider text-[#0EA5A0]"
+                        >
+                          {cat.category}
+                        </td>
+                      </tr>
+                      {cat.items.map((item, itemIdx) => {
+                        const isEven = itemIdx % 2 === 1
+                        return (
+                          <tr
+                            key={item.title}
+                            className={`${
+                              isEven ? 'bg-slate-50/50 hover:bg-slate-50/90' : 'hover:bg-slate-50/60'
+                            } transition-colors`}
+                          >
+                            <td className="py-3.5 px-6 font-bold text-[#0F1C33]">{item.title}</td>
+                            <td className="py-3.5 px-6 text-[#64748B]">{item.classification}</td>
+                            <td className="py-3.5 px-6 text-right">
+                              {item.type === 'download' && item.href && (
+                                <a
+                                  href={item.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#E6F9F5] text-[#00A88F] border border-[#00C9A7]/30 hover:bg-[#00C9A7]/20 transition-colors"
+                                >
+                                  <span>{item.btnText || 'Download PDF'}</span>
+                                  <svg
+                                    width="12"
+                                    height="12"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2.5"
+                                  >
+                                    <path d="M7 17l9.2-9.2M17 17V7H7" />
+                                  </svg>
+                                </a>
+                              )}
+                              {item.type === 'certificate' && item.href && (
+                                <Link
+                                  href={item.href}
+                                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#EEF4FB] text-[#1F4E79] border border-[#4DA8DA]/30 hover:bg-[#4DA8DA]/20 transition-colors"
+                                >
+                                  <span>{item.btnText || 'View Certificate'}</span>
+                                  <svg
+                                    width="12"
+                                    height="12"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2.5"
+                                  >
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                  </svg>
+                                </Link>
+                              )}
+                              {item.type === 'request' && (
+                                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200">
+                                  Available on Request
+                                </span>
+                              )}
+                            </td>
+                          </tr>
+                        )
+                      })}
+                    </Fragment>
+                  ))}
                 </tbody>
               </table>
             </div>
